@@ -18,7 +18,7 @@
 
     <!-- Main Content -->
     <div class="container-fluid chapter-container">
-        <a href="/pages/home.html" class="back-btn">
+        <a href="../home.html" class="back-btn">
             <i class="fas fa-arrow-left"></i> Back to Chapters
         </a>
 
@@ -40,10 +40,21 @@
                             1.1.1 Problem Solving Approaches
                         </a>
                     </li>
-                    
-                    <li data-subsection="1.1.2">1.1.2 Decomposing Problems</li>
-                    <li data-subsection="1.1.3">1.1.3 Pattern Recognition</li>
-                    <li data-subsection="1.1.4">1.1.4 Abstraction</li>
+                    <li data-subsection="1.1.2">
+                        <a href="/pages/chapters/chapter_1/sub_sections/1.1.2.html" class="subsection-link">
+                            1.1.2 Decomposing Problems
+                        </a>
+                    </li>
+                    <li data-subsection="1.1.3">
+                        <a href="/pages/chapters/chapter_1/sub_sections/1.1.3.html" class="subsection-link">
+                            1.1.3 Pattern Recognition
+                        </a>
+                    </li>
+                    <li data-subsection="1.1.4">
+                        <a href="/pages/chapters/chapter_1/sub_sections/1.1.4.html" class="subsection-link">
+                            1.1.4 Abstraction
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -53,9 +64,21 @@
                     <h3>1.2 Algorithms</h3>
                 </div>
                 <ul class="sub-topics">
-                    <li data-subsection="1.2.1">1.2.1 Algorithm Fundamentals</li>
-                    <li data-subsection="1.2.2">1.2.2 Flowcharts & Pseudocode</li>
-                    <li data-subsection="1.2.3">1.2.3 Programming Constructs</li>
+                    <li data-subsection="1.2.1">
+                        <a href="/pages/chapters/chapter_1/sub_sections/1.2.1.html" class="subsection-link">
+                            1.2.1 Algorithm Fundamentals
+                        </a>
+                    </li>
+                    <li data-subsection="1.2.2">
+                        <a href="/pages/chapters/chapter_1/sub_sections/1.2.2.html" class="subsection-link">
+                            1.2.2 Flowcharts & Pseudocode
+                        </a>
+                    </li>
+                    <li data-subsection="1.2.3">
+                        <a href="/pages/chapters/chapter_1/sub_sections/1.2.3.html" class="subsection-link">
+                            1.2.3 Programming Constructs
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -89,10 +112,6 @@
                 
                 // Add active class to selected item
                 this.classList.add('active');
-                
-                // Load content logic would go here
-                const subsectionId = this.dataset.subsection;
-                console.log(`Loading content for ${subsectionId}`);
             });
         });
 
