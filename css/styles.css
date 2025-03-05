@@ -302,6 +302,7 @@ html, body {
 .back-btn:hover {
     transform: translateX(-5px);
     color: var(--accent-1);
+    cursor: none;
 }
 
 .subsection-grid {
@@ -447,6 +448,7 @@ html, body {
     transform: scale(1.05);
     cursor: none;
 }
+
 
 @media (max-width: 768px) {
     .chapter-container {
