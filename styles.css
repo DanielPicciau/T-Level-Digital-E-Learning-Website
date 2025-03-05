@@ -1,0 +1,416 @@
+/* ================= ROOT VARIABLES ================= */
+:root {
+    --text-primary: #ffffff;
+    --accent-1: #6366f1;
+    --accent-2: #a855f7;
+    --accent-3: #ec4899;
+}
+
+/* ================= GALAXY BACKGROUND ================= */
+.universe-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, 
+        #0a0812 0%, 
+        #09061a 30%, 
+        #070320 60%, 
+        #04041a 100%);
+    z-index: 1;
+}
+
+.stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: transparent;
+    animation: moveStars 50s linear infinite;
+}
+
+.stars::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 10% 20%, #fff 0.5px, transparent 1px),
+        radial-gradient(2px 2px at 90% 70%, #fff 0.5px, transparent 1px),
+        radial-gradient(2px 2px at 80% 10%, #fff 0.5px, transparent 1px),
+        radial-gradient(2px 2px at 20% 80%, #fff 0.5px, transparent 1px);
+    background-size: 200px 200px;
+}
+
+@keyframes moveStars {
+    from { transform: translateY(0); }
+    to { transform: translateY(-200px); }
+}
+
+.particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.particles::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23ffffff'/%3E%3C/svg%3E");
+    background-size: 3px 3px;
+    opacity: 0.3;
+    animation: particleMovement 20s linear infinite;
+}
+
+@keyframes particleMovement {
+    0% { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(-100vh) translateX(-50vw); }
+}
+
+.galaxy-core {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle at 50% 50%, 
+        rgba(6, 0, 11, 0.4) 0%, 
+        rgba(3, 0, 37, 0.3) 30%, 
+        transparent 70%);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    animation: rotateGalaxy 120s linear infinite;
+    will-change: transform;
+}
+
+@keyframes rotateGalaxy {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ================= BASE STYLES ================= */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text-primary);
+    overflow-x: hidden;
+    cursor: none;
+    position: relative;
+    background: transparent !important;
+}
+
+/* ================= TITLE & SUBTITLE ================= */
+.title-container {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-top: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem;
+    background: linear-gradient(45deg, var(--accent-1), var(--accent-2), var(--accent-3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+    margin: 2rem 0;
+}
+
+.subtitle {
+    color: #d1d5db;
+    font-size: 1.75rem;
+    margin-top: 1rem;
+    letter-spacing: 1px;
+}
+
+/* ================= CHAPTER GRID & BUTTONS ================= */
+.chapter-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    position: relative;
+    z-index: 10;
+}
+
+.chapter-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 25px;
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 15px;
+}
+
+.chapter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, 
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%);
+    transition: all 0.6s;
+}
+
+.chapter-btn:hover::before {
+    left: 100%;
+}
+
+.chapter-btn:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(168, 85, 247, 0.3) 100%);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.2);
+}
+
+.chapter-btn span {
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.chapter-btn .chapter-icon {
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, var(--accent-1), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.9;
+}
+
+/* ================= COSMIC CURSOR ================= */
+.cosmic-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(168, 85, 247, 0.2);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: 
+        transform 0.2s ease-out, 
+        background 0.3s ease;
+    box-shadow: 
+        0 0 20px rgba(168, 85, 247, 0.2),
+        inset 0 0 8px rgba(255, 255, 255, 0.1);
+    mix-blend-mode: screen;
+}
+
+.cosmic-cursor::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    animation: pulse 1.5s ease-out infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+.cosmic-cursor.expanded {
+    transform: translate(-50%, -50%) scale(2.5);
+    background: rgba(200, 220, 255, 0.2);
+}
+
+/* ================= RESPONSIVE DESIGN ================= */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+    .subtitle {
+        font-size: 1.25rem;
+    }
+    .chapter-btn {
+        padding: 20px;
+    }
+    .chapter-btn span {
+        font-size: 1rem;
+    }
+}
+
+/* ================= CHAPTER CONTENT STYLES ================= */
+.chapter-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    position: relative;
+    z-index: 10;
+}
+
+.chapter-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+/* CHAPTER PAGE STYLES */
+.chapter-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.back-btn {
+    color: var(--accent-2);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.back-btn:hover {
+    transform: translateX(-5px);
+    color: var(--accent-1);
+}
+
+.subsection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.subsection-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+}
+
+.subsection-card:hover {
+    transform: translateY(-5px);
+}
+
+.subsection-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.subsection-header i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    background: linear-gradient(45deg, var(--accent-1), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subsection-header h3 {
+    color: var(--accent-2);
+    margin: 0;
+}
+
+.sub-topics {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sub-topics li {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sub-topics li:hover {
+    background: rgba(168, 85, 247, 0.2);
+    transform: translateX(10px);
+}
+
+.sub-topics li.active {
+    background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+    border-left: 4px solid var(--accent-3);
+}
+
+.quiz-section {
+    margin-top: 4rem;
+    padding: 2rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 15px;
+    border: 2px solid rgba(168, 85, 247, 0.2);
+}
+
+.quiz-title {
+    color: var(--accent-2);
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 1.5rem;
+}
+
+.quiz-placeholder {
+    text-align: center;
+    padding: 2rem;
+}
+
+.quiz-start-btn {
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.quiz-start-btn:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .chapter-container {
+        padding: 1rem;
+    }
+    
+    .subsection-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sub-topics li {
+        padding: 0.8rem;
+    }
+}
