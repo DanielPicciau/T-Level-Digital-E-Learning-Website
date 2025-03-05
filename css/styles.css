@@ -1,7 +1,7 @@
 /* ================= ROOT VARIABLES ================= */
 :root {
     --text-primary: #ffffff;
-    --accent-1: #6366f1;
+    --accent-1: #e863f1;
     --accent-2: #a855f7;
     --accent-3: #ec4899;
 }
@@ -302,6 +302,7 @@ html, body {
 .back-btn:hover {
     transform: translateX(-5px);
     color: var(--accent-1);
+    cursor: none;
 }
 
 .subsection-grid {
