@@ -122,6 +122,7 @@ html, body {
     font-size: 3.5rem;
     background: linear-gradient(45deg, var(--accent-1), var(--accent-2), var(--accent-3));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -200,6 +201,7 @@ html, body {
     font-size: 2.5rem;
     background: linear-gradient(45deg, var(--accent-1), var(--accent-2));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     opacity: 0.9;
 }
@@ -243,45 +245,7 @@ html, body {
     background: rgba(200, 220, 255, 0.2);
 }
 
-/* ================= RESPONSIVE DESIGN ================= */
-@media (max-width: 768px) {
-    .title {
-        font-size: 2.5rem;
-    }
-    .subtitle {
-        font-size: 1.25rem;
-    }
-    .chapter-btn {
-        padding: 20px;
-    }
-    .chapter-btn span {
-        font-size: 1rem;
-    }
-}
-
 /* ================= CHAPTER CONTENT STYLES ================= */
-.chapter-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    position: relative;
-    z-index: 10;
-}
-
-.chapter-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.chapter-nav {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-}
-
-/* CHAPTER PAGE STYLES */
 .chapter-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -302,7 +266,6 @@ html, body {
 .back-btn:hover {
     transform: translateX(-5px);
     color: var(--accent-1);
-    cursor: none;
 }
 
 .subsection-grid {
@@ -359,6 +322,7 @@ html, body {
     margin-right: 1rem;
     background: linear-gradient(45deg, var(--accent-1), var(--accent-2));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -378,7 +342,6 @@ html, body {
     margin: 0.5rem 0;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
-    cursor: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
@@ -405,13 +368,21 @@ html, body {
 
 .sub-topics li:hover {
     background: rgba(99, 102, 241, 0.2);
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
 }
 
 .sub-topics li.active {
     background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
     border-left: 4px solid var(--accent-3);
+}
+
+.subsection-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .quiz-section {
@@ -428,11 +399,6 @@ html, body {
     margin-bottom: 1.5rem;
 }
 
-.quiz-placeholder {
-    text-align: center;
-    padding: 2rem;
-}
-
 .quiz-start-btn {
     background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
     border: none;
@@ -446,11 +412,18 @@ html, body {
 
 .quiz-start-btn:hover {
     transform: scale(1.05);
-    cursor: none;
 }
 
-
+/* ================= RESPONSIVE DESIGN ================= */
 @media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.25rem;
+    }
+    
     .chapter-container {
         padding: 1rem;
     }
@@ -462,4 +435,53 @@ html, body {
     .sub-topics li {
         padding: 0.8rem;
     }
-}
+}   /* ================= SUBSECTION LINKS ================= */
+    .sub-topics li {
+        padding: 0;
+        margin: 0.5rem 0;
+        background: rgba(203, 145, 145, 0.05);
+        border-radius: 8px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .subsection-link {
+        color: var(--text-primary);
+        text-decoration: none;
+        display: block;
+        padding: 1rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .sub-topics li::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, 
+            transparent 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            transparent 100%);
+        transition: all 0.6s;
+        z-index: 0;
+    }
+
+    .sub-topics li:hover::before {
+        left: 100%;
+    }
+
+    .sub-topics li:hover {
+        background: rgba(99, 102, 241, 0.2);
+        transform: translateY(-5px) scale(1.03);
+        box-shadow: 0 8px 32px rgba(99, 102, 241, 0.2);
+    }
+
+    .sub-topics li.active {
+        background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+        border-left: 4px solid var(--accent-3);
+    }
