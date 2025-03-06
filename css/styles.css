@@ -6,6 +6,11 @@
     --accent-3: #8a48ec;
 }
 
+/* ================= HIDE CURSOR GLOBALLY ================= */
+* {
+    cursor: none !important;
+}
+
 /* ================= GALAXY BACKGROUND ================= */
 .universe-background {
     position: fixed;
@@ -103,7 +108,6 @@ html, body {
     font-family: 'Space Grotesk', sans-serif;
     color: var(--text-primary);
     overflow-x: hidden;
-    cursor: none;
     position: relative;
     background: transparent !important;
 }
@@ -164,7 +168,7 @@ html, body {
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     gap: 15px;
-    cursor: none;
+
 }
 
 .chapter-btn::before {
@@ -189,6 +193,7 @@ html, body {
     background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(168, 85, 247, 0.3) 100%);
     transform: translateY(-5px) scale(1.03);
     box-shadow: 0 8px 32px rgba(99, 102, 241, 0.2);
+
 }
 
 .chapter-btn span {
@@ -370,6 +375,7 @@ html, body {
     background: rgba(99, 102, 241, 0.2);
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+
 }
 
 .sub-topics li.active {
@@ -406,7 +412,6 @@ html, body {
     border-radius: 8px;
     color: white;
     font-size: 1.1rem;
-    cursor: none;
     transition: transform 0.3s ease;
 }
 
@@ -445,6 +450,7 @@ html, body {
         position: relative;
         overflow: hidden;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        
     }
 
     .subsection-link {
