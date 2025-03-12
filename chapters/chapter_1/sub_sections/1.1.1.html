@@ -27,7 +27,7 @@
             <div class="gradient-divider"></div>
         </div>
 
-        <!-- Core Content Sections -->
+        <!-- Three Approaches Section -->
         <div class="content-section">
             <h2 class="section-heading"><i class="fas fa-sitemap"></i> Three Approaches</h2>
             <div class="section-content">
@@ -37,13 +37,25 @@
                         <div class="approach-card">
                             <h3 class="approach-title">Top-Down</h3>
                             <div class="approach-body">
-                                <p>Breaking complex problems into smaller modules through decomposition</p>
+                                <p>Breaking complex problems into smaller modules through 
+                                    <span class="key-term" data-definition="Breaking down complex problems into smaller, manageable parts">decomposition</span>
+                                </p>
                                 <ul class="key-points">
                                     <li>Stepwise refinement process</li>
                                     <li>Tree structure representation</li>
-                                    <li>Used in procedural programming (C/Pascal)</li>
-                                    <li>Flow of control is downward</li>
+                                    <li>Used in <span class="key-term" data-definition="Programming paradigm using procedures or functions">procedural programming</span></li>
                                 </ul>
+                            </div>
+                        </div>
+                        <div class="visual-aid mt-3">
+                            <div class="tree-diagram">
+                                <div class="node highlight-node">Main Problem
+                                    <div class="node-connection"></div>
+                                </div>
+                                <div class="sub-nodes">
+                                    <div class="node">Sub-module 1</div>
+                                    <div class="node">Sub-module 2</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -53,14 +65,20 @@
                         <div class="approach-card">
                             <h3 class="approach-title">Bottom-Up</h3>
                             <div class="approach-body">
-                                <p>Combining small modules into complete solutions</p>
+                                <p>Combining small modules through 
+                                    <span class="key-term" data-definition="Combining components into a complete system">integration</span>
+                                </p>
                                 <ul class="key-points">
                                     <li>Starts with fundamental components</li>
                                     <li>Focus on integration testing</li>
-                                    <li>Used in OOP languages (Python/Java)</li>
-                                    <li>Eliminates redundancy</li>
+                                    <li>Used in <span class="key-term" data-definition="Object-Oriented Programming">OOP languages</span></li>
                                 </ul>
                             </div>
+                        </div>
+                        <div class="module-flow mt-3">
+                            <div class="module">Component A</div>
+                            <div class="module">Component B</div>
+                            <div class="module">Component C</div>
                         </div>
                     </div>
 
@@ -74,9 +92,14 @@
                                     <li>Modules work together</li>
                                     <li>Main program calls subprograms</li>
                                     <li>Common in OOP</li>
-                                    <li>Improves maintainability</li>
                                 </ul>
                             </div>
+                        </div>
+                        <div class="pseudocode mt-3">
+                            <span class="code-keyword">MODULE</span> MixingSubsystem<br>
+                            <span class="code-keyword">BEGIN</span><br>
+                            &nbsp;&nbsp;<span class="code-variable">MixIngredients</span>()<br>
+                            <span class="code-keyword">END MODULE</span>
                         </div>
                     </div>
                 </div>
@@ -112,96 +135,124 @@
                                 <td>Procedural (C)</td>
                                 <td>Object-Oriented (Python, Java)</td>
                             </tr>
-                            <tr>
-                                <td>Primary Use</td>
-                                <td>Documentation & Debugging</td>
-                                <td>Testing</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-
-        <!-- Learning Activity -->
-        <div class="content-section">
-            <h2 class="section-heading"><i class="fas fa-tasks"></i> Group Activity</h2>
-            <div class="section-content">
-                <div class="activity-card">
-                    <h3 class="activity-title">Dessert Preparation Exercise</h3>
-                    <div class="activity-body">
-                        <p>Create documentation for making a family dessert using:</p>
-                        <div class="row g-3">
-                            <div class="col-md-4">
-                                <div class="approach-task">
-                                    <h5>Top-Down Group</h5>
-                                    <ul>
-                                        <li>Start with final dessert concept</li>
-                                        <li>Break into preparation stages</li>
-                                        <li>Define ingredient modules</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="approach-task">
-                                    <h5>Bottom-Up Group</h5>
-                                    <ul>
-                                        <li>Begin with basic ingredients</li>
-                                        <li>Combine into components</li>
-                                        <li>Build up to final dish</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="approach-task">
-                                    <h5>Modularisation Group</h5>
-                                    <ul>
-                                        <li>Create independent modules</li>
-                                        <li>Mixing subsystem</li>
-                                        <li>Baking subsystem</li>
-                                        <li>Presentation subsystem</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="collapsible mt-3">
+                    <i class="fas fa-chevron-down"></i> Detailed Comparison Notes
+                </div>
+                <div class="collapsible-content">
+                    <p class="mt-2">Key differences in application contexts between approaches...</p>
                 </div>
             </div>
         </div>
 
-        <!-- Review Questions -->
+        <!-- Interactive Quiz Section -->
         <div class="content-section">
-            <h2 class="section-heading"><i class="fas fa-question"></i> Test Yourself</h2>
+            <h2 class="section-heading"><i class="fas fa-brain"></i> Interactive Quiz</h2>
             <div class="section-content">
-                <div class="review-questions">
-                    <ol>
-                        <li>What is computational thinking?</li>
-                        <li>How is the top-down approach usually represented?</li>
-                        <li>What does the top-down approach begin with?</li>
-                        <li>What programming languages typically use the bottom-up approach?</li>
-                        <li>What is the combination of modules called?</li>
-                        <li>What is the main aim of modularisation?</li>
-                    </ol>
+                <div class="quiz-container">
+                    <div class="quiz-progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                    
+                    <!-- Question 1 -->
+                    <div class="quiz-card active">
+                        <div class="quiz-question">
+                            <h3>What is computational thinking?</h3>
+                        </div>
+                        <div class="quiz-options">
+                            <div class="quiz-option" data-correct="true">
+                                <span>A problem-solving method using computer science techniques</span>
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="quiz-option" data-correct="false">
+                                <span>A type of programming language</span>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div class="quiz-option" data-correct="false">
+                                <span>A hardware design methodology</span>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div class="quiz-option" data-correct="false">
+                                <span>A network configuration process</span>
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="quiz-card">
+                        <div class="quiz-question">
+                            <h3>How is the top-down approach usually represented?</h3>
+                        </div>
+                        <div class="quiz-options">
+                            <div class="quiz-option" data-correct="true">
+                                <span>Tree structure</span>
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="quiz-option" data-correct="false">
+                                <span>Flow chart</span>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div class="quiz-option" data-correct="false">
+                                <span>Pie chart</span>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div class="quiz-option" data-correct="false">
+                                <span>Bar graph</span>
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add more questions following the same pattern -->
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Cursor Element -->
-    <div class="cosmic-cursor"></div>
-
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../scripts/script.js"></script>
     <script>
-        // Cursor animation matching existing site
-        const cursor = document.querySelector('.cosmic-cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = `${e.clientX}px`;
-            cursor.style.top = `${e.clientY}px`;
+        // Quiz functionality
+        const quizCards = document.querySelectorAll('.quiz-card');
+        const progressBar = document.querySelector('.progress-bar');
+        let currentQuestion = 0;
+
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                if (this.dataset.correct === "true") {
+                    this.classList.add('correct');
+                    // Add particle effect
+                    const particles = document.createElement('div');
+                    particles.className = 'quiz-particles';
+                    this.appendChild(particles);
+                    setTimeout(() => particles.remove(), 1000);
+                } else {
+                    this.classList.add('incorrect');
+                }
+
+                // Move to next question after delay
+                setTimeout(() => {
+                    if(currentQuestion < quizCards.length - 1) {
+                        quizCards[currentQuestion].classList.remove('active');
+                        currentQuestion++;
+                        quizCards[currentQuestion].classList.add('active');
+                        updateProgress();
+                    }
+                }, 1500);
+            });
         });
-        document.querySelectorAll('a, button').forEach(element => {
-            element.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
-            element.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
-        });
+
+        function updateProgress() {
+            const progress = (currentQuestion + 1) / quizCards.length * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Initialize progress
+        updateProgress();
     </script>
 </body>
 </html>

@@ -57,3 +57,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100);
     }
 });
+
+// Initialize interactive elements
+function initInteractiveFeatures() {
+    // Collapsible sections
+    document.querySelectorAll('.collapsible').forEach(item => {
+      item.addEventListener('click', function() {
+        const content = this.nextElementSibling;
+        this.classList.toggle('active');
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+  
+    // Diagram controls
+    document.querySelectorAll('.diagram-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const diagram = this.closest('.visual-aid');
+        diagram.classList.toggle('highlight-mode');
+      });
+    });
+  
+    // Tooltip positioning
+    document.querySelectorAll('.key-term').forEach(term => {
+      term.addEventListener('mousemove', function(e) {
+        const tooltip = this.querySelector('::after');
+        if(tooltip) {
+          tooltip.style.left = `${e.clientX}px`;
+          tooltip.style.top = `${e.clientY}px`;
+        }
+      });
+    });
+  }
+  
+  // Initialize when DOM loads
+  document.addEventListener('DOMContentLoaded', initInteractiveFeatures);
