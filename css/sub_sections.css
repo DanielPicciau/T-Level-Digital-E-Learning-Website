@@ -78,21 +78,17 @@ body {
     margin-bottom: 2rem;
 }
 
-.chapter-title {
+.chapter_title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     background: linear-gradient(45deg, var(--accent-1), var(--accent-2), var(--accent-3));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 1rem;
-}
-
-.gradient-divider {
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
-    border-radius: 2px;
-    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+    margin: 2rem 0;
 }
 
 .content-section {
