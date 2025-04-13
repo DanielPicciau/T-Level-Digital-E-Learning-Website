@@ -7,16 +7,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/styles.css">
+    <!-- Link to the external CSS file -->
+    <link href="test.css" rel="stylesheet">
+    <!-- Removed the internal <style> block -->
 </head>
 <body>
-    <!-- Galaxy Background Elements -->
-    <div class="universe-background"></div>
-    <div class="galaxy-core"></div>
-    <div class="stars"></div>
-    <div class="particles"></div>
+    <!-- The universe-background div might be redundant if test.css handles background on body/html -->
+    <!-- Check test.css to see if this div is still needed for its specific effects -->
+    <div class="universe-background">
+        <div class="stars"></div>
+        <div class="particles"></div>
+    </div>
 
-    <!-- Main Content -->
     <div class="container-fluid chapter-container">
         <a href="../chapter1.html" class="back-btn">
             <i class="fas fa-arrow-left"></i> Back to Chapter 1
@@ -27,199 +29,416 @@
             <div class="gradient-divider"></div>
         </div>
 
-        <!-- Three Approaches Section -->
+        <!-- Content Section 1: Three Approaches -->
         <div class="content-section">
-            <h2 class="section-heading"><i class="fas fa-sitemap"></i> Three Approaches</h2>
-            <div class="section-content">
-                <div class="row g-4">
-
-                     <!-- Top-down Approach -->
-                     <div class="col-md-4">
-                        <div class="approach-card">
-                            <h3 class="approach-title">Top-Down</h3>
-                            <div class="approach-body">
-                                <p>Breaking complex problems into smaller modules through 
-                                    <span class="key-term" data-definition="Breaking down complex problems into smaller, manageable parts">decomposition</span>
-                                </p>
-                                <ul class="key-points">
-                                    <li>Stepwise refinement process</li>
-                                    <li>Tree structure representation</li>
-                                    <li>Used in <span class="key-term" data-definition="Programming paradigm using procedures or functions">procedural programming</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="module-flow mt-3">
-                            <div class="module">Main Problem</div>
-                            <div class="module">Sub-module 1</div>
-                            <div class="module">Sub-module 2</div>
+            <h2 class="section-heading"><i class="fas fa-sitemap"></i> Three Problem Solving Approaches</h2>
+            <!-- Removed inner .section-content div as .content-section now has padding -->
+            <div class="row g-4">
+                <!-- Column for Top-Down -->
+                <div class="col-md-4 d-flex flex-column">
+                    <div class="approach-card mb-3"> <!-- mb-3 for spacing below card -->
+                        <h3 class="approach-title">Top-Down</h3>
+                        <div class="approach-body">
+                            <p>Breaking complex problems into smaller modules through
+                                <span class="key-term">decomposition
+                                    <span class="tooltip-box">Breaking down complex problems into smaller, manageable parts</span>
+                                </span>
+                            </p>
+                            <ul class="key-points">
+                                <li>Stepwise refinement process</li>
+                                <li>Tree structure representation</li>
+                                <li>Used in <span class="key-term">procedural programming
+                                    <span class="tooltip-box">Programming paradigm using procedures or functions</span>
+                                </span></li>
+                            </ul>
                         </div>
                     </div>
+                    <div class="module-flow mt-auto"> <!-- mt-auto pushes to bottom -->
+                        <div class="module">Main Problem</div>
+                        <div class="module">Sub-module 1</div>
+                        <div class="module">Sub-module 2</div>
+                    </div>
+                </div>
 
-                    
-                    <!-- Bottom-Up Approach -->
-                    <div class="col-md-4">
-                        <div class="approach-card">
-                            <h3 class="approach-title">Bottom-Up</h3>
-                            <div class="approach-body">
-                                <p>Combining small modules through 
-                                    <span class="key-term" data-definition="Combining components into a complete system">integration</span>
-                                </p>
-                                <ul class="key-points">
-                                    <li>Starts with fundamental components</li>
-                                    <li>Focus on integration testing</li>
-                                    <li>Used in <span class="key-term" data-definition="Object-Oriented Programming">OOP languages</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="module-flow mt-3">
-                            <div class="module">Component A</div>
-                            <div class="module">Component B</div>
-                            <div class="module">Component C</div>
+                <!-- Column for Bottom-Up -->
+                <div class="col-md-4 d-flex flex-column">
+                    <div class="approach-card mb-3">
+                        <h3 class="approach-title">Bottom-Up</h3>
+                        <div class="approach-body">
+                            <p>Combining small modules through
+                                <span class="key-term">integration
+                                    <span class="tooltip-box">Combining components into a complete system</span>
+                                </span>
+                            </p>
+                            <ul class="key-points">
+                                <li>Starts with fundamental components</li>
+                                <li>Focus on integration testing</li>
+                                <li>Used in <span class="key-term">OOP languages
+                                    <span class="tooltip-box">Object-Oriented Programming languages like Python, Java</span>
+                                </span></li>
+                            </ul>
                         </div>
                     </div>
+                    <div class="module-flow mt-auto">
+                        <div class="module">Component A</div>
+                        <div class="module">Component B</div>
+                        <div class="module">Component C</div>
+                    </div>
+                </div>
 
-                    <!-- Modularisation -->
-                    <div class="col-md-4">
-                        <div class="approach-card">
-                            <h3 class="approach-title">Modularisation</h3>
-                            <div class="approach-body">
-                                <p>Creating independent system components</p>
-                                <ul class="key-points">
-                                    <li>Modules work together</li>
-                                    <li>Main program calls subprograms</li>
-                                    <li>Common in OOP</li>
-                                </ul>
-                            </div>
+                <!-- Column for Modularisation -->
+                <div class="col-md-4 d-flex flex-column">
+                    <div class="approach-card mb-3">
+                        <h3 class="approach-title">Modularisation</h3>
+                        <div class="approach-body">
+                            <p>Creating independent system components</p>
+                            <ul class="key-points">
+                                <li>Modules work together</li>
+                                <li>Main program calls subprograms</li>
+                                <li>Common in OOP</li>
+                            </ul>
                         </div>
-                        <div class="pseudocode mt-3">
-                            <span class="code-keyword">MODULE</span> MixingSubsystem<br>
-                            <span class="code-keyword">BEGIN</span><br>
-                            &nbsp;&nbsp;<span class="code-variable">MixIngredients</span>()<br>
-                            <span class="code-keyword">END MODULE</span>
-                        </div>
+                    </div>
+                    <div class="pseudocode mt-auto">
+                        <span class="code-keyword">MODULE</span> MixingSubsystem<br>
+                        <span class="code-keyword">BEGIN</span><br>
+                        &nbsp;&nbsp;<span class="code-variable">MixIngredients</span>()<br>
+                        <span class="code-keyword">END MODULE</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Comparison Table -->
+        <!-- Content Section 2: Comparison -->
         <div class="content-section">
             <h2 class="section-heading"><i class="fas fa-balance-scale"></i> Approach Comparison</h2>
-            <div class="section-content">
-                <div class="comparison-table">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Concept</th>
-                                <th>Top-Down</th>
-                                <th>Bottom-Up</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Process</td>
-                                <td>Splitting (Decomposition)</td>
-                                <td>Merging (Integration)</td>
-                            </tr>
-                            <tr>
-                                <td>Redundancy</td>
-                                <td>Contains redundant information</td>
-                                <td>Redundancy eliminated</td>
-                            </tr>
-                            <tr>
-                                <td>Programming Languages</td>
-                                <td>Procedural (C)</td>
-                                <td>Object-Oriented (Python, Java)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="collapsible mt-3">
-                    <i class="fas fa-chevron-down"></i> Detailed Comparison Notes
-                </div>
-                <div class="collapsible-content">
-                    <p class="mt-2">Key differences in application contexts between approaches...</p>
-                </div>
+            <div class="comparison-table">
+                <!-- The table structure uses <table> directly, matching test.css -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Concept</th>
+                            <th>Top-Down</th>
+                            <th>Bottom-Up</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Process</td>
+                            <td>Splitting (Decomposition)</td>
+                            <td>Merging (Integration)</td>
+                        </tr>
+                        <tr>
+                            <td>Redundancy</td>
+                            <td>Contains redundant information</td>
+                            <td>Redundancy eliminated</td>
+                        </tr>
+                        <tr>
+                            <td>Programming Languages</td>
+                            <td>Procedural (C)</td>
+                            <td>Object-Oriented (Python, Java)</td>
+                        </tr>
+                        <tr>
+                            <td>Starting Point</td>
+                            <td>From overall problem</td>
+                            <td>From individual components</td>
+                        </tr>
+                        <tr>
+                            <td>Testing Focus</td>
+                            <td>Unit testing first</td>
+                            <td>Integration testing first</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="collapsible">
+                 Detailed Comparison Notes <i class="fas fa-chevron-down rotate-icon ms-auto"></i>
+            </button>
+            <div class="collapsible-content">
+                 <p>The Top-Down approach begins with defining the overall structure and then breaking it down, while the Bottom-Up approach starts with individual components and builds them into a complete system.</p>
+                 <p>Top-Down is ideal for problems with a clear overall structure, while Bottom-Up works well for problems where the basic components are well-understood but the overall structure might evolve.</p>
+                 <p>Modularisation combines aspects of both approaches by organizing code into independent, reusable components that can be developed separately and then integrated into the full system.</p>
             </div>
         </div>
 
-        <!-- Group Activity -->
+        <!-- Content Section 3: Activity -->
         <div class="content-section">
-            <h2 class="section-heading"><i class="fas fa-tasks"></i> Group Activity</h2>
-            <div class="section-content">
-                <div class="activity-card">
-                    <h3 class="activity-title">Dessert Preparation Exercise</h3>
-                    <div class="activity-body">
-                        <div class="row g-3">
-                            <div class="col-md-4">
-                                <div class="approach-task">
-                                    <h5>Top-Down Group</h5>
-                                    <ul>
-                                        <li>Start with final dessert concept</li>
-                                        <li>Break into preparation stages</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="approach-task">
-                                    <h5>Bottom-Up Group</h5>
-                                    <ul>
-                                        <li>Begin with basic ingredients</li>
-                                        <li>Combine into components</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="approach-task">
-                                    <h5>Modularisation Group</h5>
-                                    <ul>
-                                        <li>Create independent modules</li>
-                                        <li>Mixing subsystem</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+             <h2 class="section-heading"><i class="fas fa-tasks"></i> Group Activity</h2>
+             <!-- The activity-card class is styled in test.css -->
+             <div class="activity-card">
+                 <h3 class="activity-title">Dessert Preparation Exercise</h3>
+                 <!-- Removed inner .activity-body div if not needed by test.css -->
+                 <div class="row g-4">
+                     <div class="col-md-4 d-flex"> <!-- Added d-flex for height: 100% in approach-task -->
+                         <div class="approach-task w-100"> <!-- Added w-100 to fill width -->
+                             <h5>Top-Down Group</h5>
+                             <ul>
+                                 <li>Start with final dessert concept</li>
+                                 <li>Break into preparation stages</li>
+                                 <li>Define required inputs for each stage</li>
+                                 <li>Create a flow diagram showing the breakdown</li>
+                             </ul>
+                         </div>
+                     </div>
+                     <div class="col-md-4 d-flex">
+                         <div class="approach-task w-100">
+                             <h5>Bottom-Up Group</h5>
+                             <ul>
+                                 <li>Begin with basic ingredients</li>
+                                 <li>Define preparation methods for each</li>
+                                 <li>Create component combinations</li>
+                                 <li>Build up to the final dessert</li>
+                             </ul>
+                         </div>
+                     </div>
+                     <div class="col-md-4 d-flex">
+                         <div class="approach-task w-100">
+                             <h5>Modularisation Group</h5>
+                             <ul>
+                                 <li>Create independent modules</li>
+                                 <li>Define mixing subsystem</li>
+                                 <li>Create baking subsystem</li>
+                                 <li>Design decorating subsystem</li>
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="text-center"> <!-- Center the button -->
+                    <button class="quiz-btn mt-4" id="activity-btn">Start Activity</button>
+                 </div>
+             </div>
         </div>
 
-        <!-- Test Yourself Section -->
+        <!-- Content Section 4: Quiz -->
         <div class="content-section">
             <h2 class="section-heading"><i class="fas fa-question"></i> Test Yourself</h2>
-            <div class="section-content">
-                <div class="review-questions">
-                    <ol>
-                        <li>What is <span class="key-term" data-definition="Problem-solving method using computer science techniques">computational thinking</span>?</li>
-                        <li>How is the top-down approach usually represented?</li>
-                        <li>What does the top-down approach begin with?</li>
-                        <li>What programming languages typically use the bottom-up approach?</li>
-                    </ol>
+            <div class="review-questions mb-3">
+                <ol>
+                    <li>What is <span class="key-term">computational thinking
+                        <span class="tooltip-box">Problem-solving method using computer science techniques</span>
+                    </span>?</li>
+                    <li>How is the top-down approach usually represented?</li>
+                    <li>What does the top-down approach begin with?</li>
+                    <li>What programming languages typically use the bottom-up approach?</li>
+                    <li>What are the main benefits of modularisation?</li>
+                </ol>
+            </div>
+            <button class="quiz-btn" id="quiz-btn">Take Quiz</button>
+
+            <div class="quiz-container" id="quiz">
+                <div class="quiz-question">
+                    <h4>Question 1: Which approach starts with breaking down a problem into smaller parts?</h4>
+                    <ul class="quiz-options">
+                        <li class="quiz-option" data-correct="true">Top-Down approach</li>
+                        <li class="quiz-option">Bottom-Up approach</li>
+                        <li class="quiz-option">Waterfall approach</li>
+                        <li class="quiz-option">Agile approach</li>
+                    </ul>
                 </div>
+                <div class="quiz-question">
+                    <h4>Question 2: Which programming paradigm is commonly associated with the Bottom-Up approach?</h4>
+                    <ul class="quiz-options">
+                        <li class="quiz-option">Procedural Programming</li>
+                        <li class="quiz-option" data-correct="true">Object-Oriented Programming</li>
+                        <li class="quiz-option">Functional Programming</li>
+                        <li class="quiz-option">Structured Programming</li>
+                    </ul>
+                </div>
+                <div class="quiz-question">
+                    <h4>Question 3: What is modularisation?</h4>
+                    <ul class="quiz-options">
+                        <li class="quiz-option">Breaking a problem down into steps</li>
+                        <li class="quiz-option">Creating a timeline for development</li>
+                        <li class="quiz-option" data-correct="true">Creating independent system components</li>
+                        <li class="quiz-option">Testing each part of the program</li>
+                    </ul>
+                </div>
+                <div class="quiz-feedback"></div>
+                <button class="quiz-btn mt-3" id="check-answers">Check Answers</button>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../scripts/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Basic cursor animation
-        const cursor = document.querySelector('.cosmic-cursor');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = `${e.clientX}px`;
-            cursor.style.top = `${e.clientY}px`;
-        });
-   
-        document.querySelectorAll('a, button').forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.classList.add('expanded');
+        // Keep the JavaScript as it handles interactions (collapsible, quiz)
+        // It doesn't depend on the CSS being inline or external.
+        document.addEventListener('DOMContentLoaded', function() {
+            // Collapsible functionality
+            const collapsibles = document.querySelectorAll('.collapsible');
+            collapsibles.forEach(collapsible => {
+                collapsible.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('.rotate-icon');
+
+                    content.classList.toggle('active'); // Toggle class for CSS transition
+                    icon.classList.toggle('active');
+
+                    if (content.classList.contains('active')) {
+                        this.setAttribute('aria-expanded', 'true');
+                        content.style.maxHeight = content.scrollHeight + "px"; // Set max-height for transition
+                    } else {
+                        this.setAttribute('aria-expanded', 'false');
+                        content.style.maxHeight = null; // Reset max-height
+                    }
+                });
+                // Set initial aria state based on CSS class (if needed)
+                const content = collapsible.nextElementSibling;
+                collapsible.setAttribute('aria-expanded', content.classList.contains('active') ? 'true' : 'false');
+                collapsible.setAttribute('aria-controls', content.id || 'collapsible-content-' + Math.random().toString(36).substring(2, 9));
+                content.id = content.id || collapsible.getAttribute('aria-controls');
+                 // Ensure initial max-height is set correctly if starting active
+                if (content.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
             });
-            element.addEventListener('mouseleave', () => {
-                cursor.classList.remove('expanded');
-            });
+
+
+            // Quiz functionality
+            const quizBtn = document.getElementById('quiz-btn');
+            const quizContainer = document.getElementById('quiz');
+            const checkAnswersBtn = document.getElementById('check-answers');
+            const quizFeedback = document.querySelector('.quiz-feedback');
+            const quizQuestions = document.querySelectorAll('.quiz-question');
+
+            if (quizBtn && quizContainer && checkAnswersBtn && quizFeedback) {
+                quizBtn.addEventListener('click', () => {
+                    const isHidden = quizContainer.style.display === 'none' || quizContainer.style.display === '';
+                    quizContainer.style.display = isHidden ? 'block' : 'none';
+                    quizBtn.textContent = isHidden ? 'Hide Quiz' : 'Take Quiz';
+                    quizBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+                    // Reset feedback when showing quiz
+                    if (isHidden) {
+                         quizFeedback.style.display = 'none';
+                         quizQuestions.forEach(question => {
+                             question.querySelectorAll('.quiz-option').forEach(opt => {
+                                 opt.classList.remove('correct', 'incorrect', 'selected');
+                                 opt.setAttribute('aria-checked', 'false');
+                             });
+                         });
+                    }
+                });
+                quizBtn.setAttribute('aria-expanded', 'false');
+                quizBtn.setAttribute('aria-controls', 'quiz');
+
+                document.querySelectorAll('.quiz-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        this.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                            opt.setAttribute('aria-checked', 'false');
+                        });
+                        this.classList.add('selected');
+                        this.setAttribute('aria-checked', 'true');
+                    });
+                    option.setAttribute('role', 'radio');
+                    option.setAttribute('aria-checked', 'false');
+                    option.setAttribute('tabindex', '0');
+                    option.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            option.click();
+                        }
+                    });
+                });
+
+                quizQuestions.forEach((question, index) => {
+                    const optionsList = question.querySelector('.quiz-options');
+                    optionsList.setAttribute('role', 'radiogroup');
+                    optionsList.setAttribute('aria-labelledby', `question-title-${index}`);
+                    question.querySelector('h4').id = `question-title-${index}`;
+                });
+
+
+                checkAnswersBtn.addEventListener('click', () => {
+                    let correct = 0;
+                    const total = quizQuestions.length;
+                    let allAnswered = true;
+
+                    quizQuestions.forEach(question => {
+                        const selectedOption = question.querySelector('.quiz-option.selected');
+                        if (!selectedOption) {
+                            allAnswered = false;
+                        }
+
+                        question.querySelectorAll('.quiz-option').forEach(opt => {
+                            opt.classList.remove('correct', 'incorrect'); // Reset visual state first
+                            if (opt.dataset.correct === 'true') {
+                                opt.classList.add('correct'); // Mark correct answer
+                            }
+                            if (opt.classList.contains('selected') && opt.dataset.correct !== 'true') {
+                                opt.classList.add('incorrect'); // Mark selected incorrect answer
+                            }
+                        });
+
+                        if (selectedOption && selectedOption.dataset.correct === 'true') {
+                            correct++;
+                        }
+                    });
+
+                    if (!allAnswered) {
+                         quizFeedback.style.display = 'block';
+                         quizFeedback.style.background = 'rgba(255, 193, 7, 0.2)'; // Warning color
+                         quizFeedback.style.color = '#ffc107'; // Warning text color
+                         quizFeedback.innerHTML = 'Please answer all questions before checking.';
+                         return;
+                    }
+
+
+                    quizFeedback.style.display = 'block';
+                    const isPerfect = correct === total;
+                    const isGood = correct >= total / 2 && !isPerfect;
+
+                    quizFeedback.style.background = isPerfect ? 'rgba(16, 185, 129, 0.2)' :
+                                                    isGood ? 'rgba(99, 102, 241, 0.2)' : // Use accent for 'good'
+                                                    'rgba(239, 68, 68, 0.2)'; // Incorrect color
+                    quizFeedback.style.color = isPerfect ? '#10B981' :
+                                                isGood ? 'var(--accent-1)' :
+                                                '#EF4444';
+
+                    quizFeedback.innerHTML = `Score: ${correct}/${total}. ${
+                        isPerfect ? 'Perfect!' :
+                        isGood ? 'Good effort!' : 'Keep practicing!'
+                    }`;
+                });
+            }
+
+            // Activity button placeholder functionality
+            const activityBtn = document.getElementById('activity-btn');
+             if (activityBtn) {
+                activityBtn.addEventListener('click', function() {
+                    alert('Activity interaction placeholder: This could link to a document or interactive element.');
+                });
+            }
+
+            // Particle creation (simplified, assuming test.css handles particle appearance)
+            // You might need to adjust this if test.css doesn't create particles itself
+            function createParticles() {
+                const particlesContainer = document.querySelector('.particles');
+                if (!particlesContainer || particlesContainer.children.length > 0) return;
+
+                const particleCount = window.innerWidth < 768 ? 15 : 30;
+
+                for(let i = 0; i < particleCount; i++) {
+                    const p = document.createElement('div');
+                    // Basic styling - rely on test.css for actual appearance/animation
+                    p.style.cssText = `
+                        position:absolute;
+                        width: 2px; /* Example size */
+                        height: 2px; /* Example size */
+                        background: rgba(255,255,255,0.5); /* Example color */
+                        border-radius: 50%;
+                        top:${Math.random()*100}%;
+                        left:${Math.random()*100}%;
+                        /* Animation should be defined in test.css */
+                    `;
+                    // Add a class if test.css targets particles via class
+                    // p.classList.add('particle-item');
+                    particlesContainer.appendChild(p);
+                }
+            }
+            // Check if test.css already creates particles visually. If not, uncomment:
+            // createParticles();
+
         });
     </script>
 </body>
