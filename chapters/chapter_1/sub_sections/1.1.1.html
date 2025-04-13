@@ -112,45 +112,49 @@
         <!-- Content Section 2: Comparison -->
         <div class="content-section">
             <h2 class="section-heading"><i class="fas fa-balance-scale"></i> Approach Comparison</h2>
-            <div class="comparison-table">
-                <!-- The table structure uses <table> directly, matching test.css -->
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Concept</th>
-                            <th>Top-Down</th>
-                            <th>Bottom-Up</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Process</td>
-                            <td>Splitting (Decomposition)</td>
-                            <td>Merging (Integration)</td>
-                        </tr>
-                        <tr>
-                            <td>Redundancy</td>
-                            <td>Contains redundant information</td>
-                            <td>Redundancy eliminated</td>
-                        </tr>
-                        <tr>
-                            <td>Programming Languages</td>
-                            <td>Procedural (C)</td>
-                            <td>Object-Oriented (Python, Java)</td>
-                        </tr>
-                        <tr>
-                            <td>Starting Point</td>
-                            <td>From overall problem</td>
-                            <td>From individual components</td>
-                        </tr>
-                        <tr>
-                            <td>Testing Focus</td>
-                            <td>Unit testing first</td>
-                            <td>Integration testing first</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- Added Bootstrap's table-responsive wrapper -->
+            <div class="table-responsive">
+                <div class="comparison-table"> <!-- Keep your custom class if needed for styling -->
+                    <!-- The table structure uses <table> directly, matching test.css -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Concept</th>
+                                <th>Top-Down</th>
+                                <th>Bottom-Up</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Process</td>
+                                <td>Splitting (Decomposition)</td>
+                                <td>Merging (Integration)</td>
+                            </tr>
+                            <tr>
+                                <td>Redundancy</td>
+                                <td>Contains redundant information</td>
+                                <td>Redundancy eliminated</td>
+                            </tr>
+                            <tr>
+                                <td>Programming Languages</td>
+                                <td>Procedural (C)</td>
+                                <td>Object-Oriented (Python, Java)</td>
+                            </tr>
+                            <tr>
+                                <td>Starting Point</td>
+                                <td>From overall problem</td>
+                                <td>From individual components</td>
+                            </tr>
+                            <tr>
+                                <td>Testing Focus</td>
+                                <td>Unit testing first</td>
+                                <td>Integration testing first</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            <!-- End table-responsive wrapper -->
             <button class="collapsible">
                  Detailed Comparison Notes <i class="fas fa-chevron-down rotate-icon ms-auto"></i>
             </button>
@@ -416,7 +420,7 @@
                 const particlesContainer = document.querySelector('.particles');
                 if (!particlesContainer || particlesContainer.children.length > 0) return;
 
-                const particleCount = window.innerWidth < 768 ? 15 : 30;
+                const particleCount = window.innerWidth < 768 ? 15 : 30; // Fewer particles on smaller screens
 
                 for(let i = 0; i < particleCount; i++) {
                     const p = document.createElement('div');
@@ -432,14 +436,17 @@
                         /* Animation should be defined in test.css */
                     `;
                     // Add a class if test.css targets particles via class
-                    // p.classList.add('particle-item');
+                    // p.classList.add('particle-item'); // Example
                     particlesContainer.appendChild(p);
                 }
             }
             // Check if test.css already creates particles visually. If not, uncomment:
             // createParticles();
+            // Consider calling createParticles() also on window resize if needed,
+            // but be mindful of performance implications (debouncing might be necessary).
 
         });
     </script>
 </body>
 </html>
+
