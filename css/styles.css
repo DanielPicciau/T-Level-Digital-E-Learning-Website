@@ -825,3 +825,8 @@ html, body {
 .cosmic-cursor.modal-open {
     z-index: 10003; /* Even higher when modal is open */
 }
+
+/* Development Notes */
+.chapter-development{
+    color: rgba(255, 255, 255, 0.699);
+}
