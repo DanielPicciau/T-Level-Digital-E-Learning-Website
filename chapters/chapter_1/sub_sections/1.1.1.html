@@ -72,7 +72,7 @@
                 <div class="col-md-4 d-flex flex-column">
                     <div class="approach-card mb-3">
                         <h3 class="approach-title">Bottom-Up Approach</h3>
-                                                <div class="approach-body">
+                        <div class="approach-body">
                             <p>Acting as the inverse of the top-down strategy, the bottom-up approach begins by identifying and developing the most fundamental, low-level <span class="key-term">modules<span class="tooltip-box">Self-contained parts of a program or system, often representing basic functionalities.</span></span> or components of the problem first. These individual modules are designed, built, and often tested independently. Once these basic parts are functional, they are progressively combined or <span class="key-term">integrated<span class="tooltip-box">The process of combining smaller, tested modules or components into larger subsystems or the final complete system.</span></span> to form larger, more complex subsystems. This process of combining and building continues upwards until all the parts are assembled into the final, complete solution for the original problem.</p>
                             <ul class="key-points">
                                 <li>Starts with the basic building blocks/modules.</li>
@@ -81,7 +81,7 @@
                                 <li>Often used with <span class="key-term">Object-Oriented Programming<span class="tooltip-box">Programming style using 'objects' that bundle data and actions (e.g., Python, Java).</span></span> (OOP).</li>
                             </ul>
                         </div>
-
+                    </div>
                      <!-- Simple visual representation -->
                      <div class="visual-aid mt-auto text-center">
                         <i class="fas fa-cubes fa-2x mb-2" style="color: var(--accent-2);"></i>
@@ -93,22 +93,24 @@
                         </div>
                     </div>
                 </div>
- 
+
                 <!-- Column for Modularisation -->
                 <div class="col-md-4 d-flex flex-column">
                     <div class="approach-card mb-3">
                         <h3 class="approach-title">Modularisation</h3>
                         <div class="approach-body">
-                            <p>Acting as the inverse of the top-down strategy, the bottom-up approach begins by identifying and developing the most fundamental, low-level <span class="key-term">modules<span class="tooltip-box">Self-contained parts of a program or system, often representing basic functionalities.</span></span> or components of the problem first. These individual modules are designed, built, and often tested independently. Once these basic parts are functional, they are progressively combined or <span class="key-term">integrated<span class="tooltip-box">The process of combining smaller, tested modules or components into larger subsystems or the final complete system.</span></span> to form larger, more complex subsystems. This process of combining and building continues upwards until all the parts are assembled into the final, complete solution for the original problem.</p>
+                            <!-- Assuming this content was corrected previously -->
+                            <p>Modularisation focuses on dividing a system into separate, independent <span class="key-term">modules<span class="tooltip-box">Self-contained, often reusable units of code or functionality with a specific purpose.</span></span>. Each module handles a specific task or function and has a well-defined <span class="key-term">interface<span class="tooltip-box">How a module interacts with other parts of the system (e.g., inputs it accepts, outputs it produces).</span></span> for interacting with other parts of the system. This approach aims to create manageable, reusable, and easily maintainable components.</p>
                             <ul class="key-points">
-                                <li>Starts with the basic building blocks/modules.</li>
-                                <li>Focuses on combining finished parts (integration).</li>
-                                <li>Builds up complexity towards the final goal.</li>
-                                <li>Often used with <span class="key-term">Object-Oriented Programming<span class="tooltip-box">Programming style using 'objects' that bundle data and actions (e.g., Python, Java).</span></span> (OOP).</li>
+                                <li>Divides system into independent modules.</li>
+                                <li>Promotes code reusability.</li>
+                                <li>Simplifies testing and maintenance.</li>
+                                <li>Requires clear interfaces between modules.</li>
+                                <li>Modules can often be developed in parallel.</li>
                             </ul>
                         </div>
-
                     </div>
+                    <!-- Visual representation (Pseudocode) -->
                     <div class="pseudocode mt-auto">
                         <span class="code-keyword">MODULE</span> ProcessPayment<br>
                         <span class="code-keyword">BEGIN</span><br>
@@ -131,29 +133,31 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Aspect</th>
-                                <th>Top-Down</th>
-                                <th>Bottom-Up</th>
+                                <!-- Added scope="col" for accessibility -->
+                                <th scope="col">Aspect</th>
+                                <th scope="col">Top-Down</th>
+                                <th scope="col">Bottom-Up</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Core Idea</td>
+                                <!-- Added scope="row" for accessibility -->
+                                <td scope="row">Core Idea</td>
                                 <td>Splitting (Breaking down large problems)</td>
                                 <td>Merging (Combining small solutions)</td>
                             </tr>
                             <tr>
-                                <td>Information Handling</td>
+                                <td scope="row">Information Handling</td>
                                 <td>Can sometimes repeat information</td>
                                 <td>Avoids repeating information</td>
                             </tr>
                             <tr>
-                                <td>Typical Languages</td>
+                                <td scope="row">Typical Languages</td>
                                 <td>Often Procedural/Structured (e.g., C)</td>
                                 <td>Often Object-Oriented (e.g., Python, Java)</td>
                             </tr>
                              <tr>
-                                <td>Primary Focus</td>
+                                <td scope="row">Primary Focus</td>
                                 <td>Planning, structuring, step-by-step building</td>
                                 <td>Testing, especially how parts fit together (integration)</td>
                             </tr>
@@ -171,50 +175,13 @@
             </div>
         </div>
 
-        <!-- Content Section 3: Activity
+        <!-- Content Section 3: Activity (Commented Out) -->
+        <!--
         <div class="content-section">
              <h2 class="section-heading"><i class="fas fa-tasks"></i> Group Task: Planning Dessert Prep</h2>
-             <div class="activity-card">
-                 <h3 class="activity-title">Dessert Preparation Exercise</h3>
-                 <p class="mb-4">Form three groups, each using a different approach: Top-Down, Bottom-Up, or Modularisation. Plan how to make a cooked dessert using your group's assigned method. Write down the steps and prepare to explain your plan.</p>
-                 <div class="row g-4">
-                     <div class="col-md-4 d-flex">
-                         <div class="approach-task w-100">
-                             <h5><i class="fas fa-arrow-down me-2"></i>Top-Down Group Plan</h5>
-                             <ul>
-                                 <li>Start with the final goal (e.g., "Make Brownies").</li>
-                                 <li>Break into main steps (e.g., Mix Batter, Bake, Cool).</li>
-                                 <li>List smaller actions for each main step.</li>
-                                 <li>Show the overall order of tasks.</li>
-                             </ul>
-                         </div>
-                     </div>
-                     <div class="col-md-4 d-flex">
-                         <div class="approach-task w-100">
-                             <h5><i class="fas fa-arrow-up me-2"></i>Bottom-Up Group Plan</h5>
-                             <ul>
-                                 <li>List basic actions/ingredients (e.g., melt butter, measure flour, crack eggs).</li>
-                                 <li>Combine these into results (e.g., wet ingredients mixed, dry ingredients combined).</li>
-                                 <li>Integrate results to make the final batter/dessert.</li>
-                                 <li>Show how small steps build the final product.</li>
-                             </ul>
-                         </div>
-                     </div>
-                     <div class="col-md-4 d-flex">
-                         <div class="approach-task w-100">
-                             <h5><i class="fas fa-puzzle-piece me-2"></i>Modularisation Group Plan</h5>
-                             <ul>
-                                 <li>Define separate modules (e.g., Ingredient Prep Module, Mixing Module, Baking Module).</li>
-                                 <li>State what each module needs (inputs) and creates (outputs).</li>
-                                 <li>Plan how a main process uses these modules.</li>
-                                 <li>Describe what each module does independently.</li>
-                             </ul>
-                         </div>
-                     </div>
-                 </div>
-                Removed the "Start Activity" button as it's a conceptual group task 
-             </div>
-        </div> -->
+             ... (activity content) ...
+        </div>
+        -->
 
         <!-- Content Section 4: Test Yourself -->
         <div class="content-section">
@@ -274,6 +241,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Existing JavaScript (Collapsible, Particles, Tooltips, Quiz)
+        // ... (script content remains the same) ...
         document.addEventListener('DOMContentLoaded', function() {
             // Collapsible functionality
             const collapsibles = document.querySelectorAll('.collapsible');
@@ -293,9 +262,10 @@
                         content.style.maxHeight = null;
                     }
                 });
+                // Initialize ARIA attributes and max-height on load
                 const content = collapsible.nextElementSibling;
                 collapsible.setAttribute('aria-expanded', content.classList.contains('active') ? 'true' : 'false');
-                const contentId = 'collapsible-content-' + Math.random().toString(36).substring(2, 9);
+                const contentId = 'collapsible-content-' + Math.random().toString(36).substring(2, 9); // Generate unique ID
                 collapsible.setAttribute('aria-controls', contentId);
                 content.id = contentId;
                 if (content.classList.contains('active')) {
@@ -306,16 +276,17 @@
             // Particle creation (Optional)
             function createParticles() {
                 const particlesContainer = document.querySelector('.particles');
+                // Added check for CSS handling flag
                 if (!particlesContainer || particlesContainer.children.length > 0 || getComputedStyle(particlesContainer).getPropertyValue('--particle-handled-by-css') === 'true') return;
                 const particleCount = window.innerWidth < 768 ? 15 : 30;
                 for(let i = 0; i < particleCount; i++) {
                     const p = document.createElement('div');
                     p.style.cssText = `position:absolute; width: 2px; height: 2px; background: rgba(255,255,255,0.5); border-radius: 50%; top:${Math.random()*100}%; left:${Math.random()*100}%;`;
-                    p.classList.add('particle-item');
+                    p.classList.add('particle-item'); // Added class for potential CSS targeting
                     particlesContainer.appendChild(p);
                 }
             }
-            // createParticles(); // Uncomment if needed
+            // createParticles(); // Keep commented unless JS particles are desired over CSS ones
 
             // Tooltip functionality
             document.querySelectorAll('.key-term').forEach(term => {
@@ -323,12 +294,13 @@
                 if (tooltip) {
                     term.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
                     term.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
-                    term.setAttribute('tabindex', '0');
+                    term.setAttribute('tabindex', '0'); // Ensure it's focusable
                     term.addEventListener('focus', () => { tooltip.style.display = 'block'; });
                     term.addEventListener('blur', () => { tooltip.style.display = 'none'; });
+                    // Added keyboard accessibility for tooltips
                     term.addEventListener('keydown', (e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
+                            e.preventDefault(); // Prevent page scroll on space
                             tooltip.style.display = (tooltip.style.display === 'block') ? 'none' : 'block';
                         }
                     });
@@ -381,7 +353,7 @@
                     // Add keydown for space/enter selection
                     option.addEventListener('keydown', (e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
+                            e.preventDefault(); // Prevent page scroll
                             option.click(); // Trigger the click handler
                         }
                     });

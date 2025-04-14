@@ -437,3 +437,112 @@ body {
     border-radius: 8px;
     display: none;
 }
+
+/* ================= ACCORDION OVERRIDES ================= */
+
+/* --- Main Accordion Styling (Bootstrap Override) --- */
+.accordion-item {
+    background-color: #000000; /* Black background for the item container */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for separation */
+    margin-bottom: 1rem; /* Add space between accordion items */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    overflow: hidden; /* Clip content to rounded corners */
+}
+
+.accordion-header {
+    /* Headers don't usually need specific styling if item is styled */
+}
+
+.accordion-button {
+    background-color: #000000; /* Black background for the button */
+    color: var(--text-primary); /* Ensure text is readable (white) */
+    font-weight: 500; /* Slightly bolder text */
+    border: none; /* Remove default borders if any */
+    box-shadow: none; /* Remove default focus shadow */
+    padding: 1.25rem 1.5rem; /* Adjust padding if needed */
+}
+
+/* Style for the button when the accordion section is open */
+.accordion-button:not(.collapsed) {
+    background-color: #1a1a1a; /* Slightly lighter black when open */
+    color: var(--accent-1); /* Use accent color for open state text */
+    box-shadow: none; /* Ensure no shadow when open */
+}
+
+/* Style for the button on hover */
+.accordion-button:hover {
+    background-color: #222222; /* Dark grey on hover */
+    color: var(--text-primary); /* Keep text white */
+    z-index: 2; /* Ensure hover is visually on top if needed */
+}
+
+/* Style for the button on focus (accessibility) */
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(var(--accent-1-rgb), 0.25); /* Use accent color for focus ring */
+    border-color: transparent; /* Hide potential border artifacts */
+    background-color: #1a1a1a; /* Match open state background on focus */
+    color: var(--accent-1); /* Match open state color on focus */
+    z-index: 3; /* Ensure focus is visually on top */
+}
+
+/* Adjust the default Bootstrap arrow icon color to be visible on black */
+.accordion-button::after {
+    /* Invert the color of the default SVG icon */
+    filter: brightness(0) invert(1);
+}
+/* Keep the icon white even when the button is open/active */
+.accordion-button:not(.collapsed)::after {
+     filter: brightness(0) invert(1);
+     /* You could potentially change the filter to match --accent-1 if desired */
+}
+
+
+/* Style the content area */
+.accordion-body {
+    background-color: #080808; /* Very dark grey, slightly different from button */
+    color: var(--text-primary); /* Ensure text is readable */
+    padding: 1.5rem; /* Adjust padding */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Add separator line if item border is removed */
+}
+
+/* Optional: Remove default Bootstrap accordion borders/rounding if using item border/radius */
+.accordion {
+    --bs-accordion-border-width: 0; /* Remove default border */
+    --bs-accordion-border-radius: 0; /* Remove default rounding if styling .accordion-item */
+    --bs-accordion-inner-border-radius: 0; /* Remove default inner rounding */
+
+    /* Override default active/focus colors if needed, though handled above */
+    /* --bs-accordion-btn-focus-box-shadow: none; */
+    /* --bs-accordion-active-color: var(--accent-1); */
+    /* --bs-accordion-active-bg: #1a1a1a; */
+}
+
+/* --- Nested Accordion Styling (if needed, e.g., for Decomposition Steps) --- */
+/* You can add specific styles for nested accordions if you want them to look different */
+#decompositionStepsAccordion .accordion-item {
+    background-color: #1010102e; /* Slightly different shade for nested items */
+    border-color: rgba(255, 255, 255, 0.08);
+    margin-bottom: 0.5rem;
+}
+#decompositionStepsAccordion .accordion-button {
+     background-color: #1010108d;
+     font-size: 0.95rem; /* Slightly smaller font for nested */
+     padding: 1rem 1.25rem;
+}
+#decompositionStepsAccordion .accordion-button:not(.collapsed) {
+     background-color: #2525258c;
+}
+#decompositionStepsAccordion .accordion-button:hover {
+     background-color: #303030;
+}
+#decompositionStepsAccordion .accordion-button:focus {
+     background-color: #252525;
+}
+#decompositionStepsAccordion .accordion-body {
+    background-color: #15151539;
+    font-size: 0.9rem;
+    padding: 1rem 1.25rem;
+    border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+

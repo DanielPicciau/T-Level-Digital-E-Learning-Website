@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.1 Computational Thinking (All Sections) | T-Level Study Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Load general styles first -->
+    <link href="../../css/styles.css" rel="stylesheet">
+    <!-- Load specific subsection styles/overrides second -->
+    <link href="../../css/sub_sections.css" rel="stylesheet">
+
+    <!-- Styles for code examples, insight box, and NEW sidebar -->
+    <style>
+        /* Styles for the Python code example block */
+        .code-example {
+            background-color: rgba(0, 0, 0, 0.6); /* Match pseudocode bg */
+            border-left: 4px solid var(--accent-1); /* Match pseudocode border */
+            padding: 1.5rem; /* Match pseudocode padding */
+            border-radius: 8px; /* Match pseudocode radius */
+            font-family: 'Courier New', monospace; /* Consistent monospace font */
+            white-space: pre-wrap; /* Allow wrapping */
+            word-wrap: break-word;
+            color: #eee; /* Light text */
+            margin-top: 1rem;
+            font-size: 0.95rem; /* Match pseudocode font size */
+            overflow-x: auto; /* Allow scroll */
+        }
+        /* Syntax highlighting colors (example) */
+        .code-example .syntax-keyword { color: #569cd6; font-weight: bold; } /* Blue keywords */
+        .code-example .syntax-function { color: #dcdcaa; } /* Yellow functions */
+        .code-example .syntax-comment { color: #6a9955; font-style: italic; } /* Green comments */
+        .code-example .syntax-string { color: #ce9178; } /* Orange strings */
+        .code-example .syntax-number { color: #b5cea8; } /* Light green numbers */
+
+        /* Styles for the Insight Box */
+        .insight-box {
+            background-color: rgba(var(--accent-2-rgb), 0.1); /* Use accent-2 color */
+            border: 1px solid rgba(var(--accent-2-rgb), 0.3); /* Accent-2 border */
+            padding: 1.5rem; /* Consistent padding */
+            border-radius: 12px; /* Match other cards */
+            margin-top: 2rem; /* Spacing */
+            border-left: 4px solid var(--accent-2); /* Accent bar */
+        }
+        .insight-box h5 {
+            color: var(--accent-2);
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif; /* Match section headings */
+            font-size: 1.2rem; /* Adjust size */
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .insight-box p {
+            margin-bottom: 0; /* Remove default paragraph margin */
+            font-size: 0.95rem; /* Slightly smaller text */
+        }
+
+        /* --- Sidebar Navigation Styles --- */
+        .sidebar-nav {
+            position: fixed;
+            top: 80px; /* Adjust based on your header/back button height */
+            left: 20px;
+            width: 240px; /* Adjust width as needed */
+            height: calc(100vh - 100px); /* Adjust height (consider top/bottom spacing) */
+            background-color: rgba(15, 25, 50, 0.85); /* Dark semi-transparent background */
+            backdrop-filter: blur(5px); /* Optional: blur effect */
+            border: 1px solid rgba(var(--accent-1-rgb), 0.3);
+            border-radius: 10px;
+            padding: 20px 15px;
+            overflow-y: auto; /* Enable scrolling if content overflows */
+            z-index: 1010; /* Ensure it's above content but potentially below modals */
+            transition: left 0.3s ease; /* Smooth transition for responsiveness */
+        }
+
+        .sidebar-nav h5 {
+            color: var(--accent-1);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(var(--accent-1-rgb), 0.2);
+            font-size: 1.1rem;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .sidebar-nav ul ul {
+            padding-left: 15px; /* Indentation for sub-items */
+            margin-top: 5px;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-nav a {
+            color: #d0d0d0; /* Light grey text */
+            text-decoration: none;
+            display: block;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem; /* Slightly smaller font */
+            transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap; /* Prevent wrapping */
+            overflow: hidden;
+            text-overflow: ellipsis; /* Add ellipsis if text is too long */
+        }
+
+        .sidebar-nav a:hover {
+            background-color: rgba(var(--accent-1-rgb), 0.2);
+            color: #fff;
+        }
+
+        .sidebar-nav a.active { /* Style for the active link */
+            background-color: var(--accent-1);
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        /* Adjust main content padding when sidebar is present */
+        .chapter-container.with-sidebar {
+            padding-left: 280px; /* Sidebar width + margin */
+            padding-right: 20px; /* Ensure some right padding too */
+            transition: padding-left 0.3s ease;
+        }
+
+        /* Target sections need scroll margin to offset fixed header/nav */
+        [id^="section-"] {
+            scroll-margin-top: 90px; /* Adjust this value based on fixed elements (like back button) */
+        }
+
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 1199px) { /* Hide sidebar on smaller screens (e.g., < large Bootstrap breakpoint) */
+            .sidebar-nav {
+                left: -260px; /* Move sidebar off-screen */
+                /* Or use display: none; if you don't need a toggle button */
+            }
+
+            .chapter-container.with-sidebar {
+                padding-left: 20px; /* Reset padding when sidebar is hidden */
+            }
+            /* Optional: Add a button to toggle the sidebar on smaller screens if desired */
+        }
+
+        /* Minor adjustment for back button positioning with sidebar */
+        .chapter-container.with-sidebar .back-btn {
+            /* Default positioning might be okay, but adjust if needed */
+             /* Example: top: 20px; left: 280px; */
+        }
+
+        @media (max-width: 1199px) {
+            .chapter-container.with-sidebar .back-btn {
+               /* Reset position if sidebar is hidden */
+               /* Example: top: 20px; left: 20px; */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="universe-background">
+        <div class="stars"></div>
+        <div class="particles"></div>
+        <div class="galaxy-core"></div> <!-- Added galaxy core for consistency -->
+    </div>
+
+    <!-- Added class "with-sidebar" -->
+    <div class="container-fluid chapter-container with-sidebar">
+
+        <!-- START: Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <h5>Navigation</h5>
+            <ul>
+                <li>
+                    <a href="#section-1-1-1">1.1.1 Problem Solving Approaches</a>
+                    <ul>
+                        <li><a href="#section-1-1-1-strategies">Strategies</a></li>
+                        <li><a href="#section-1-1-1-comparison">Comparison</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#section-1-1-2">1.1.2 Decomposing Problems</a>
+                    <ul>
+                        <li><a href="#section-1-1-2-whatis">What is Decomposition?</a></li>
+                        <li><a href="#section-1-1-2-topdownlink">Top-Down Link</a></li>
+                        <li><a href="#section-1-1-2-proscons">Pros & Cons</a></li>
+                        <li><a href="#section-1-1-2-steps">Four Steps</a></li>
+                        <li><a href="#section-1-1-2-code">Code Example</a></li>
+                        <li><a href="#section-1-1-2-pillars">Connecting Pillars</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#section-combined-check">Check Understanding</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- END: Sidebar Navigation -->
+
+        <!-- Back Button Path is correct -->
+        <a href="chapter1.html" class="back-btn">
+            <i class="fas fa-arrow-left me-1"></i> Back to Chapter 1 Overview
+        </a>
+
+        <div class="chapter-header">
+            <h1 class="chapter-title">1.1 Computational Thinking (Combined)</h1>
+            <p class="chapter-development">This page combines sections 1.1.1 and 1.1.2. Use the sidebar or sections below to navigate the content.</p>
+        </div>
+
+        <!-- Main Accordion for Sections -->
+        <div class="accordion" id="computationalThinkingAccordion">
+
+            <!-- Accordion Item 1: Content from 1.1.1 -->
+            <!-- Added id="section-1-1-1" -->
+            <div class="accordion-item" id="section-1-1-1">
+                <h2 class="accordion-header" id="heading111">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse111" aria-expanded="true" aria-controls="collapse111">
+                        <i class="fas fa-sitemap me-2"></i> 1.1.1 Problem Solving Approaches
+                    </button>
+                </h2>
+                <div id="collapse111" class="accordion-collapse collapse show" aria-labelledby="heading111" data-bs-parent="#computationalThinkingAccordion">
+                    <div class="accordion-body">
+                        <!-- Introduction from 1.1.1 -->
+                        <div class="content-section pt-0 pb-4 bg-transparent border-0 shadow-none"> <!-- Removed section styling for intro -->
+                             <p>Using <span class="key-term">computational thinking<span class="tooltip-box">A thinking process involving breaking down problems, finding patterns, focusing on important details, and creating step-by-step solutions.</span></span> helps us understand complex problems and figure out how to create solutions. These solutions need to be clear enough for a computer, a person, or both to follow.</p>
+                             <p>When solving digital problems, three main strategies are often used:</p>
+                             <ul class="list-unstyled d-flex justify-content-around mt-3">
+                                 <li><i class="fas fa-arrow-down me-1" style="color: var(--accent-1);"></i>Top-down</li>
+                                 <li><i class="fas fa-arrow-up me-1" style="color: var(--accent-2);"></i>Bottom-up</li>
+                                 <li><i class="fas fa-puzzle-piece me-1" style="color: var(--accent-3);"></i>Modularisation</li>
+                             </ul>
+                        </div>
+
+                        <!-- Three Approaches Section from 1.1.1 -->
+                        <div class="content-section">
+                            <!-- Added id="section-1-1-1-strategies" -->
+                            <h3 class="section-heading" id="section-1-1-1-strategies"><i class="fas fa-drafting-compass"></i> Three Problem Solving Strategies</h3>
+                            <div class="row g-4">
+                                <!-- Column for Top-Down -->
+                                <div class="col-lg-4 d-flex flex-column">
+                                    <div class="approach-card mb-3">
+                                        <h4 class="approach-title">Top-Down Approach</h4>
+                                        <div class="approach-body">
+                                            <p>This strategy starts with the main problem and breaks it down step-by-step (<span class="key-term">decomposition<span class="tooltip-box">Breaking a complex problem into smaller, easier-to-handle parts.</span></span>) into smaller sub-problems or <span class="key-term">modules<span class="tooltip-box">Self-contained parts of a program or system.</span></span> until each part is simple enough to solve easily.</p>
+                                            <ul class="key-points">
+                                                <li>Breaks big problems into smaller pieces.</li>
+                                                <li>Uses a step-by-step refinement process.</li>
+                                                <li>Work flows from the general goal downwards.</li>
+                                                <li>Often shown as a hierarchy diagram.</li>
+                                                <li>Common in <span class="key-term">procedural programming<span class="tooltip-box">Programming style focusing on sequences of instructions (procedures/functions), like in the C language.</span></span>.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="visual-aid mt-auto text-center p-3"> <!-- Reduced padding -->
+                                        <i class="fas fa-sitemap fa-2x mb-2" style="color: var(--accent-1);"></i>
+                                        <p class="mb-2"><small>Hierarchical Breakdown</small></p>
+                                        <div class="module-flow">
+                                            <div class="module">Overall Goal</div>
+                                            <div class="module">Major Task 1</div>
+                                            <div class="module">Major Task 2</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Column for Bottom-Up -->
+                                <div class="col-lg-4 d-flex flex-column">
+                                    <div class="approach-card mb-3">
+                                        <h4 class="approach-title">Bottom-Up Approach</h4>
+                                        <div class="approach-body">
+                                            <p>This approach begins by developing the most fundamental <span class="key-term">modules<span class="tooltip-box">Self-contained parts of a program or system, often representing basic functionalities.</span></span> first. These are built and tested independently, then progressively combined (<span class="key-term">integrated<span class="tooltip-box">The process of combining smaller, tested modules or components into larger subsystems or the final complete system.</span></span>) to form larger subsystems, eventually building up to the complete solution.</p>
+                                            <ul class="key-points">
+                                                <li>Starts with basic building blocks/modules.</li>
+                                                <li>Focuses on combining finished parts (integration).</li>
+                                                <li>Builds up complexity towards the final goal.</li>
+                                                <li>Often used with <span class="key-term">Object-Oriented Programming<span class="tooltip-box">Programming style using 'objects' that bundle data and actions (e.g., Python, Java).</span></span> (OOP).</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                     <div class="visual-aid mt-auto text-center p-3"> <!-- Reduced padding -->
+                                        <i class="fas fa-cubes fa-2x mb-2" style="color: var(--accent-2);"></i>
+                                        <p class="mb-2"><small>Building from Components</small></p>
+                                        <div class="module-flow">
+                                             <div class="module">Base Unit X</div>
+                                             <div class="module">Base Unit Y</div>
+                                             <div class="module">Integrated System</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Column for Modularisation -->
+                                <div class="col-lg-4 d-flex flex-column">
+                                    <div class="approach-card mb-3">
+                                        <h4 class="approach-title">Modularisation</h4>
+                                        <div class="approach-body">
+                                            <p>Modularisation divides a system into separate, independent <span class="key-term">modules<span class="tooltip-box">Self-contained, often reusable units of code or functionality with a specific purpose.</span></span>. Each handles a specific task with a well-defined <span class="key-term">interface<span class="tooltip-box">How a module interacts with other parts of the system (e.g., inputs it accepts, outputs it produces).</span></span>, aiming for manageable, reusable, and maintainable components.</p>
+                                            <ul class="key-points">
+                                                <li>Divides system into independent modules.</li>
+                                                <li>Promotes code reusability.</li>
+                                                <li>Simplifies testing and maintenance.</li>
+                                                <li>Requires clear interfaces between modules.</li>
+                                                <li>Modules can often be developed in parallel.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- Using .pseudocode class from external CSS -->
+                                    <div class="pseudocode mt-auto"> <!-- Added mt-auto -->
+                                        <span class="code-keyword">MODULE</span> ProcessPayment<br>
+                                        <span class="code-keyword">BEGIN</span><br>
+                                        &nbsp;&nbsp;<span class="code-comment">// ... payment logic ...</span><br>
+                                        <span class="code-keyword">END MODULE</span><br><br>
+                                        <span class="code-keyword">PROGRAM</span> Checkout<br>
+                                        <span class="code-keyword">BEGIN</span><br>
+                                        &nbsp;&nbsp;<span class="code-variable">CALL</span> ProcessPayment()<br>
+                                        <span class="code-keyword">END PROGRAM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Comparison Section from 1.1.1 -->
+                        <div class="content-section">
+                            <!-- Added id="section-1-1-1-comparison" -->
+                            <h3 class="section-heading" id="section-1-1-1-comparison"><i class="fas fa-balance-scale"></i> Comparing Top-Down and Bottom-Up</h3>
+                            <div class="table-responsive">
+                                <div class="comparison-table"> <!-- Container div for table -->
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Aspect</th>
+                                                <th scope="col">Top-Down</th>
+                                                <th scope="col">Bottom-Up</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td scope="row">Core Idea</td>
+                                                <td>Splitting (Breaking down large problems)</td>
+                                                <td>Merging (Combining small solutions)</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Information Handling</td>
+                                                <td>Can sometimes repeat information</td>
+                                                <td>Avoids repeating information</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Typical Languages</td>
+                                                <td>Often Procedural/Structured (e.g., C)</td>
+                                                <td>Often Object-Oriented (e.g., Python, Java)</td>
+                                            </tr>
+                                             <tr>
+                                                <td scope="row">Primary Focus</td>
+                                                <td>Planning, structuring, step-by-step building</td>
+                                                <td>Testing, especially how parts fit together (integration)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div><!-- End comparison-table container -->
+                            </div>
+                            <!-- Using the custom collapsible from sub_sections.css -->
+                            <button class="collapsible mt-3" aria-expanded="false"> <!-- Added aria-expanded -->
+                                 Key Differences Summarised <i class="fas fa-chevron-down rotate-icon ms-auto"></i>
+                            </button>
+                            <div class="collapsible-content"> <!-- Content for custom collapsible -->
+                                 <p><strong>Top-Down:</strong> Starts big, gets detailed. Good when you know the overall goal clearly. Breaks the problem down (decomposition).</p>
+                                 <p><strong>Bottom-Up:</strong> Starts small, builds up. Useful when the basic parts are clear, but the final structure might change. Puts pieces together (integration).</p>
+                                 <p><strong>Modularisation:</strong> Creates reusable, independent blocks. Works well with both, especially OOP. Makes systems easier to manage and update.</p>
+                            </div>
+                        </div>
+
+                    </div> <!-- End accordion-body for 1.1.1 -->
+                </div>
+            </div> <!-- End accordion-item for 1.1.1 -->
+
+
+            <!-- Accordion Item 2: Content from 1.1.2 -->
+            <!-- Added id="section-1-1-2" -->
+            <div class="accordion-item" id="section-1-1-2">
+                <h2 class="accordion-header" id="heading112">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse112" aria-expanded="false" aria-controls="collapse112">
+                         <i class="fas fa-puzzle-piece me-2"></i> 1.1.2 Decomposing Problems
+                    </button>
+                </h2>
+                <div id="collapse112" class="accordion-collapse collapse" aria-labelledby="heading112" data-bs-parent="#computationalThinkingAccordion">
+                    <div class="accordion-body">
+
+                        <!-- Introduction to Decomposition from 1.1.2 -->
+                        <div class="content-section pt-0 pb-4 bg-transparent border-0 shadow-none"> <!-- Removed section styling -->
+                            <!-- Added id="section-1-1-2-whatis" -->
+                            <h3 class="section-heading" id="section-1-1-2-whatis"><i class="fas fa-puzzle-piece"></i> What is Decomposition?</h3>
+                            <p><span class="key-term">Decomposition<span class="tooltip-box">Breaking down a complex problem or system into smaller, more manageable parts.</span></span> is a core technique used in computational thinking. It's about taking a large, complex problem and breaking it down into smaller, simpler sub-problems.</p>
+                            <p>Computational thinking relies on four key techniques, often called pillars:</p>
+                            <ul class="list-unstyled row g-3 mt-3">
+                                <li class="col-md-6 col-lg-3"><i class="fas fa-puzzle-piece me-2" style="color: var(--accent-1);"></i><strong>Decomposition:</strong> Breaking down.</li>
+                                <li class="col-md-6 col-lg-3"><i class="fas fa-search me-2" style="color: var(--accent-2);"></i><strong>Pattern Recognition:</strong> Finding similarities.</li>
+                                <li class="col-md-6 col-lg-3"><i class="fas fa-filter me-2" style="color: #ffc107;"></i><strong>Abstraction:</strong> Focusing on essentials.</li>
+                                <li class="col-md-6 col-lg-3"><i class="fas fa-list-ol me-2" style="color: #28a745;"></i><strong>Algorithms:</strong> Step-by-step solutions.</li>
+                            </ul>
+                             <p>By breaking a problem down, each smaller part becomes easier to understand, manage, and eventually solve.</p>
+                             <div class="insight-box"> <!-- Uses inline style -->
+                                 <h5><i class="fas fa-lightbulb me-2"></i>Real-World Insight</h5>
+                                 <p>Think about building a large application like a social media platform. Developers don't try to build the whole thing at once! They decompose it into modules like user authentication, news feed generation, messaging, profile management, etc. Each module can then be developed and tested more easily.</p>
+                             </div>
+                        </div>
+
+                        <!-- Link to Top-Down Approach from 1.1.2 -->
+                        <div class="content-section">
+                            <!-- Added id="section-1-1-2-topdownlink" -->
+                            <h3 class="section-heading" id="section-1-1-2-topdownlink"><i class="fas fa-link"></i> Decomposition and the Top-Down Approach</h3>
+                            <!-- Added internal link styling -->
+                            <p>As discussed in the <a href="#section-1-1-1" data-bs-toggle="collapse" data-bs-target="#collapse111" class="internal-link">Problem Solving Approaches</a> section above, the <span class="key-term">Top-Down<span class="tooltip-box">A problem-solving approach starting with the overall problem and breaking it down into smaller parts.</span></span> strategy heavily relies on decomposition.</p>
+                            <p>You start with the main problem and keep breaking it down into smaller tasks or <span class="key-term">modules<span class="tooltip-box">Self-contained units or components of a larger system, often resulting from decomposition.</span></span> until they are simple enough to tackle independently. Once these individual modules are created (e.g., coded), they are combined (<span class="key-term">integrated<span class="tooltip-box">The process of combining smaller, tested modules or components into larger subsystems or the final complete system.</span></span>) to form the solution to the original, larger problem.</p>
+                        </div>
+
+                        <!-- Advantages and Disadvantages from 1.1.2 -->
+                        <div class="content-section">
+                            <!-- Added id="section-1-1-2-proscons" -->
+                            <h3 class="section-heading" id="section-1-1-2-proscons"><i class="fas fa-balance-scale"></i> Pros and Cons of Decomposition</h3>
+                            <div class="row g-4">
+                                <div class="col-md-6 d-flex">
+                                    <!-- Using the new .pros-cons-card class -->
+                                    <div class="pros-cons-card pros-card w-100">
+                                        <h4 class="pros-title"><i class="fas fa-thumbs-up me-2"></i> Advantages</h4>
+                                        <ul>
+                                            <li><strong>Teamwork:</strong> Different people can work on separate modules simultaneously.</li>
+                                            <li><strong>Easier Maintenance:</strong> Updates/fixes can target specific modules.</li>
+                                            <li><strong>Manageability:</strong> Makes complex problems less daunting.</li>
+                                            <li><strong>Reusability:</strong> Well-defined modules can be used elsewhere.</li>
+                                            <li><strong>Testing:</strong> Easier to test smaller, individual modules.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                     <!-- Using the new .pros-cons-card class -->
+                                     <div class="pros-cons-card cons-card w-100">
+                                        <h4 class="cons-title"><i class="fas fa-thumbs-down me-2"></i> Disadvantages</h4>
+                                        <ul>
+                                            <li><strong>Integration Challenges:</strong> Modules might not fit together correctly.</li>
+                                            <li><strong>Misunderstanding:</strong> Incorrect decomposition if the initial problem isn't fully grasped.</li>
+                                            <li><strong>Design Overhead:</strong> Defining clear interfaces takes effort.</li>
+                                            <li><strong>Potential Redundancy:</strong> Similar logic might appear in different modules.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Four Steps of Decomposition (Nested Accordion) from 1.1.2 -->
+                        <div class="content-section">
+                            <!-- Added id="section-1-1-2-steps" -->
+                            <h3 class="section-heading" id="section-1-1-2-steps"><i class="fas fa-list-ol"></i> Four Steps of Decomposition</h3>
+                            <p>When breaking down a problem for coding, these steps help guide the process:</p>
+                            <!-- Nested Bootstrap Accordion -->
+                            <div class="accordion" id="decompositionStepsAccordion">
+                                <!-- Step 1 -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingStepOne">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStepOne" aria-expanded="false" aria-controls="collapseStepOne">
+                                            <strong>Step 1:</strong> Identify and Describe Problems/Processes
+                                        </button>
+                                    </h2>
+                                    <div id="collapseStepOne" class="accordion-collapse collapse" aria-labelledby="headingStepOne" data-bs-parent="#decompositionStepsAccordion">
+                                        <div class="accordion-body">
+                                            <p>Clearly define what the problem is and what processes are involved. Use language specific to the problem's context (e.g., retail terms for a shop system, physics terms for a simulation).</p>
+                                            <p><em>Example: Problem is "Calculate total cost for items in a shopping basket". Processes involve getting item prices, quantities, applying discounts, and summing up.</em></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Step 2 -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingStepTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStepTwo" aria-expanded="false" aria-controls="collapseStepTwo">
+                                            <strong>Step 2:</strong> Break Down into Separate Tasks
+                                        </button>
+                                    </h2>
+                                    <div id="collapseStepTwo" class="accordion-collapse collapse" aria-labelledby="headingStepTwo" data-bs-parent="#decompositionStepsAccordion">
+                                        <div class="accordion-body">
+                                            <p>Use decomposition (often top-down) to split the main problem into smaller, distinct tasks and subtasks. Keep breaking down until each task is simple and focused. Ensure all tasks directly contribute to solving the original problem.</p>
+                                            <p><em>Example: Break down "Calculate total cost" into: 1. Get item details (price, quantity). 2. Calculate subtotal per item. 3. Apply discounts. 4. Calculate final total.</em></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Step 3 -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingStepThree">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStepThree" aria-expanded="false" aria-controls="collapseStepThree">
+                                            <strong>Step 3:</strong> Describe Tasks and Subtasks
+                                        </button>
+                                    </h2>
+                                    <div id="collapseStepThree" class="accordion-collapse collapse" aria-labelledby="headingStepThree" data-bs-parent="#decompositionStepsAccordion">
+                                        <div class="accordion-body">
+                                            <p>Document each task clearly. What does it do? What information does it need (inputs)? What result does it produce (outputs)? This documentation helps developers implement the solution correctly.</p>
+                                            <p><em>Example: Document "Apply discounts": Needs item price and discount rules as input. Outputs the discounted price.</em></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <!-- Step 4 -->
+                                 <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingStepFour">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStepFour" aria-expanded="false" aria-controls="collapseStepFour">
+                                            <strong>Step 4:</strong> Communicate
+                                        </button>
+                                    </h2>
+                                    <div id="collapseStepFour" class="accordion-collapse collapse" aria-labelledby="headingStepFour" data-bs-parent="#decompositionStepsAccordion">
+                                        <div class="accordion-body">
+                                            <p>Share the decomposed structure and task descriptions with the team. Assign responsibility for different modules. Clear communication ensures everyone understands their part and how it fits into the whole solution before combining the modules.</p>
+                                             <p><em>Example: Team member A takes the "Get item details" module, Team member B takes "Apply discounts", etc. Regular check-ins ensure compatibility.</em></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- End Nested Accordion -->
+                        </div>
+
+                        <!-- Code Example Section from 1.1.2 -->
+                        <div class="content-section">
+                            <!-- Added id="section-1-1-2-code" -->
+                            <h3 class="section-heading" id="section-1-1-2-code"><i class="fas fa-code"></i> Decomposition in Code (Python Example)</h3>
+                            <p>Decomposition often translates into creating separate functions or methods in code. Consider calculating the area and perimeter of a rectangle:</p>
+                            <!-- Uses inline styled .code-example -->
+                            <pre class="code-example"><code><span class="syntax-comment"># --- Without Decomposition ---</span>
+<span class="syntax-keyword">def</span> <span class="syntax-function">process_rectangle</span>(length, width):
+    area = length * width
+    perimeter = <span class="syntax-number">2</span> * (length + width)
+    <span class="syntax-keyword">print</span>(<span class="syntax-string">f"Area: {area}"</span>)
+    <span class="syntax-keyword">print</span>(<span class="syntax-string">f"Perimeter: {perimeter}"</span>)
+
+<span class="syntax-function">process_rectangle</span>(<span class="syntax-number">10</span>, <span class="syntax-number">5</span>)
+
+<span class="syntax-comment"># --- With Decomposition ---</span>
+<span class="syntax-keyword">def</span> <span class="syntax-function">calculate_area</span>(length, width):
+    <span class="syntax-keyword">return</span> length * width
+
+<span class="syntax-keyword">def</span> <span class="syntax-function">calculate_perimeter</span>(length, width):
+    <span class="syntax-keyword">return</span> <span class="syntax-number">2</span> * (length + width)
+
+<span class="syntax-keyword">def</span> <span class="syntax-function">display_results</span>(area, perimeter):
+    <span class="syntax-keyword">print</span>(<span class="syntax-string">f"Calculated Area: {area}"</span>)
+    <span class="syntax-keyword">print</span>(<span class="syntax-string">f"Calculated Perimeter: {perimeter}"</span>)
+
+<span class="syntax-comment"># Main part uses the decomposed functions</span>
+rect_length = <span class="syntax-number">10</span>
+rect_width = <span class="syntax-number">5</span>
+rect_area = <span class="syntax-function">calculate_area</span>(rect_length, rect_width)
+rect_perimeter = <span class="syntax-function">calculate_perimeter</span>(rect_length, rect_width)
+<span class="syntax-function">display_results</span>(rect_area, rect_perimeter)</code></pre>
+                            <p>The decomposed version separates concerns: one function calculates area, another calculates perimeter, and a third displays results. This makes the code easier to read, test, and reuse.</p>
+                        </div>
+
+                        <!-- Connecting the Pillars from 1.1.2 -->
+                        <div class="content-section">
+                             <!-- Added id="section-1-1-2-pillars" -->
+                             <h3 class="section-heading" id="section-1-1-2-pillars"><i class="fas fa-project-diagram"></i> Connecting the Pillars</h3>
+                             <p>Decomposition is often the first step in computational thinking. Once a problem is broken down:</p>
+                             <ul>
+                                 <li>You can look for <span class="key-term">patterns<span class="tooltip-box">Identifying similarities or repeated processes within or between the decomposed parts.</span></span> across the smaller sub-problems.</li>
+                                 <li>You can use <span class="key-term">abstraction<span class="tooltip-box">Focusing on the essential features of the sub-problems while ignoring irrelevant details.</span></span> to focus on what's important in each part.</li>
+                                 <li>You can then design specific <span class="key-term">algorithms<span class="tooltip-box">Creating step-by-step instructions to solve each of the smaller, well-defined sub-problems.</span></span> to solve each sub-problem.</li>
+                             </ul>
+                             <p>These techniques work together to tackle complexity effectively.</p>
+                        </div>
+
+                    </div> <!-- End accordion-body for 1.1.2 -->
+                </div>
+            </div> <!-- End accordion-item for 1.1.2 -->
+
+        </div> <!-- End Main Accordion -->
+
+
+        <!-- Combined Test Yourself Section -->
+        <!-- Added id="section-combined-check" -->
+        <div class="content-section mt-5" id="section-combined-check">
+            <h2 class="section-heading"><i class="fas fa-question-circle"></i> Check Your Understanding (Combined)</h2>
+
+            <!-- Recall Questions from 1.1.1 -->
+            <div class="review-questions mb-4">
+                <h4 class="recall-title">Recall: Problem Solving Approaches (1.1.1)</h4>
+                <ol>
+                    <li>What is <span class="key-term">computational thinking<span class="tooltip-box">A thinking process involving breaking down problems, finding patterns, focusing on important details, and creating step-by-step solutions.</span></span>?</li>
+                    <li>How is the top-down approach usually represented visually?</li>
+                    <li>What is the starting point for the top-down approach?</li>
+                    <li>What programming paradigm often uses the bottom-up approach?</li>
+                    <li>What is the term for combining modules together?</li>
+                    <li>What is the primary aim of the modularisation approach?</li>
+                </ol>
+            </div>
+
+             <!-- Recall Questions from 1.1.2 -->
+            <div class="review-questions mb-4">
+                <h4 class="recall-title">Recall: Decomposing Problems (1.1.2)</h4>
+                <ol>
+                    <li>Define decomposition in your own words.</li>
+                    <li>What are <span class="key-term">modules<span class="tooltip-box">Self-contained units or components of a larger system, often resulting from decomposition.</span></span> in the context of decomposition?</li>
+                    <li>Explain how the top-down approach utilizes decomposition.</li>
+                    <li>Identify one advantage and one disadvantage of using decomposition.</li>
+                </ol>
+            </div>
+
+            <div class="alert alert-info" role="alert"> <!-- Removed inline style, rely on sub_sections.css -->
+              <i class="fas fa-info-circle me-2"></i> Interactive quizzes for these sections are available on the individual sub-section pages.
+            </div>
+
+        </div>
+
+    </div> <!-- End container-fluid -->
+
+    <!-- Cursor Element (Ensure this exists if used by JS) -->
+    <div class="cosmic-cursor"></div>
+
+    <!-- Settings Modal Container (Ensure this exists if used by JS) -->
+    <div id="settingsModalContainer"></div>
+    <!-- Load settings.html content dynamically if needed, or include directly -->
+    <!-- Example: <div id="settingsModal">... content from settings.html ...</div> -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // --- Sidebar Navigation Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
+            const sections = [];
+            sidebarLinks.forEach(link => {
+                try {
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        sections.push(targetElement);
+                    } else {
+                        console.warn(`Sidebar link target not found: ${targetId}`);
+                    }
+                } catch (e) {
+                    // Handle potential invalid selector errors
+                    console.error(`Invalid selector for sidebar link: ${link.getAttribute('href')}`, e);
+                }
+            });
+
+            // Smooth Scrolling on Click
+            sidebarLinks.forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault(); // Prevent default jump
+                    const targetId = this.getAttribute('href');
+                    try {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            // Calculate scroll position, considering potential fixed header offset
+                            const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 90; // Match scroll-margin-top
+
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
+
+                            // Optional: Update URL hash without jump (can interfere with back button)
+                            // history.pushState(null, null, targetId);
+
+                            // If target is inside a collapsed accordion, open it
+                            const accordionCollapse = targetElement.closest('.accordion-collapse:not(.show)');
+                            if (accordionCollapse) {
+                                const bsCollapseInstance = bootstrap.Collapse.getInstance(accordionCollapse) || new bootstrap.Collapse(accordionCollapse);
+                                bsCollapseInstance.show();
+
+                                // Scroll again slightly after accordion opens, as layout shifts
+                                // Listen for the 'shown.bs.collapse' event for better timing
+                                accordionCollapse.addEventListener('shown.bs.collapse', () => {
+                                    const newOffsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 90; // Recalculate offset
+                                    window.scrollTo({ top: newOffsetTop, behavior: 'smooth' });
+                                }, { once: true }); // Remove listener after it runs once
+                            }
+                        }
+                    } catch (e) {
+                         console.error(`Error scrolling to target: ${targetId}`, e);
+                    }
+                });
+            });
+
+            // Active Link Highlighting on Scroll
+            const setActiveLink = () => {
+                let currentSectionId = null;
+                // Adjust offset to trigger highlight slightly before section top hits the very top
+                const scrollPosition = window.pageYOffset + 100; // Offset slightly more than scroll-margin-top
+
+                // Iterate backwards to find the last section that starts above the scroll position
+                for (let i = sections.length - 1; i >= 0; i--) {
+                    // Ensure section has an offsetParent to avoid errors with hidden elements
+                    if (sections[i].offsetParent !== null && sections[i].offsetTop <= scrollPosition) {
+                        currentSectionId = '#' + sections[i].id;
+                        break; // Found the current section
+                    }
+                }
+
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === currentSectionId) {
+                        link.classList.add('active');
+                        // Optional: Ensure parent list item is also visually indicated if needed
+                        const parentLi = link.closest('ul')?.closest('li');
+                        if(parentLi) {
+                            const parentLink = parentLi.querySelector('a');
+                            // Add a class or style to parentLink if desired
+                            // Example: parentLink?.classList.add('parent-active');
+                        }
+                    }
+                });
+            };
+
+            // Throttle scroll event listener for performance
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(setActiveLink, 50); // Adjust throttle delay (ms)
+            });
+
+            // Set initial active link on page load
+            setActiveLink();
+
+            // Initialize Bootstrap Tooltips (if you have any new ones)
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+              return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+
+            // Initialize custom collapsibles (if using the .collapsible class from 1.1.1)
+            document.querySelectorAll('.collapsible').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    this.setAttribute('aria-expanded', this.classList.contains('active')); // Update ARIA state
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('.rotate-icon');
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        if(icon) icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                         if(icon) icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+
+
+        }); // End DOMContentLoaded
+
+        // --- Cosmic Cursor Movement ---
+        const cursor = document.querySelector('.cosmic-cursor'); // Get the cursor element
+
+        // Check if the cursor element exists before adding listeners
+        if (cursor) {
+            // Update cursor position on mouse move
+            window.addEventListener('mousemove', e => {
+                // Use requestAnimationFrame for smoother performance
+                requestAnimationFrame(() => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                });
+            });
+
+            // Optional: Add 'expanded' class on hover over interactive elements
+            // Add your selectors for buttons, links, etc. here
+            const interactiveElements = document.querySelectorAll('a, button, .key-term, .collapsible, .quiz-option, .accordion-button, .sidebar-nav a'); // Added sidebar links
+
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('expanded');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('expanded');
+                });
+            });
+
+             // Handle cursor visibility when leaving/entering the window
+             document.addEventListener('mouseleave', () => {
+                cursor.style.opacity = '0'; // Hide cursor when mouse leaves window
+             });
+             document.addEventListener('mouseenter', () => {
+                 cursor.style.opacity = '1'; // Show cursor when mouse enters window
+             });
+
+
+        } else {
+            console.warn("Cosmic cursor element not found. Ensure <div class='cosmic-cursor'></div> exists in the HTML.");
+            // document.body.style.cursor = 'auto'; // Uncomment to restore default cursor if custom one fails
+        }
+
+        // --- Settings Modal Logic ---
+        // Assuming settings.html is loaded dynamically or included statically
+        // This is a basic example, adapt if your loading mechanism is different
+        function initializeSettingsModal() {
+            // Attempt to find the settings button - might not exist on every page
+            const openSettingsBtn = document.getElementById('openSettings');
+            const settingsModal = document.getElementById('settingsModal'); // Assuming this is the ID of the modal container
+            const closeSettingsBtn = settingsModal?.querySelector('.close-settings'); // Find close button inside modal
+
+            // Only add listeners if the button AND modal elements are found
+            if (openSettingsBtn && settingsModal && closeSettingsBtn) {
+                openSettingsBtn.addEventListener('click', () => {
+                    settingsModal.style.display = 'block';
+                    if (cursor) cursor.classList.add('modal-open');
+                });
+
+                closeSettingsBtn.addEventListener('click', () => {
+                    settingsModal.style.display = 'none';
+                     if (cursor) cursor.classList.remove('modal-open');
+                });
+
+                window.addEventListener('click', (event) => {
+                    if (event.target === settingsModal) {
+                        settingsModal.style.display = 'none';
+                         if (cursor) cursor.classList.remove('modal-open');
+                    }
+                });
+            } else if (!openSettingsBtn && settingsModal) {
+                 // If modal exists but button doesn't (e.g., on subpages), ensure close works if opened some other way
+                 if (closeSettingsBtn) {
+                     closeSettingsBtn.addEventListener('click', () => {
+                        settingsModal.style.display = 'none';
+                         if (cursor) cursor.classList.remove('modal-open');
+                    });
+                 }
+                 window.addEventListener('click', (event) => {
+                    if (event.target === settingsModal) {
+                        settingsModal.style.display = 'none';
+                         if (cursor) cursor.classList.remove('modal-open');
+                    }
+                });
+            }
+
+            // Always try to initialize slider if modal content is present
+            if (settingsModal) {
+                const slider = settingsModal.querySelector('#fancyAnimations');
+                 if (slider) {
+                    const storedValue = localStorage.getItem('fancyAnimations');
+                    let isEnabledInitially = true; // Default to enabled
+
+                    if (storedValue !== null) {
+                        isEnabledInitially = (storedValue === 'true');
+                        slider.value = isEnabledInitially ? '1' : '0';
+                    } else {
+                         slider.value = '1'; // Set slider to default enabled state
+                    }
+
+                    // Apply initial state based on stored value or default
+                    if (isEnabledInitially) {
+                        document.body.classList.remove('no-animations');
+                    } else {
+                        document.body.classList.add('no-animations');
+                    }
+
+
+                    slider.addEventListener('input', function() {
+                        const isEnabled = this.value === '1';
+                        localStorage.setItem('fancyAnimations', isEnabled);
+                        console.log(`Visual Effects ${isEnabled ? 'enabled' : 'disabled'}`);
+                        // Add your animation toggle logic here
+                        if (isEnabled) {
+                            document.body.classList.remove('no-animations');
+                        } else {
+                            document.body.classList.add('no-animations');
+                        }
+                    });
+                 }
+            } else if (!document.getElementById('settingsModalContainer')?.innerHTML.trim()) {
+                 // Only log warning if the container is empty AND the modal isn't found directly
+                 console.warn("Settings modal elements not found. Ensure the modal HTML is loaded and IDs match.");
+            }
+        }
+
+        // Load and initialize settings modal
+        document.addEventListener('DOMContentLoaded', () => {
+            const settingsContainer = document.getElementById('settingsModalContainer');
+            // Check if container exists and is empty
+            if (settingsContainer && !settingsContainer.innerHTML.trim()) {
+                 fetch('../../settings.html') // Adjust path relative to this HTML file
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.text();
+                     })
+                    .then(html => {
+                        settingsContainer.innerHTML = html;
+                        initializeSettingsModal(); // Initialize after loading
+                    })
+                    .catch(error => console.error('Settings load error:', error));
+            } else if (document.getElementById('settingsModal')) {
+                 // If modal is already statically included in the HTML
+                 initializeSettingsModal();
+            } else {
+                // If container doesn't exist at all
+                console.warn("Settings modal container not found. Cannot load settings.");
+            }
+        });
+
+    </script>
+
+</body>
+</html>

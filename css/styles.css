@@ -20,7 +20,7 @@ html, body {
     color: var(--text-primary);
     overflow-x: hidden;
     position: relative;
-    background: transparent;
+    background: transparent; /* Body itself is transparent to show universe */
 }
 
 /* ================= GALAXY BACKGROUND ================= */
@@ -30,19 +30,22 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 50%, 
-        #0a0812 0%, 
-        #09061a 30%, 
-        #070320 60%, 
+    background: radial-gradient(circle at 50% 50%,
+        #0a0812 0%,
+        #09061a 30%,
+        #070320 60%,
         #04041a 100%);
-    z-index: 1;
+    z-index: 1; /* Behind content */
+    pointer-events: none; /* Allow clicks through */
 }
 
 .stars {
-    position: fixed;
+    position: absolute; /* Changed from fixed to be relative to universe-background */
     width: 100%;
     height: 100%;
-    z-index: 2;
+    top: 0;
+    left: 0;
+    z-index: 2; /* Above gradient, below particles */
     background: transparent;
     animation: moveStars 50s linear infinite;
 }
@@ -54,12 +57,13 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: 
+    background-image:
         radial-gradient(2px 2px at 10% 20%, #fff 0.5px, transparent 1px),
         radial-gradient(2px 2px at 90% 70%, #fff 0.5px, transparent 1px),
         radial-gradient(2px 2px at 80% 10%, #fff 0.5px, transparent 1px),
         radial-gradient(2px 2px at 20% 80%, #fff 0.5px, transparent 1px);
     background-size: 200px 200px;
+    opacity: 0.5; /* Adjusted opacity */
 }
 
 @keyframes moveStars {
@@ -68,10 +72,12 @@ html, body {
 }
 
 .particles {
-    position: fixed;
+    position: absolute; /* Changed from fixed */
     width: 100%;
     height: 100%;
-    z-index: 3;
+    top: 0;
+    left: 0;
+    z-index: 3; /* Above stars */
     pointer-events: none;
 }
 
@@ -92,17 +98,17 @@ html, body {
 }
 
 .galaxy-core {
-    position: fixed;
+    position: absolute; /* Changed from fixed */
     top: 50%;
     left: 50%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle at 50% 50%, 
-        rgba(6, 0, 11, 0.4) 0%, 
-        rgba(3, 0, 37, 0.3) 30%, 
+    background: radial-gradient(circle at 50% 50%,
+        rgba(6, 0, 11, 0.4) 0%,
+        rgba(3, 0, 37, 0.3) 30%,
         transparent 70%);
     transform: translate(-50%, -50%);
-    z-index: 2;
+    z-index: 2; /* Between gradient and stars */
     animation: rotateGalaxy 120s linear infinite;
     will-change: transform;
 }
@@ -118,7 +124,7 @@ html, body {
     margin-bottom: 50px;
     padding-top: 2rem;
     position: relative;
-    z-index: 10;
+    z-index: 10; /* Above background */
 }
 
 .title {
@@ -146,7 +152,7 @@ html, body {
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
-    z-index: 10;
+    z-index: 10; /* Above background */
 }
 
 .chapter-grid {
@@ -216,7 +222,7 @@ html, body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(120deg, 
+    background: linear-gradient(120deg,
         transparent 0%,
         rgba(255, 255, 255, 0.1) 50%,
         transparent 100%);
@@ -251,7 +257,7 @@ html, body {
     text-decoration: none;
     margin-bottom: 2rem;
     display: inline-block;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease; /* Added color transition */
     font-size: 1.1rem;
 }
 
@@ -337,41 +343,66 @@ html, body {
     transform: scale(1.05);
 }
 
+/* Base styles for comparison table container */
+.comparison-table {
+    overflow-x: auto; /* Enable horizontal scroll on small screens */
+    margin-top: 1.5rem;
+}
+
 .comparison-table table {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.4); /* Darker background */
     color: white;
-    border-collapse: collapse;
+    border-collapse: separate; /* Use separate for border-radius */
     width: 100%;
     border-radius: 10px;
-    overflow: hidden;
+    overflow: hidden; /* Clip content to rounded corners */
+    border-spacing: 0; /* Remove space between cells */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Outer border */
 }
 
 .comparison-table th,
 .comparison-table td {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Horizontal lines */
+    padding: 1rem; /* Consistent padding */
     text-align: left;
+    vertical-align: top; /* Align content to top */
+}
+
+.comparison-table td:not(:last-child),
+.comparison-table th:not(:last-child) {
+     border-right: 1px solid rgba(255, 255, 255, 0.1); /* Vertical lines */
 }
 
 .comparison-table thead th {
-    background-color: rgba(0, 0, 0, 0.9);
-    font-weight: bold;
+    background-color: rgba(99, 102, 241, 0.3); /* Header background */
+    font-weight: 600; /* Slightly bolder */
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom-width: 2px; /* Thicker line below header */
+    border-bottom-color: rgba(var(--accent-1-rgb), 0.5);
 }
 
-.comparison-table tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.comparison-table tbody tr:last-child td {
+    border-bottom: none; /* Remove bottom border on last row */
+}
+
+.comparison-table tbody tr:hover td {
+    background-color: rgba(255, 255, 255, 0.05); /* Hover effect */
 }
 
 .dark-card {
-    background-color: rgba(0, 0, 0, 0.7);
+    /* Inherits from .chapter-btn styles */
+    background: rgba(0, 0, 0, 0.7); /* Override background */
     color: white;
 }
 
 .dark-card:hover {
+    /* Inherits hover from .chapter-btn styles */
+    background: rgba(0, 0, 0, 0.8); /* Darker hover */
     color: white;
 }
 
+/* These are defined more specifically in sub_sections.css, keep base here if needed */
 .approach-card {
     margin-bottom: 1.5rem;
 }
@@ -429,10 +460,10 @@ html, body {
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 9999;
-    transition: 
-        transform 0.2s ease-out, 
+    transition:
+        transform 0.2s ease-out,
         background 0.3s ease;
-    box-shadow: 
+    box-shadow:
         0 0 20px rgba(168, 85, 247, 0.2),
         inset 0 0 8px rgba(255, 255, 255, 0.1);
     mix-blend-mode: screen;
@@ -460,93 +491,75 @@ html, body {
 
 /* ================= ENHANCEMENTS ================= */
 
-/* ----- Key Term Tooltips ----- */
+/* ----- Key Term Tooltips (Base Style) ----- */
+/* More specific styles in sub_sections.css */
 .key-term {
     position: relative;
-    cursor: help;
+    cursor: help; /* Change cursor for key terms */
     border-bottom: 1px dashed var(--accent-2);
     transition: all 0.3s ease;
+    font-weight: 500; /* Make key terms slightly bolder */
+    color: var(--accent-2); /* Default color */
 }
 
 .key-term:hover {
     color: var(--accent-1);
-    border-bottom-color: transparent;
+    border-bottom-color: var(--accent-1); /* Change border color on hover */
 }
 
-.key-term::after {
-    content: attr(data-definition);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0,0,0,0.9);
-    color: #fff;
-    padding: 0.8rem 1.2rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    width: 220px;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    backdrop-filter: blur(5px);
-    border: 1px solid var(--accent-3);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+/* Tooltip box itself - defined in sub_sections.css */
+.tooltip-box {
+    display: none; /* Hidden by default, shown via JS/hover in sub_sections */
 }
 
-.key-term:hover::after {
-    opacity: 1;
-    visibility: visible;
-    bottom: 120%;
-}
 
 /* ----- Visual Diagrams ----- */
 .visual-aid {
     margin: 2rem 0;
     padding: 2rem;
+    /* Updated background to be slightly darker */
     background: rgba(255,255,255,0.05);
     border-radius: 16px;
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Add subtle border */
 }
 
+/* Tree Diagram Example (can be expanded) */
 .tree-diagram {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    min-height: 300px;
+    min-height: 200px; /* Adjusted height */
 }
 
 .node {
     background: var(--accent-1);
-    padding: 1rem 2rem;
+    color: var(--text-primary); /* Ensure text is visible */
+    padding: 0.8rem 1.5rem; /* Adjusted padding */
     border-radius: 8px;
     margin: 1rem;
     position: relative;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 .node:hover {
     transform: scale(1.05);
     z-index: 2;
+    box-shadow: 0 6px 15px rgba(99, 102, 241, 0.3);
 }
 
-.node::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    width: 2px;
-    height: 20px;
-    background: var(--accent-2);
-}
+/* Lines for tree diagram would typically be added via JS or more complex CSS */
 
+/* Module Flow Example (can be expanded) */
 .module-flow {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
+    gap: 1.5rem; /* Adjusted gap */
+    padding: 1rem 0; /* Adjusted padding */
 }
 
 .module {
@@ -556,31 +569,29 @@ html, body {
     text-align: center;
     position: relative;
     transition: all 0.3s ease;
+    border: 1px solid rgba(168, 85, 247, 0.2); /* Add subtle border */
 }
 
 .module:hover {
     background: rgba(168, 85, 247, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(168, 85, 247, 0.2);
 }
 
-.module::before {
-    content: '↑↓';
-    position: absolute;
-    color: var(--accent-2);
-    font-size: 1.2rem;
-    right: -15px;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 0.5;
-}
+/* Arrows between modules would typically be added via JS or more complex CSS */
 
-/* ----- Syntax Highlighting ----- */
+
+/* ----- Syntax Highlighting (Base Styles) ----- */
+/* More specific styles in sub_sections.css */
 .pseudocode {
     background: rgba(0,0,0,0.4);
     padding: 1.5rem;
     border-radius: 12px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace; /* Monospace font */
     margin: 1.5rem 0;
     position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Add subtle border */
+    overflow-x: auto; /* Allow horizontal scroll if needed */
 }
 
 .code-keyword {
@@ -593,32 +604,23 @@ html, body {
 }
 
 .code-comment {
-    color: #6c757d;
+    color: #6c757d; /* Grey for comments */
     font-style: italic;
 }
 
 .code-variable {
-    color: #4dc2f7;
+    color: #4dc2f7; /* Light blue for variables */
 }
 
 /* ----- Interactive Elements ----- */
+/* Base collapsible styles - more specific in sub_sections.css */
 .collapsible {
     cursor: pointer;
     position: relative;
-    padding-left: 2rem;
+    /* Basic styling, overridden in sub_sections.css */
 }
 
-.collapsible::before {
-    content: '▶';
-    position: absolute;
-    left: 0;
-    transition: transform 0.3s ease;
-}
-
-.collapsible.active::before {
-    transform: rotate(90deg);
-}
-
+/* Diagram controls example */
 .diagram-controls {
     position: absolute;
     top: 1rem;
@@ -640,6 +642,7 @@ html, body {
 
 .diagram-btn:hover {
     background: var(--accent-1);
+    color: white; /* Ensure text remains white */
 }
 
 /* ----- Animations ----- */
@@ -658,34 +661,37 @@ html, body {
     .title {
         font-size: 2.5rem;
     }
-    
+
     .subtitle {
         font-size: 1.25rem;
     }
-    
+
     .chapter-container {
         padding: 1rem;
     }
-    
+
     .subsection-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .sub-topics li {
         padding: 0.8rem;
     }
-    
-    .key-term::after {
-        width: 180px;
-        font-size: 0.8rem;
-    }
-    
+
+    /* Tooltip adjustments for smaller screens if needed */
+    /* .key-term::after { ... } */
+
     .module-flow {
         grid-template-columns: 1fr;
     }
-    
+
     .pseudocode {
-        overflow-x: auto;
+        font-size: 0.9rem; /* Slightly smaller font on mobile */
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: 0.75rem; /* Reduce padding */
     }
 }
 /* Settings Button */
@@ -724,7 +730,7 @@ html, body {
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.85); /* Darker, more opaque background */
     backdrop-filter: blur(5px); /* Add a blur effect */
-    
+
 }
 
 .settings-modal-content {
@@ -829,4 +835,24 @@ html, body {
 /* Development Notes */
 .chapter-development{
     color: rgba(255, 255, 255, 0.699);
+    font-style: italic; /* Make it italic */
+    margin-top: -1rem; /* Adjust spacing */
+    margin-bottom: 2rem;
+    text-align: center; /* Center align */
+    font-size: 0.95rem;
+}
+
+/* Ensure chapter title uses correct class */
+.chapter-title { /* Renamed from .chapter_title for consistency */
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem; /* Adjusted size */
+    background: linear-gradient(45deg, var(--accent-1), var(--accent-2), var(--accent-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+    margin: 1rem 0 0.5rem 0; /* Adjusted margins */
+    text-align: center;
 }
