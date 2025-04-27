@@ -1,14 +1,22 @@
+/* css/styles.css */
+
 /* ================= ROOT VARIABLES ================= */
 :root {
     --text-primary: #ffffff;
-    --accent-1: #6366f1;
-    --accent-2: #a855f7;
-    --accent-3: #8a48ec;
+    --accent-1: #6366f1; /* Indigo */
+    --accent-2: #a855f7; /* Purple */
+    --accent-3: #8a48ec; /* Violet */
+    --accent-1-rgb: 99, 102, 241;
+    --accent-2-rgb: 168, 85, 247;
+    --accent-3-rgb: 138, 72, 236;
+    --success-color: #10B981; /* Green */
+    --warning-color: #ffc107; /* Yellow */
+    --danger-color: #EF4444;  /* Red */
 }
 
 /* ================= GLOBAL STYLES ================= */
 * {
-    cursor: none;
+    cursor: none; /* Default cursor hidden */
     box-sizing: border-box;
 }
 
@@ -22,6 +30,26 @@ html, body {
     position: relative;
     background: transparent; /* Body itself is transparent to show universe */
 }
+
+/* Apply default cursor if animations are off */
+body.no-animations * {
+    cursor: default;
+}
+body.no-animations a,
+body.no-animations button, /* Covers all buttons including settings toggle */
+body.no-animations .collapsible,
+body.no-animations .diagram-btn,
+body.no-animations .quiz-option { /* Added quiz option */
+    cursor: pointer; /* Restore pointer for interactive elements */
+}
+body.no-animations .settings-btn, /* Specific settings icon button */
+body.no-animations .close-settings { /* Specific close button */
+     cursor: pointer; /* Ensure settings buttons are clickable */
+}
+body.no-animations .key-term {
+    cursor: help; /* Restore help cursor for key terms */
+}
+
 
 /* ================= GALAXY BACKGROUND ================= */
 .universe-background {
@@ -48,6 +76,7 @@ html, body {
     z-index: 2; /* Above gradient, below particles */
     background: transparent;
     animation: moveStars 50s linear infinite;
+    --particle-handled-by-css: true; /* Flag for JS */
 }
 
 .stars::after {
@@ -79,6 +108,7 @@ html, body {
     left: 0;
     z-index: 3; /* Above stars */
     pointer-events: none;
+    --particle-handled-by-css: true; /* Flag for JS */
 }
 
 .particles::before {
@@ -171,27 +201,30 @@ html, body {
 }
 
 /* ================= COMPONENTS ================= */
+/* Base styles for card-like elements */
 .chapter-btn,
 .subsection-card,
-.sub-topics li,
-.dark-card {
+.sub-topics li, /* Note: sub-topics li has slightly different styling below */
+.dark-card,
+.approach-card,
+.pros-cons-card,
+.activity-card,
+.quiz-container,
+.settings-modal-content /* Added settings modal content here */
+{
     border-radius: 15px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     color: white;
-}
-
-.chapter-btn,
-.subsection-card,
-.dark-card {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(var(--accent-1-rgb), 0.1) 0%, rgba(var(--accent-2-rgb), 0.1) 100%);
     border: 2px solid rgba(255, 255, 255, 0.15);
     padding: 1.5rem;
     backdrop-filter: blur(10px);
 }
 
+/* Specific overrides and additions */
 .chapter-btn {
     display: flex;
     flex-direction: column;
@@ -200,22 +233,42 @@ html, body {
     text-decoration: none;
     height: 100%;
     gap: 15px;
-    padding: 25px;
-    border-radius: 16px;
+    padding: 25px; /* Overrides base padding */
+    border-radius: 16px; /* Slightly different radius */
 }
 
+.settings-modal-content {
+    margin: 10% auto; /* Keep modal margin */
+    padding: 30px; /* Keep larger modal padding */
+    width: 85%;
+    max-width: 550px;
+    /* Inherits background, border, radius, shadow, backdrop-filter from base */
+    z-index: 10001; /* Ensure it's above backdrop */
+}
+
+
+/* Hover effects for card-like elements (excluding modal content) */
 .chapter-btn:hover,
 .subsection-card:hover,
-.dark-card:hover {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+.dark-card:hover,
+.approach-card:hover,
+.pros-cons-card:hover,
+.activity-card:hover
+{
+    background: linear-gradient(135deg, rgba(var(--accent-1-rgb), 0.2) 0%, rgba(var(--accent-2-rgb), 0.2) 100%);
     transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 8px 32px rgba(var(--accent-1-rgb), 0.2);
 }
 
+/* Shimmer effect (excluding modal content) */
 .chapter-btn::before,
 .subsection-card::before,
 .sub-topics li::before,
-.dark-card::before {
+.dark-card::before,
+.approach-card::before,
+.pros-cons-card::before,
+.activity-card::before
+{
     content: '';
     position: absolute;
     top: 0;
@@ -227,13 +280,17 @@ html, body {
         rgba(255, 255, 255, 0.1) 50%,
         transparent 100%);
     transition: all 0.6s;
-    z-index: -1;
+    z-index: -1; /* Ensure it's behind content */
 }
 
 .chapter-btn:hover::before,
 .subsection-card:hover::before,
 .sub-topics li:hover::before,
-.dark-card:hover::before {
+.dark-card:hover::before,
+.approach-card:hover::before,
+.pros-cons-card:hover::before,
+.activity-card:hover::before
+{
     left: 100%;
 }
 
@@ -257,7 +314,7 @@ html, body {
     text-decoration: none;
     margin-bottom: 2rem;
     display: inline-block;
-    transition: transform 0.3s ease, color 0.3s ease; /* Added color transition */
+    transition: transform 0.3s ease, color 0.3s ease;
     font-size: 1.1rem;
 }
 
@@ -266,7 +323,7 @@ html, body {
     color: var(--accent-1);
 }
 
-.subsection-header {
+.subsection-header { /* Used in chapter pages */
     display: flex;
     align-items: center;
     margin-bottom: 1.5rem;
@@ -292,17 +349,21 @@ html, body {
     margin: 0;
 }
 
+/* Sub-topics list items have slightly different base style */
 .sub-topics li {
-    padding: 1rem;
+    padding: 1rem; /* Override base padding */
     margin: 0.5rem 0;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.05); /* Different background */
     z-index: 1;
+    border-radius: 8px; /* Different radius */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Different border */
+    /* Does not inherit backdrop-filter */
 }
 
 .sub-topics li:hover {
-    background: rgba(99, 102, 241, 0.2);
+    background: rgba(var(--accent-1-rgb), 0.2);
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 8px 20px rgba(var(--accent-1-rgb), 0.2);
 }
 
 .subsection-link {
@@ -312,24 +373,24 @@ html, body {
     width: 100%;
     height: 100%;
     position: relative;
-    z-index: 2;
+    z-index: 2; /* Above shimmer */
 }
 
-.quiz-section {
+.quiz-section { /* Used in chapter pages */
     margin-top: 4rem;
     padding: 2rem;
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(var(--accent-1-rgb), 0.1);
     border-radius: 15px;
-    border: 2px solid rgba(168, 85, 247, 0.2);
+    border: 2px solid rgba(var(--accent-2-rgb), 0.2);
 }
 
-.quiz-title {
+.quiz-title { /* Used in chapter pages */
     color: var(--accent-2);
     font-family: 'Orbitron', sans-serif;
     margin-bottom: 1.5rem;
 }
 
-.quiz-start-btn {
+.quiz-start-btn { /* Used in chapter pages */
     background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
     border: none;
     padding: 1rem 2rem;
@@ -345,71 +406,73 @@ html, body {
 
 /* Base styles for comparison table container */
 .comparison-table {
-    overflow-x: auto; /* Enable horizontal scroll on small screens */
+    overflow-x: auto;
     margin-top: 1.5rem;
 }
 
 .comparison-table table {
-    background-color: rgba(0, 0, 0, 0.4); /* Darker background */
+    background-color: rgba(0, 0, 0, 0.4);
     color: white;
-    border-collapse: separate; /* Use separate for border-radius */
+    border-collapse: separate;
     width: 100%;
     border-radius: 10px;
-    overflow: hidden; /* Clip content to rounded corners */
-    border-spacing: 0; /* Remove space between cells */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Outer border */
+    overflow: hidden;
+    border-spacing: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .comparison-table th,
 .comparison-table td {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Horizontal lines */
-    padding: 1rem; /* Consistent padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
     text-align: left;
-    vertical-align: top; /* Align content to top */
+    vertical-align: top;
 }
 
 .comparison-table td:not(:last-child),
 .comparison-table th:not(:last-child) {
-     border-right: 1px solid rgba(255, 255, 255, 0.1); /* Vertical lines */
+     border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .comparison-table thead th {
-    background-color: rgba(99, 102, 241, 0.3); /* Header background */
-    font-weight: 600; /* Slightly bolder */
+    background-color: rgba(var(--accent-1-rgb), 0.3);
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    border-bottom-width: 2px; /* Thicker line below header */
+    border-bottom-width: 2px;
     border-bottom-color: rgba(var(--accent-1-rgb), 0.5);
 }
 
 .comparison-table tbody tr:last-child td {
-    border-bottom: none; /* Remove bottom border on last row */
+    border-bottom: none;
 }
 
 .comparison-table tbody tr:hover td {
-    background-color: rgba(255, 255, 255, 0.05); /* Hover effect */
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 .dark-card {
-    /* Inherits from .chapter-btn styles */
-    background: rgba(0, 0, 0, 0.7); /* Override background */
+    background: rgba(0, 0, 0, 0.7);
     color: white;
+    /* Inherits radius, padding, etc. from base */
 }
 
 .dark-card:hover {
-    /* Inherits hover from .chapter-btn styles */
-    background: rgba(0, 0, 0, 0.8); /* Darker hover */
+    background: rgba(0, 0, 0, 0.8);
     color: white;
+    /* Inherits transform, shadow from base hover */
 }
 
-/* These are defined more specifically in sub_sections.css, keep base here if needed */
+/* Styles from 1.1.1.html */
 .approach-card {
     margin-bottom: 1.5rem;
+    /* Inherits base styles */
 }
 
 .approach-title {
     color: var(--accent-2);
     margin-bottom: 1rem;
+    font-size: 1.5rem;
 }
 
 .approach-body {
@@ -417,24 +480,79 @@ html, body {
 }
 
 .key-points {
-    list-style: disc;
-    padding-left: 2rem;
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
 }
+.key-points li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+.key-points li::before {
+    content: "\f00c"; /* Font Awesome check icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: var(--accent-1);
+    font-size: 0.9em;
+}
+
+/* Styles from 1.1.2.html */
+.pros-cons-card {
+    margin-bottom: 1rem;
+    /* Inherits base styles */
+}
+.pros-title, .cons-title {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-bottom: 2px solid;
+    padding-bottom: 0.5rem;
+}
+.pros-title { color: var(--success-color); border-color: var(--success-color); }
+.cons-title { color: var(--danger-color); border-color: var(--danger-color); }
+.pros-cons-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+.pros-cons-card li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+.pros-cons-card li::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 0.9em;
+}
+.pros-cons-card .pros-title + ul li::before { content: "\f00c"; color: var(--success-color); } /* Check */
+.pros-cons-card .cons-title + ul li::before { content: "\f00d"; color: var(--danger-color); } /* Times */
+
 
 .activity-card {
     margin-top: 1.5rem;
+    background: linear-gradient(135deg, rgba(var(--accent-3-rgb), 0.1) 0%, rgba(var(--accent-2-rgb), 0.1) 100%); /* Slightly different gradient */
+    border-color: rgba(var(--accent-3-rgb), 0.3);
+    /* Inherits radius, padding, etc. */
 }
 
 .activity-title {
-    color: var(--accent-2);
+    color: var(--accent-3);
     margin-bottom: 1rem;
+    font-size: 1.5rem;
 }
 
-.approach-task {
+.approach-task { /* Used in some sub-sections */
     background: rgba(255, 255, 255, 0.05);
     padding: 1rem;
     border-radius: 8px;
     margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .approach-task h5 {
@@ -444,10 +562,20 @@ html, body {
 
 .review-questions {
     line-height: 1.6;
+    background: rgba(0,0,0,0.2);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--accent-3);
 }
 
 .review-questions ol {
     padding-left: 2rem;
+    margin-bottom: 0;
+}
+.recall-title {
+    color: var(--accent-3);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
 }
 
 /* ================= COSMIC CURSOR ================= */
@@ -456,17 +584,22 @@ html, body {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: rgba(168, 85, 247, 0.2);
+    background: rgba(var(--accent-2-rgb), 0.2);
     transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10002;
     transition:
         transform 0.2s ease-out,
-        background 0.3s ease;
+        background 0.3s ease,
+        opacity 0.3s ease,
+        width 0.2s ease-out,
+        height 0.2s ease-out;
     box-shadow:
-        0 0 20px rgba(168, 85, 247, 0.2),
+        0 0 20px rgba(var(--accent-2-rgb), 0.2),
         inset 0 0 8px rgba(255, 255, 255, 0.1);
     mix-blend-mode: screen;
+    opacity: 1;
+    will-change: transform, opacity;
 }
 
 .cosmic-cursor::after {
@@ -475,8 +608,9 @@ html, body {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border: 1px solid rgba(168, 85, 247, 0.3);
+    border: 1px solid rgba(var(--accent-2-rgb), 0.3);
     animation: pulse 1.5s ease-out infinite;
+    will-change: transform, opacity;
 }
 
 @keyframes pulse {
@@ -489,27 +623,56 @@ html, body {
     background: rgba(200, 220, 255, 0.2);
 }
 
-/* ================= ENHANCEMENTS ================= */
+/* Hide cursor when animations are disabled */
+body.no-animations .cosmic-cursor {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    display: none !important;
+}
 
-/* ----- Key Term Tooltips (Base Style) ----- */
-/* More specific styles in sub_sections.css */
+
+/* ================= ENHANCEMENTS (from sub_sections.css / 1.1.1 / 1.1.2) ================= */
+
+/* ----- Key Term Tooltips ----- */
 .key-term {
     position: relative;
-    cursor: help; /* Change cursor for key terms */
     border-bottom: 1px dashed var(--accent-2);
     transition: all 0.3s ease;
-    font-weight: 500; /* Make key terms slightly bolder */
-    color: var(--accent-2); /* Default color */
+    font-weight: 500;
+    color: var(--accent-2);
+    /* cursor handled globally */
 }
 
 .key-term:hover {
     color: var(--accent-1);
-    border-bottom-color: var(--accent-1); /* Change border color on hover */
+    border-bottom-color: var(--accent-1);
 }
 
-/* Tooltip box itself - defined in sub_sections.css */
 .tooltip-box {
-    display: none; /* Hidden by default, shown via JS/hover in sub_sections */
+    display: none;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.tooltip-box::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.85) transparent transparent transparent;
 }
 
 
@@ -517,27 +680,26 @@ html, body {
 .visual-aid {
     margin: 2rem 0;
     padding: 2rem;
-    /* Updated background to be slightly darker */
     background: rgba(255,255,255,0.05);
     border-radius: 16px;
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Add subtle border */
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Tree Diagram Example (can be expanded) */
+/* Tree Diagram Example */
 .tree-diagram {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    min-height: 200px; /* Adjusted height */
+    min-height: 200px;
 }
 
 .node {
     background: var(--accent-1);
-    color: var(--text-primary); /* Ensure text is visible */
-    padding: 0.8rem 1.5rem; /* Adjusted padding */
+    color: var(--text-primary);
+    padding: 0.8rem 1.5rem;
     border-radius: 8px;
     margin: 1rem;
     position: relative;
@@ -549,76 +711,109 @@ html, body {
 .node:hover {
     transform: scale(1.05);
     z-index: 2;
-    box-shadow: 0 6px 15px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 6px 15px rgba(var(--accent-1-rgb), 0.3);
 }
 
-/* Lines for tree diagram would typically be added via JS or more complex CSS */
-
-/* Module Flow Example (can be expanded) */
+/* Module Flow Example */
 .module-flow {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.5rem; /* Adjusted gap */
-    padding: 1rem 0; /* Adjusted padding */
+    gap: 1.5rem;
+    padding: 1rem 0;
 }
 
 .module {
-    background: rgba(168, 85, 247, 0.1);
+    background: rgba(var(--accent-2-rgb), 0.1);
     padding: 1.5rem;
     border-radius: 12px;
     text-align: center;
     position: relative;
     transition: all 0.3s ease;
-    border: 1px solid rgba(168, 85, 247, 0.2); /* Add subtle border */
+    border: 1px solid rgba(var(--accent-2-rgb), 0.2);
 }
 
 .module:hover {
-    background: rgba(168, 85, 247, 0.2);
+    background: rgba(var(--accent-2-rgb), 0.2);
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(168, 85, 247, 0.2);
+    box-shadow: 0 6px 15px rgba(var(--accent-2-rgb), 0.2);
 }
 
-/* Arrows between modules would typically be added via JS or more complex CSS */
 
-
-/* ----- Syntax Highlighting (Base Styles) ----- */
-/* More specific styles in sub_sections.css */
-.pseudocode {
+/* ----- Syntax Highlighting / Code Examples ----- */
+.pseudocode,
+.code-example {
     background: rgba(0,0,0,0.4);
     padding: 1.5rem;
     border-radius: 12px;
-    font-family: 'Courier New', Courier, monospace; /* Monospace font */
+    font-family: 'Courier New', Courier, monospace;
     margin: 1.5rem 0;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Add subtle border */
-    overflow-x: auto; /* Allow horizontal scroll if needed */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-x: auto;
+    color: #eee;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
-.code-keyword {
-    color: var(--accent-1);
-    font-weight: bold;
-}
+.code-keyword, .syntax-keyword { color: #569cd6; font-weight: bold; }
+.code-operator { color: var(--accent-2); }
+.code-comment, .syntax-comment { color: #6a9955; font-style: italic; }
+.code-variable { color: #4dc2f7; }
+.syntax-function { color: #dcdcaa; }
+.syntax-string { color: #ce9178; }
+.syntax-number { color: #b5cea8; }
 
-.code-operator {
-    color: var(--accent-2);
-}
-
-.code-comment {
-    color: #6c757d; /* Grey for comments */
-    font-style: italic;
-}
-
-.code-variable {
-    color: #4dc2f7; /* Light blue for variables */
-}
 
 /* ----- Interactive Elements ----- */
-/* Base collapsible styles - more specific in sub_sections.css */
+/* Collapsible */
 .collapsible {
-    cursor: pointer;
-    position: relative;
-    /* Basic styling, overridden in sub_sections.css */
+    background-color: rgba(var(--accent-1-rgb), 0.2);
+    color: white;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1.1rem;
+    transition: background-color 0.4s ease;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(var(--accent-1-rgb), 0.3);
+    /* cursor handled globally */
 }
+
+.collapsible:hover {
+    background-color: rgba(var(--accent-1-rgb), 0.3);
+}
+
+.collapsible.active {
+    background-color: rgba(var(--accent-1-rgb), 0.4);
+}
+
+.collapsible .rotate-icon {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+
+.collapsible .rotate-icon.active {
+    transform: rotate(180deg);
+}
+
+.collapsible-content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: rgba(0,0,0, 0.1);
+    border-radius: 0 0 8px 8px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(var(--accent-1-rgb), 0.3);
+    border-top: none;
+}
+.collapsible-content p:first-child { padding-top: 15px; }
+.collapsible-content p:last-child { padding-bottom: 15px; }
+
 
 /* Diagram controls example */
 .diagram-controls {
@@ -636,25 +831,425 @@ html, body {
     color: var(--text-primary);
     padding: 0.5rem 1rem;
     border-radius: 6px;
-    cursor: pointer;
     transition: all 0.3s ease;
+    /* cursor handled globally */
 }
 
 .diagram-btn:hover {
     background: var(--accent-1);
-    color: white; /* Ensure text remains white */
+    color: white;
 }
+
+/* Quiz Buttons and Container */
+.quiz-btn {
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    transition: transform 0.3s ease, background 0.3s ease;
+    display: inline-block;
+    /* cursor handled globally */
+}
+
+.quiz-btn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+}
+
+.quiz-container {
+    margin-top: 1.5rem;
+    /* Inherits base card styles */
+}
+
+.quiz-question {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.quiz-question:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.quiz-question h4 {
+    margin-bottom: 1rem;
+    color: var(--accent-3);
+}
+
+.quiz-options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.quiz-option {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    padding-left: 35px;
+    /* cursor handled globally */
+}
+.quiz-option::before { /* Radio button circle */
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.quiz-option::after { /* Inner dot for selected */
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-1);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+
+.quiz-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(var(--accent-1-rgb), 0.5);
+}
+.quiz-option:hover::before {
+    border-color: var(--accent-1);
+}
+
+.quiz-option.selected {
+    background: rgba(var(--accent-1-rgb), 0.15);
+    border-color: var(--accent-1);
+}
+.quiz-option.selected::before {
+    border-color: var(--accent-1);
+}
+.quiz-option.selected::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Feedback states */
+.quiz-option.correct {
+    background: rgba(var(--success-color), 0.15);
+    border-color: var(--success-color);
+}
+.quiz-option.correct::before { border-color: var(--success-color); }
+.quiz-option.correct::after { background-color: var(--success-color); transform: translate(-50%, -50%) scale(1); }
+
+.quiz-option.incorrect {
+    background: rgba(var(--danger-color), 0.15);
+    border-color: var(--danger-color);
+}
+.quiz-option.incorrect::before { border-color: var(--danger-color); }
+.quiz-option.incorrect::after { background-color: var(--danger-color); transform: translate(-50%, -50%) scale(1); }
+
+/* Ensure correct overrides incorrect if selected */
+.quiz-option.incorrect.correct {
+    background: rgba(var(--success-color), 0.15);
+    border-color: var(--success-color);
+}
+.quiz-option.incorrect.correct::before { border-color: var(--success-color); }
+.quiz-option.incorrect.correct::after { background-color: var(--success-color); }
+
+
+.quiz-feedback {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Accordion Styles (from 1.1.2) */
+.accordion-button {
+     background-color: rgba(var(--accent-1-rgb), 0.2);
+     color: white;
+     font-weight: bold;
+     border: none;
+     box-shadow: none !important;
+}
+.accordion-button:not(.collapsed) {
+     background-color: rgba(var(--accent-1-rgb), 0.4);
+     color: var(--text-primary);
+}
+.accordion-button:focus {
+    border: none;
+}
+.accordion-body {
+    background-color: rgba(0,0,0, 0.1);
+    color: var(--text-primary);
+}
+.accordion-item {
+    background-color: transparent;
+    border: 1px solid rgba(var(--accent-1-rgb), 0.3);
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.accordion-header {
+    margin-bottom: 0;
+}
+.accordion-button::after {
+    filter: brightness(0) invert(1);
+}
+
+/* Insight Box (from 1.1.2) */
+.insight-box {
+    background-color: rgba(var(--accent-2-rgb), 0.1);
+    border: 1px solid var(--accent-2);
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.insight-box h5 {
+    color: var(--accent-2);
+    margin-bottom: 10px;
+}
+.insight-box i {
+    color: var(--accent-2);
+}
+
 
 /* ----- Animations ----- */
 @keyframes nodePulse {
-    0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
-    70% { box-shadow: 0 0 0 15px rgba(99, 102, 241, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(var(--accent-1-rgb), 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(var(--accent-1-rgb), 0); }
+    100% { box-shadow: 0 0 0 0 rgba(var(--accent-1-rgb), 0); }
 }
 
 .highlight-node {
     animation: nodePulse 1.5s infinite;
 }
+
+/* ================= SETTINGS MODAL ================= */
+
+/* Settings Button (Floating Cog) - Remains the same */
+.settings-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #222;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    z-index: 10001;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* cursor handled globally */
+}
+
+.settings-btn:hover {
+    background-color: var(--accent-3);
+    transform: scale(1.1) rotate(45deg);
+}
+
+.settings-btn i {
+    font-size: 1.5em;
+    transition: transform 0.3s ease;
+}
+.settings-btn:hover i {
+    transform: rotate(-45deg);
+}
+
+/* Settings Modal Backdrop - Remains the same */
+#settingsModal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+}
+
+/* Settings Modal Content Box - UPDATED */
+/* .settings-modal-content is now part of the base card styles */
+/* Styles specific to the modal content box are handled there or below */
+
+/* Close Button (Top Right X) - Remains the same */
+.close-settings {
+    color: #aaa;
+    float: right;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 1;
+    transition: color 0.2s, transform 0.2s;
+    /* cursor handled globally */
+    position: absolute; /* Position relative to modal content */
+    top: 15px;
+    right: 20px;
+    z-index: 10002; /* Above title gradient */
+}
+
+.close-settings:hover,
+.close-settings:focus {
+    color: #fff;
+    text-decoration: none;
+    transform: scale(1.2);
+}
+
+/* Settings Modal Title - UPDATED */
+.settings-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    letter-spacing: 1px;
+    /* Apply gradient text like main title */
+    background: linear-gradient(45deg, var(--accent-1), var(--accent-2), var(--accent-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(var(--accent-2-rgb), 0.3); /* Adjusted shadow */
+    padding-top: 1rem; /* Add padding to avoid overlap with close button */
+}
+
+/* Container for each setting option (Label + Toggle) - UPDATED */
+.settings-option-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 25px 0;
+    padding: 10px 0; /* Reduced padding, only vertical */
+    /* Removed background, border, shadow, radius */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Add subtle separator */
+}
+.settings-option-container:last-of-type {
+    border-bottom: none; /* Remove border from last item */
+}
+
+/* Label for the setting - Remains the same */
+.settings-option-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    margin-right: 25px;
+    color: #eee;
+    flex-shrink: 0;
+}
+
+/* The Toggle Button itself - Remains the same */
+.settings-toggle-btn {
+    position: relative;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    min-width: 90px;
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    /* cursor handled globally */
+}
+
+/* Styling for the ACTIVE / ON state - Remains the same */
+.settings-toggle-btn.active {
+    background-color: var(--accent-1);
+    border-color: rgba(var(--accent-1-rgb), 0.5);
+    color: var(--text-primary);
+    box-shadow: 0 0 10px rgba(var(--accent-1-rgb), 0.3);
+}
+
+/* Hover effect for the button - Remains the same */
+.settings-toggle-btn:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    filter: brightness(1.1);
+}
+
+.settings-toggle-btn.active:hover {
+    background-color: #797bf3;
+    border-color: rgba(var(--accent-1-rgb), 0.8);
+    filter: brightness(1.1);
+}
+
+/* Style for the text inside the button - Remains the same */
+.settings-toggle-btn span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+
+/* ================= MISC & UTILITIES ================= */
+
+/* Development Notes */
+.chapter-development{
+    color: rgba(255, 255, 255, 0.699);
+    font-style: italic;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+/* Ensure chapter title uses correct class */
+.chapter-title { /* Used in sub-section pages */
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    background: linear-gradient(45deg, var(--accent-1), var(--accent-2), var(--accent-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 30px rgba(var(--accent-2-rgb), 0.4);
+    margin: 1rem 0 0.5rem 0;
+    text-align: center;
+}
+
+/* Section Heading Style (used in sub-sections) */
+.section-heading {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent-1);
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(var(--accent-1-rgb), 0.3);
+    display: flex;
+    align-items: center;
+}
+.section-heading i {
+    margin-right: 0.75rem;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+.content-section {
+    margin-bottom: 3rem;
+}
+
+/* Internal Link Style */
+.internal-link {
+    color: var(--accent-1);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px dotted var(--accent-1);
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+.internal-link:hover {
+    color: var(--accent-2);
+    border-bottom-color: var(--accent-2);
+}
+
 
 /* ================= MEDIA QUERIES ================= */
 @media (max-width: 768px) {
@@ -678,181 +1273,53 @@ html, body {
         padding: 0.8rem;
     }
 
-    /* Tooltip adjustments for smaller screens if needed */
-    /* .key-term::after { ... } */
-
     .module-flow {
         grid-template-columns: 1fr;
     }
 
-    .pseudocode {
-        font-size: 0.9rem; /* Slightly smaller font on mobile */
+    .pseudocode, .code-example {
+        font-size: 0.9rem;
     }
 
     .comparison-table th,
     .comparison-table td {
-        padding: 0.75rem; /* Reduce padding */
+        padding: 0.75rem;
     }
-}
-/* Settings Button */
-.settings-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #222; /* Darker background */
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 50%;
-    cursor: none;
-    z-index: 10001; /* High z-index, but below cursor */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); /* More pronounced shadow */
-    transition: background-color 0.3s ease;
-}
 
-.settings-btn:hover {
-    background-color: #46018293; /* Slightly lighter on hover */
-}
+    /* Settings Modal Adjustments */
+    .settings-modal-content {
+        margin: 5% auto;
+        width: 95%;
+        padding: 20px; /* Slightly reduce padding on mobile */
+    }
 
-.settings-btn i {
-    font-size: 1.5em;
-}
+    .settings-title {
+        font-size: 2rem;
+        padding-top: 0.5rem; /* Adjust padding */
+    }
+    .close-settings {
+        top: 10px;
+        right: 15px;
+        font-size: 30px;
+    }
 
-/* Settings Modal */
-#settingsModal {
-    display: none;
-    position: fixed;
-    z-index: 10000; /* High z-index */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.85); /* Darker, more opaque background */
-    backdrop-filter: blur(5px); /* Add a blur effect */
+    .settings-option-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 0; /* Adjust padding */
+    }
+    .settings-option-label {
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+    .settings-toggle-btn {
+        align-self: flex-end;
+    }
 
-}
-
-.settings-modal-content {
-    background: linear-gradient(to bottom, #17171763, #282828); /* Gradient background */
-    color: #eee; /* Lighter text */
-    margin: 10% auto; /* Adjusted margin */
-    padding: 30px; /* Increased padding */
-    border: 1px solid #333; /* Darker border */
-    width: 85%;
-    max-width: 550px;
-    border-radius: 15px; /* More rounded corners */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6); /* Stronger shadow */
-    position: relative;
-}
-
-.close-settings {
-    color: #aaa; /* Lighter close button */
-    float: right;
-    font-size: 36px; /* Slightly larger */
-    font-weight: bold;
-    line-height: 1;
-    cursor: none;
-    transition: color 0.2s;
-}
-
-.close-settings:hover,
-.close-settings:focus {
-    color: #fff;
-    text-decoration: none;
-    cursor: none;
-}
-
-.settings-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.5rem; /* Slightly larger */
-    margin-bottom: 30px; /* Increased margin */
-    text-align: center;
-    letter-spacing: 1px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow */
-}
-
-.settings-slider-container {
-    display: flex;
-    align-items: center;
-    margin: 25px 0; /* Increased margin */
-    padding: 20px; /* Increased padding */
-    background: #2a2a2a;
-    border-radius: 10px; /* More rounded */
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3); /* Inset shadow */
-}
-
-.settings-slider-label {
-    flex: 1;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.2rem; /* Slightly larger */
-    margin-right: 25px; /* Increased margin */
-}
-
-.settings-slider {
-    -webkit-appearance: none;
-    width: 60px; /* Slightly wider */
-    height: 14px; /* Slightly taller */
-    background: #333; /* Darker background */
-    border-radius: 7px; /* More rounded */
-    outline: none;
-    opacity: 0.9; /* Slightly more opaque */
-    transition: opacity 0.2s;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* Subtle shadow */
-    cursor: none;
-}
-
-.settings-slider:hover {
-    opacity: 1;
-    cursor: none;
-}
-
-.settings-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 26px; /* Slightly larger */
-    height: 26px; /* Slightly larger */
-    background: #00ff88;
-    border-radius: 50%;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
-}
-
-.settings-slider::-moz-range-thumb {
-    width: 26px; /* Slightly larger */
-    height: 26px; /* Slightly larger */
-    background: #00ff88;
-    border-radius: 50%;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
-}
-
-/* Cursor */
-.cosmic-cursor {
-    z-index: 10002; /* Higher than modal */
-}
-.cosmic-cursor.modal-open {
-    z-index: 10003; /* Even higher when modal is open */
-}
-
-/* Development Notes */
-.chapter-development{
-    color: rgba(255, 255, 255, 0.699);
-    font-style: italic; /* Make it italic */
-    margin-top: -1rem; /* Adjust spacing */
-    margin-bottom: 2rem;
-    text-align: center; /* Center align */
-    font-size: 0.95rem;
-}
-
-/* Ensure chapter title uses correct class */
-.chapter-title { /* Renamed from .chapter_title for consistency */
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3rem; /* Adjusted size */
-    background: linear-gradient(45deg, var(--accent-1), var(--accent-2), var(--accent-3));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
-    margin: 1rem 0 0.5rem 0; /* Adjusted margins */
-    text-align: center;
+    .chapter-title {
+        font-size: 2.2rem;
+    }
+    .section-heading {
+        font-size: 1.8rem;
+    }
 }
