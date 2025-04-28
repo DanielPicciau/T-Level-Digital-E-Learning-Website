@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Link to the CSS file that includes styles from styles.css -->
     <link href="../../../css/sub_sections.css" rel="stylesheet">
     <style>
         /* Simple styles for code example - ideally move to sub_sections.css */
@@ -37,27 +38,41 @@
             color: var(--accent-2);
             margin-bottom: 10px;
         }
-        /* Style for accordion to match theme */
+        /* Style for accordion to match theme - Ensure these are in sub_sections.css or styles.css */
         .accordion-button {
              background-color: rgba(var(--accent-1-rgb), 0.2);
              color: white;
              font-weight: bold;
+             box-shadow: none !important; /* Added to remove bootstrap focus shadow */
+             border: none; /* Added to remove bootstrap focus border */
         }
         .accordion-button:not(.collapsed) {
              background-color: rgba(var(--accent-1-rgb), 0.4);
              color: white;
         }
         .accordion-button:focus {
-            box-shadow: 0 0 0 0.25rem rgba(var(--accent-1-rgb), 0.5);
+            /* Removed bootstrap focus shadow/border override */
+            border: none;
         }
         .accordion-body {
             background-color: rgba(0,0,0, 0.1); /* Slightly darker background for body */
+            color: var(--text-primary); /* Ensure text is visible */
         }
         .accordion-item {
+            background-color: transparent; /* Ensure item background is transparent */
             border: 1px solid rgba(var(--accent-1-rgb), 0.3);
+            margin-bottom: 0.5rem; /* Add space between items */
+            border-radius: 8px; /* Match card radius */
+            overflow: hidden; /* Keep rounded corners */
         }
+         .accordion-header {
+             margin-bottom: 0; /* Remove default margin */
+         }
+         .accordion-button::after { /* Style Bootstrap icon */
+             filter: brightness(0) invert(1);
+         }
 
-        .strong{
+        .strong{ /* This class wasn't used, but kept the style just in case */
             color: white;
         }
     </style>
@@ -231,7 +246,7 @@ rect_perimeter = <span class="syntax-function">calculate_perimeter</span>(rect_l
         </div>
 
 
-        <!-- Enhanced Activity Section -->
+        <!-- Enhanced Activity Section (Commented out as per original file) -->
         <!-- <div class="content-section">
              <h2 class="section-heading"><i class="fas fa-map-signs"></i> Activity: Plan a Trip (Interactive)</h2>
              <div class="activity-card">
@@ -290,7 +305,6 @@ rect_perimeter = <span class="syntax-function">calculate_perimeter</span>(rect_l
             <button class="quiz-btn" id="quiz-btn" aria-expanded="false" aria-controls="quiz">Take Quiz</button>
 
             <div class="quiz-container" id="quiz" style="display: none;">
-                {/* Quiz Questions remain the same as previous version */}
                 <div class="quiz-question">
                     <h4>Question 1: What is the primary goal of decomposition?</h4>
                     <ul class="quiz-options" role="radiogroup" aria-labelledby="question-title-0">
@@ -328,30 +342,219 @@ rect_perimeter = <span class="syntax-function">calculate_perimeter</span>(rect_l
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    {/* Updated JavaScript block */}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Existing Functionality (Collapsible, Particles, Tooltips, Quiz) ---
+            // --- Existing Functionality (Collapsible, Particles, Tooltips) ---
             // Collapsible functionality (if any non-accordion collapsibles exist)
-            // ... (keep the collapsible code from previous version if needed) ...
+            const collapsibles = document.querySelectorAll('.collapsible:not(.accordion-button)'); // Exclude accordion buttons
+            collapsibles.forEach(collapsible => {
+                collapsible.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('.rotate-icon');
+
+                    content.classList.toggle('active');
+                    if (icon) icon.classList.toggle('active');
+
+                    if (content.classList.contains('active')) {
+                        this.setAttribute('aria-expanded', 'true');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    } else {
+                        this.setAttribute('aria-expanded', 'false');
+                        content.style.maxHeight = null;
+                    }
+                });
+                // Initialize ARIA attributes and max-height on load
+                const content = collapsible.nextElementSibling;
+                if (content && content.classList.contains('collapsible-content')) { // Check if content exists and has the right class
+                    collapsible.setAttribute('aria-expanded', content.classList.contains('active') ? 'true' : 'false');
+                    const contentId = 'collapsible-content-' + Math.random().toString(36).substring(2, 9); // Generate unique ID
+                    collapsible.setAttribute('aria-controls', contentId);
+                    content.id = contentId;
+                    if (content.classList.contains('active')) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                }
+            });
+
 
             // Particle creation (Optional)
-            // ... (keep particle code) ...
+            function createParticles() {
+                const particlesContainer = document.querySelector('.particles');
+                // Added check for CSS handling flag
+                if (!particlesContainer || particlesContainer.children.length > 0 || getComputedStyle(particlesContainer).getPropertyValue('--particle-handled-by-css') === 'true') return;
+                const particleCount = window.innerWidth < 768 ? 15 : 30;
+                for(let i = 0; i < particleCount; i++) {
+                    const p = document.createElement('div');
+                    p.style.cssText = `position:absolute; width: 2px; height: 2px; background: rgba(255,255,255,0.5); border-radius: 50%; top:${Math.random()*100}%; left:${Math.random()*100}%;`;
+                    p.classList.add('particle-item'); // Added class for potential CSS targeting
+                    particlesContainer.appendChild(p);
+                }
+            }
+            // createParticles(); // Keep commented unless JS particles are desired over CSS ones
 
             // Tooltip functionality
-            // ... (keep tooltip code) ...
+            document.querySelectorAll('.key-term').forEach(term => {
+                const tooltip = term.querySelector('.tooltip-box');
+                if (tooltip) {
+                    term.setAttribute('tabindex', '0'); // Ensure it's focusable
+                    term.setAttribute('role', 'button'); // Indicate it's interactive
+                    term.setAttribute('aria-describedby', 'tooltip-' + Math.random().toString(36).substring(2, 9)); // Unique ID for ARIA
+                    tooltip.setAttribute('id', term.getAttribute('aria-describedby'));
+                    tooltip.setAttribute('role', 'tooltip');
+                    tooltip.style.display = 'none'; // Ensure hidden initially
 
-            // Quiz Functionality
-            // ... (keep quiz code from previous version) ...
+                    const showTooltip = () => { tooltip.style.display = 'block'; };
+                    const hideTooltip = () => { tooltip.style.display = 'none'; };
+
+                    term.addEventListener('mouseenter', showTooltip);
+                    term.addEventListener('mouseleave', hideTooltip);
+                    term.addEventListener('focus', showTooltip);
+                    term.addEventListener('blur', hideTooltip);
+                    term.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            tooltip.style.display = (tooltip.style.display === 'block') ? 'none' : 'block';
+                        } else if (e.key === 'Escape') {
+                             hideTooltip();
+                        }
+                    });
+                }
+            });
+
+            // --- START: Integrated Quiz Functionality ---
+            const quizBtn = document.getElementById('quiz-btn');
+            const quizContainer = document.getElementById('quiz');
+            const checkAnswersBtn = document.getElementById('check-answers');
+            const quizFeedback = document.querySelector('.quiz-feedback');
+            const quizQuestions = document.querySelectorAll('.quiz-question');
+
+            if (quizBtn && quizContainer && checkAnswersBtn && quizFeedback && quizQuestions.length > 0) {
+                quizBtn.addEventListener('click', () => {
+                    const isHidden = quizContainer.style.display === 'none' || quizContainer.style.display === '';
+                    quizContainer.style.display = isHidden ? 'block' : 'none';
+                    quizBtn.textContent = isHidden ? 'Hide Quiz' : 'Take Quiz';
+                    quizBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+                    // Reset feedback and selections when showing quiz
+                    if (isHidden) {
+                         quizFeedback.style.display = 'none';
+                         quizFeedback.innerHTML = ''; // Clear previous feedback text
+                         quizQuestions.forEach(question => {
+                             question.querySelectorAll('.quiz-option').forEach(opt => {
+                                 opt.classList.remove('correct', 'incorrect', 'selected');
+                                 opt.setAttribute('aria-checked', 'false');
+                             });
+                         });
+                    }
+                });
+
+                document.querySelectorAll('.quiz-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        // Deselect siblings in the same question
+                        this.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                            opt.setAttribute('aria-checked', 'false');
+                        });
+                        // Select clicked option
+                        this.classList.add('selected');
+                        this.setAttribute('aria-checked', 'true');
+                         // Hide feedback immediately when a new answer is selected after checking
+                         if (quizFeedback.style.display === 'block') {
+                            quizFeedback.style.display = 'none';
+                            // Optionally reset visual correct/incorrect state if desired
+                            // quizQuestions.forEach(q => q.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct', 'incorrect')));
+                         }
+                    });
+                    // Add keydown for space/enter selection
+                    option.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault(); // Prevent page scroll
+                            option.click(); // Trigger the click handler
+                        }
+                    });
+                });
+
+                checkAnswersBtn.addEventListener('click', () => {
+                    let correct = 0;
+                    const total = quizQuestions.length;
+                    let allAnswered = true;
+
+                    quizQuestions.forEach((question, index) => {
+                        const selectedOption = question.querySelector('.quiz-option.selected');
+                        if (!selectedOption) {
+                            allAnswered = false;
+                        }
+
+                        // Reset visual state before applying new one
+                        question.querySelectorAll('.quiz-option').forEach(opt => {
+                            opt.classList.remove('correct', 'incorrect');
+                        });
+
+                        // Mark answers
+                        question.querySelectorAll('.quiz-option').forEach(opt => {
+                            const isCorrect = opt.dataset.correct === 'true';
+                            const isSelected = opt.classList.contains('selected');
+
+                            if (isCorrect) {
+                                opt.classList.add('correct'); // Always show the correct one
+                            }
+                            if (isSelected && !isCorrect) {
+                                opt.classList.add('incorrect'); // Mark selected incorrect answer
+                            }
+                        });
+
+                        if (selectedOption && selectedOption.dataset.correct === 'true') {
+                            correct++;
+                        }
+                    });
+
+                    quizFeedback.style.display = 'block'; // Show feedback area
+
+                    if (!allAnswered) {
+                         quizFeedback.style.background = 'rgba(var(--warning-color-rgb, 255, 193, 7), 0.2)'; // Use CSS var or fallback
+                         quizFeedback.style.color = 'var(--warning-color, #ffc107)';
+                         quizFeedback.innerHTML = '<i class="fas fa-exclamation-triangle me-2"></i>Please answer all questions before checking.';
+                         return; // Stop processing further
+                    }
+
+                    // Display score and feedback message
+                    const scorePercentage = total > 0 ? (correct / total) * 100 : 0;
+                    let feedbackMessage = '';
+                    let feedbackBg = '';
+                    let feedbackColor = '';
+
+                    if (scorePercentage === 100) {
+                        feedbackMessage = 'Excellent! Perfect score!';
+                        feedbackBg = 'rgba(var(--success-color-rgb, 16, 185, 129), 0.2)';
+                        feedbackColor = 'var(--success-color, #10B981)';
+                    } else if (scorePercentage >= 70) { // Adjusted threshold slightly
+                        feedbackMessage = 'Great job!';
+                        feedbackBg = 'rgba(var(--accent-1-rgb, 99, 102, 241), 0.2)';
+                        feedbackColor = 'var(--accent-1, #6366f1)';
+                    } else if (scorePercentage >= 50) {
+                         feedbackMessage = 'Good effort, review the material!';
+                         feedbackBg = 'rgba(var(--warning-color-rgb, 255, 193, 7), 0.2)';
+                         feedbackColor = 'var(--warning-color, #ffc107)';
+                    }
+                    else {
+                        feedbackMessage = 'Keep practicing! Review the key concepts.';
+                        feedbackBg = 'rgba(var(--danger-color-rgb, 239, 68, 68), 0.2)';
+                        feedbackColor = 'var(--danger-color, #EF4444)';
+                    }
+
+                    quizFeedback.style.background = feedbackBg;
+                    quizFeedback.style.color = feedbackColor;
+                    quizFeedback.innerHTML = `<i class="fas fa-info-circle me-2"></i>Score: ${correct}/${total}. ${feedbackMessage}`;
+                });
+            }
+            // --- END: Integrated Quiz Functionality ---
 
 
-            // --- NEW Functionality for 1.1.2 ---
-
-            // Enhanced Activity - Local Storage for Trip Plan
+            // --- Activity Local Storage Functionality ---
             const tripPlanTextarea = document.getElementById('tripPlanTextarea');
             const savePlanBtn = document.getElementById('savePlanBtn');
             const saveStatus = document.getElementById('saveStatus');
 
+            // Check if the elements exist before adding listeners (activity might be commented out)
             if (tripPlanTextarea && savePlanBtn && saveStatus) {
                 // Load saved plan on page load
                 const savedPlan = localStorage.getItem('tripPlanDecomposition');
@@ -372,10 +575,8 @@ rect_perimeter = <span class="syntax-function">calculate_perimeter</span>(rect_l
             }
 
             // Note: Bootstrap's Accordion functionality is handled automatically
-            // by including the Bootstrap JS bundle, provided the HTML structure
-            // (data-bs-toggle, data-bs-target, etc.) is correct.
+            // by including the Bootstrap JS bundle. No extra JS needed for it here.
 
-            // --- End NEW Functionality ---
         });
     </script>
 </body>

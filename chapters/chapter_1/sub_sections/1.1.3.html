@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.1.3 Using Pattern Recognition | T-Level Study Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Link to the CSS file that includes styles from styles.css -->
+    <link href="../../../css/sub_sections.css" rel="stylesheet">
+    <style>
+        /* Styles specific to this page or potentially moved to sub_sections.css later */
+        .insight-box {
+            background-color: rgba(var(--accent-2-rgb), 0.1); /* Use accent color with transparency */
+            border: 1px solid var(--accent-2);
+            padding: 15px;
+            border-radius: 8px; /* Match card radius */
+            margin-top: 20px;
+            margin-bottom: 1.5rem; /* Add bottom margin */
+        }
+        .insight-box h5 {
+            color: var(--accent-2);
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif; /* Match section heading font */
+        }
+        .insight-box i.fa-flask, .insight-box i.fa-paint-brush, .insight-box i.fa-robot { /* Specific icons */
+            color: var(--accent-2);
+            margin-right: 0.5rem;
+        }
+         /* Ensure accordion styles from styles.css are applied */
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="universe-background">
+        <div class="stars"></div>
+        <div class="particles"></div>
+    </div>
+
+    <div class="container-fluid chapter-container">
+        <a href="../chapter1.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Chapter 1
+        </a>
+
+        <div class="chapter-header">
+            <h1 class="chapter-title">1.1.3 Using Pattern Recognition</h1>
+        </div>
+
+        <!-- Introduction to Pattern Recognition -->
+        <div class="content-section">
+            <h2 class="section-heading"><i class="fas fa-search-plus"></i> What is Pattern Recognition?</h2>
+            <p>Once a complex problem has been broken down using <span class="key-term">decomposition<span class="tooltip-box">Breaking down a complex problem or system into smaller, more manageable parts.</span></span> into its smallest sub-problems, we can often start to see similarities or recurring characteristics. This process of identifying these commonalities is known as <span class="key-term">Pattern Recognition<span class="tooltip-box">Identifying similarities, trends, or regularities within or between problems or data sets.</span></span>.</p>
+            <p>Pattern recognition is one of the fundamental pillars of computational thinking, alongside decomposition, abstraction, and algorithms. Finding patterns helps us solve complex problems more efficiently by leveraging existing solutions or approaches.</p>
+            <p>Patterns are everywhere in our daily lives. For instance, school or college timetables show repeating structures of lessons, teachers, rooms, days, and times throughout the academic year. This predictable structure is a pattern.</p>
+        </div>
+
+        <!-- Examples of Patterns -->
+        <div class="content-section">
+            <h2 class="section-heading"><i class="fas fa-atom"></i> Examples of Patterns in Action</h2>
+            <p>Understanding patterns is often easier when looking at examples, both non-digital and digital:</p>
+
+            <div class="insight-box">
+                 <h5><i class="fas fa-paint-brush"></i>Research Task: Artistic Patterns</h5>
+                 <p>Investigate the work of artist M.C. Escher. How does he utilize repeating shapes, tessellations, and transformations as patterns within his art? Consider how this relates to identifying repeating structures in problems.</p>
+            </div>
+
+            <p>In technology and communication, patterns are crucial:</p>
+            <ul>
+                <li><strong>Morse Code:</strong> Used historically for communication (e.g., during WWII, maritime comms), it employs a specific pattern of dots and dashes to represent letters and numbers.</li>
+                <li><strong>Binary Code:</strong> The foundation of digital computing uses a pattern of only two symbols (1s and 0s) to represent all data, including letters, numbers, and instructions.</li>
+            </ul>
+
+            <div class="insight-box">
+                 <h5><i class="fas fa-flask"></i>Research Task: Binary Patterns</h5>
+                 <p>Find the standard binary (like ASCII or UTF-8) representation patterns for the letters of the alphabet. Try writing a short phrase using these binary patterns. Can others in your group decipher it based on the pattern?</p>
+            </div>
+
+            <p>A significant historical example involves the <strong>Enigma Machine</strong> used by Germany in WWII. The machine encrypted messages using complex, changing ciphers. Codebreakers at Bletchley Park, building on earlier work, successfully deciphered these messages by recognizing subtle patterns within the encrypted text and in the machine's operation, even as the specific cipher changed daily. Identifying these underlying patterns was key to breaking the code.</p>
+
+            <div class="insight-box">
+                 <h5><i class="fas fa-history"></i>Research Task: Cracking Enigma</h5>
+                 <p>Research the Enigma Machine and the methods used by Alan Turing and the team at Bletchley Park to crack its ciphers. Focus on how pattern recognition played a role. Create a short digital presentation (e.g., slides, video) to share your findings.</p>
+            </div>
+        </div>
+
+        <!-- Patterns in Emerging Technologies -->
+        <div class="content-section">
+            <h2 class="section-heading"><i class="fas fa-cogs"></i> Patterns in Modern & Emerging Tech</h2>
+            <p>Pattern recognition is fundamental to many modern and emerging technologies. These systems often rely on identifying patterns in data to function:</p>
+            <ul>
+                <li><strong><span class="key-term">Facial Recognition Software<span class="tooltip-box">Software that identifies or verifies a person's identity by analyzing patterns in their facial features from images or video.</span></span>:</strong> Identifies individuals by matching patterns in facial features (distance between eyes, nose shape, etc.) against a database of known patterns.</li>
+                <li><strong>Voice Recognition:</strong> Recognizes spoken words by matching patterns in sound waves (frequency, amplitude, timing) to known language patterns.</li>
+                <li><strong>Automated Transport (Self-Driving Cars):</strong> Uses sensors to detect patterns in the environment (lane markings, traffic signs, other vehicles, pedestrians) and applies pre-learned driving patterns (rules of the road, maneuvering techniques) to navigate.</li>
+            </ul>
+            <p>These applications use predefined and pre-learned patterns, often developed through machine learning, to process inputs and generate appropriate outputs.</p>
+
+            <div class="insight-box">
+                 <h5><i class="fas fa-robot"></i>Research Task: Tech Patterns</h5>
+                 <p>Choose an emerging technology application (e.g., recommendation systems, medical image analysis, fraud detection). Investigate how it uses pattern recognition. What are the advantages and potential disadvantages or ethical concerns related to its use of patterns? Discuss your findings with your group.</p>
+            </div>
+        </div>
+
+        <!-- Steps for Identifying Patterns in Coding -->
+        <div class="content-section">
+            <h2 class="section-heading"><i class="fas fa-list-ol"></i> Steps for Identifying Patterns (Coding Context)</h2>
+            <p>When approaching a coding task, consciously looking for patterns can save time and effort. Here are five steps involved in identifying and recognizing patterns for software development:</p>
+
+            <div class="accordion" id="patternStepsAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingStep1PR">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStep1PR" aria-expanded="false" aria-controls="collapseStep1PR">
+                            <strong>Step 1:</strong> Identify Common Elements/Problems
+                        </button>
+                    </h2>
+                    <div id="collapseStep1PR" class="accordion-collapse collapse" aria-labelledby="headingStep1PR" data-bs-parent="#patternStepsAccordion">
+                        <div class="accordion-body">
+                            <p>Look for similarities between the current problem (or its sub-problems) and problems solved previously or elsewhere. If a common pattern is identified, an existing solution or code module might already exist or be adaptable.</p>
+                            <p><em>Example: Searching for a specific customer in a database. While databases differ, the core process of searching based on criteria is a common pattern with many existing solutions.</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingStep2PR">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStep2PR" aria-expanded="false" aria-controls="collapseStep2PR">
+                            <strong>Step 2:</strong> Identify Common Differences
+                        </button>
+                    </h2>
+                    <div id="collapseStep2PR" class="accordion-collapse collapse" aria-labelledby="headingStep2PR" data-bs-parent="#patternStepsAccordion">
+                        <div class="accordion-body">
+                            <p>Recognize that even within a pattern, there will be variations. Understand what aspects are common and what aspects differ between instances of the pattern.</p>
+                            <p><em>Example: All customer databases store customer records (common purpose). However, the specific information stored (e.g., address, purchase history, contact preferences) and how it's recorded might differ (the variations).</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingStep3PR">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStep3PR" aria-expanded="false" aria-controls="collapseStep3PR">
+                            <strong>Step 3:</strong> Identify Individual Elements (Input, Process, Output)
+                        </button>
+                    </h2>
+                    <div id="collapseStep3PR" class="accordion-collapse collapse" aria-labelledby="headingStep3PR" data-bs-parent="#patternStepsAccordion">
+                        <div class="accordion-body">
+                            <p>Break down the pattern into its core components: what information goes in (input), what actions are performed (process), and what result comes out (output). Analyze how these elements function within the pattern.</p>
+                            <p><em>Example: Tracking customer order frequency. The input might be a list of order dates or just a running count. The process is calculating the total number of orders. The output is that number. The inputs differ, but the process pattern (counting) might be the same.</em></p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingStep4PR">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStep4PR" aria-expanded="false" aria-controls="collapseStep4PR">
+                            <strong>Step 4:</strong> Describe the Identified Patterns
+                        </button>
+                    </h2>
+                    <div id="collapseStep4PR" class="accordion-collapse collapse" aria-labelledby="headingStep4PR" data-bs-parent="#patternStepsAccordion">
+                        <div class="accordion-body">
+                            <p>Clearly document the patterns you've found. Describe what the pattern is, where it occurs, and its key characteristics (including commonalities and differences identified in steps 1 & 2). This helps in communicating the pattern and deciding how to implement it.</p>
+                            <p><em>Example: Documenting a "Data Validation Pattern" - specifying it checks user input, occurs on all forms, requires input data and validation rules, and outputs a boolean (valid/invalid) plus error messages.</em></p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingStep5PR">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStep5PR" aria-expanded="false" aria-controls="collapseStep5PR">
+                            <strong>Step 5:</strong> Make Predictions & Plan Reuse
+                        </button>
+                    </h2>
+                    <div id="collapseStep5PR" class="accordion-collapse collapse" aria-labelledby="headingStep5PR" data-bs-parent="#patternStepsAccordion">
+                        <div class="accordion-body">
+                            <p>Based on the identified and described pattern, predict where else it might be useful. Make decisions about reusing existing code modules or creating a new reusable module based on this pattern. Often, only specific details (like variable names or specific values) need changing when reusing a pattern.</p>
+                            <p><em>Example: Having identified a pattern for calculating discounts, predict it will be needed for different item types. Decide to create a reusable `calculate_discount(price, discount_rate)` function instead of writing similar code repeatedly.</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- Benefits Summary -->
+        <div class="content-section">
+            <h2 class="section-heading"><i class="fas fa-check-circle"></i> Why Patterns Matter</h2>
+            <p>Identifying patterns allows developers to work more efficiently. Instead of solving every sub-problem from scratch, they can adapt existing solutions or use pre-built code modules. This leads to:</p>
+            <ul>
+                <li>Faster development time.</li>
+                <li>More reliable code (reusing tested solutions).</li>
+                <li>Easier maintenance (changes made in one reusable module affect all instances).</li>
+                <li>Simpler solutions to complex problems.</li>
+            </ul>
+        </div>
+
+
+        <!-- Test Yourself Section -->
+        <div class="content-section">
+            <h2 class="section-heading"><i class="fas fa-question-circle"></i> Check Your Understanding</h2>
+            <!-- Recall Questions -->
+            <div class="review-questions mb-4">
+                <h4 class="recall-title">Key Recall Questions:</h4>
+                <ol>
+                    <li>In your own words, what is pattern recognition in the context of problem-solving?</li>
+                    <li>What might happen if you didn't identify patterns when starting a coding project?</li>
+                    <li>Give one example of how emerging technology applications use pattern recognition.</li>
+                    <li>Identify and briefly describe one of the five steps used in identifying patterns for coding.</li>
+                </ol>
+            </div>
+
+            <!-- Interactive Quiz -->
+            <button class="quiz-btn" id="quiz-btn" aria-expanded="false" aria-controls="quiz">Take Quiz</button>
+
+            <div class="quiz-container" id="quiz" style="display: none;">
+                <div class="quiz-question">
+                    <h4>Question 1: Pattern recognition is most useful *after* which other computational thinking step?</h4>
+                    <ul class="quiz-options" role="radiogroup" aria-labelledby="question-title-0">
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Abstraction</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Algorithm Design</li>
+                        <li class="quiz-option" data-correct="true" role="radio" aria-checked="false" tabindex="0">Decomposition</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Evaluation</li>
+                    </ul>
+                    <h4 style="display:none;" id="question-title-0">Question 1: Pattern recognition is most useful *after* which other computational thinking step?</h4>
+                </div>
+                <div class="quiz-question">
+                    <h4>Question 2: Which of these is NOT a primary benefit of identifying patterns in coding?</h4>
+                    <ul class="quiz-options" role="radiogroup" aria-labelledby="question-title-1">
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Faster development</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Code reuse</li>
+                        <li class="quiz-option" data-correct="true" role="radio" aria-checked="false" tabindex="0">Making simple problems more complex</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Increased reliability</li>
+                    </ul>
+                     <h4 style="display:none;" id="question-title-1">Question 2: Which of these is NOT a primary benefit of identifying patterns in coding?</h4>
+                </div>
+                <div class="quiz-question">
+                    <h4>Question 3: Facial recognition software primarily relies on identifying patterns in...?</h4>
+                    <ul class="quiz-options" role="radiogroup" aria-labelledby="question-title-2">
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Sound waves</li>
+                        <li class="quiz-option" data-correct="true" role="radio" aria-checked="false" tabindex="0">Facial features</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Binary code sequences</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">User behaviour</li>
+                    </ul>
+                     <h4 style="display:none;" id="question-title-2">Question 3: Facial recognition software primarily relies on identifying patterns in...?</h4>
+                </div>
+                 <div class="quiz-question">
+                    <h4>Question 4: According to the steps provided, what should you do after identifying common elements and differences in a pattern?</h4>
+                    <ul class="quiz-options" role="radiogroup" aria-labelledby="question-title-3">
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Make predictions about reuse</li>
+                        <li class="quiz-option" data-correct="true" role="radio" aria-checked="false" tabindex="0">Identify individual elements (Input, Process, Output)</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Describe the pattern</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Start coding the pattern immediately</li>
+                    </ul>
+                     <h4 style="display:none;" id="question-title-3">Question 4: According to the steps provided, what should you do after identifying common elements and differences in a pattern?</h4>
+                </div>
+                <div class="quiz-feedback" style="display: none;"></div>
+                <button class="quiz-btn mt-3" id="check-answers">Check Answers</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Standard JavaScript for Tooltips, Quiz, Particles (Optional), and Bootstrap Components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Collapsible functionality (if any non-accordion collapsibles exist)
+            // ... (keep if needed, otherwise remove) ...
+
+            // Particle creation (Optional)
+            function createParticles() {
+                const particlesContainer = document.querySelector('.particles');
+                // Added check for CSS handling flag
+                if (!particlesContainer || particlesContainer.children.length > 0 || getComputedStyle(particlesContainer).getPropertyValue('--particle-handled-by-css') === 'true') return;
+                const particleCount = window.innerWidth < 768 ? 15 : 30;
+                for(let i = 0; i < particleCount; i++) {
+                    const p = document.createElement('div');
+                    p.style.cssText = `position:absolute; width: 2px; height: 2px; background: rgba(255,255,255,0.5); border-radius: 50%; top:${Math.random()*100}%; left:${Math.random()*100}%;`;
+                    p.classList.add('particle-item'); // Added class for potential CSS targeting
+                    particlesContainer.appendChild(p);
+                }
+            }
+            // createParticles(); // Keep commented unless JS particles are desired over CSS ones
+
+            // Tooltip functionality
+            document.querySelectorAll('.key-term').forEach(term => {
+                const tooltip = term.querySelector('.tooltip-box');
+                if (tooltip) {
+                    term.setAttribute('tabindex', '0'); // Ensure it's focusable
+                    term.setAttribute('role', 'button'); // Indicate it's interactive
+                    term.setAttribute('aria-describedby', 'tooltip-' + Math.random().toString(36).substring(2, 9)); // Unique ID for ARIA
+                    tooltip.setAttribute('id', term.getAttribute('aria-describedby'));
+                    tooltip.setAttribute('role', 'tooltip');
+                    tooltip.style.display = 'none'; // Ensure hidden initially
+
+                    const showTooltip = () => { tooltip.style.display = 'block'; };
+                    const hideTooltip = () => { tooltip.style.display = 'none'; };
+
+                    term.addEventListener('mouseenter', showTooltip);
+                    term.addEventListener('mouseleave', hideTooltip);
+                    term.addEventListener('focus', showTooltip);
+                    term.addEventListener('blur', hideTooltip);
+                    term.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            tooltip.style.display = (tooltip.style.display === 'block') ? 'none' : 'block';
+                        } else if (e.key === 'Escape') {
+                             hideTooltip();
+                        }
+                    });
+                }
+            });
+
+            // --- Quiz Functionality ---
+            const quizBtn = document.getElementById('quiz-btn');
+            const quizContainer = document.getElementById('quiz');
+            const checkAnswersBtn = document.getElementById('check-answers');
+            const quizFeedback = document.querySelector('.quiz-feedback');
+            const quizQuestions = document.querySelectorAll('.quiz-question');
+
+            if (quizBtn && quizContainer && checkAnswersBtn && quizFeedback && quizQuestions.length > 0) {
+                quizBtn.addEventListener('click', () => {
+                    const isHidden = quizContainer.style.display === 'none' || quizContainer.style.display === '';
+                    quizContainer.style.display = isHidden ? 'block' : 'none';
+                    quizBtn.textContent = isHidden ? 'Hide Quiz' : 'Take Quiz';
+                    quizBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+                    // Reset feedback and selections when showing quiz
+                    if (isHidden) {
+                         quizFeedback.style.display = 'none';
+                         quizFeedback.innerHTML = ''; // Clear previous feedback text
+                         quizQuestions.forEach(question => {
+                             question.querySelectorAll('.quiz-option').forEach(opt => {
+                                 opt.classList.remove('correct', 'incorrect', 'selected');
+                                 opt.setAttribute('aria-checked', 'false');
+                             });
+                         });
+                    }
+                });
+
+                document.querySelectorAll('.quiz-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        // Deselect siblings in the same question
+                        this.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                            opt.setAttribute('aria-checked', 'false');
+                        });
+                        // Select clicked option
+                        this.classList.add('selected');
+                        this.setAttribute('aria-checked', 'true');
+                         // Hide feedback immediately when a new answer is selected after checking
+                         if (quizFeedback.style.display === 'block') {
+                            quizFeedback.style.display = 'none';
+                            // Optionally reset visual correct/incorrect state if desired
+                            // quizQuestions.forEach(q => q.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('correct', 'incorrect')));
+                         }
+                    });
+                    // Add keydown for space/enter selection
+                    option.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault(); // Prevent page scroll
+                            option.click(); // Trigger the click handler
+                        }
+                    });
+                });
+
+                checkAnswersBtn.addEventListener('click', () => {
+                    let correct = 0;
+                    const total = quizQuestions.length;
+                    let allAnswered = true;
+
+                    quizQuestions.forEach((question, index) => {
+                        const selectedOption = question.querySelector('.quiz-option.selected');
+                        if (!selectedOption) {
+                            allAnswered = false;
+                        }
+
+                        // Reset visual state before applying new one
+                        question.querySelectorAll('.quiz-option').forEach(opt => {
+                            opt.classList.remove('correct', 'incorrect');
+                        });
+
+                        // Mark answers
+                        question.querySelectorAll('.quiz-option').forEach(opt => {
+                            const isCorrect = opt.dataset.correct === 'true';
+                            const isSelected = opt.classList.contains('selected');
+
+                            if (isCorrect) {
+                                opt.classList.add('correct'); // Always show the correct one
+                            }
+                            if (isSelected && !isCorrect) {
+                                opt.classList.add('incorrect'); // Mark selected incorrect answer
+                            }
+                        });
+
+                        if (selectedOption && selectedOption.dataset.correct === 'true') {
+                            correct++;
+                        }
+                    });
+
+                    quizFeedback.style.display = 'block'; // Show feedback area
+
+                    if (!allAnswered) {
+                         quizFeedback.style.background = 'rgba(var(--warning-color-rgb, 255, 193, 7), 0.2)'; // Use CSS var or fallback
+                         quizFeedback.style.color = 'var(--warning-color, #ffc107)';
+                         quizFeedback.innerHTML = '<i class="fas fa-exclamation-triangle me-2"></i>Please answer all questions before checking.';
+                         return; // Stop processing further
+                    }
+
+                    // Display score and feedback message
+                    const scorePercentage = total > 0 ? (correct / total) * 100 : 0;
+                    let feedbackMessage = '';
+                    let feedbackBg = '';
+                    let feedbackColor = '';
+
+                    if (scorePercentage === 100) {
+                        feedbackMessage = 'Excellent! Perfect score!';
+                        feedbackBg = 'rgba(var(--success-color-rgb, 16, 185, 129), 0.2)';
+                        feedbackColor = 'var(--success-color, #10B981)';
+                    } else if (scorePercentage >= 70) {
+                        feedbackMessage = 'Great job!';
+                        feedbackBg = 'rgba(var(--accent-1-rgb, 99, 102, 241), 0.2)';
+                        feedbackColor = 'var(--accent-1, #6366f1)';
+                    } else if (scorePercentage >= 50) {
+                         feedbackMessage = 'Good effort, review the material!';
+                         feedbackBg = 'rgba(var(--warning-color-rgb, 255, 193, 7), 0.2)';
+                         feedbackColor = 'var(--warning-color, #ffc107)';
+                    }
+                    else {
+                        feedbackMessage = 'Keep practicing! Review the key concepts.';
+                        feedbackBg = 'rgba(var(--danger-color-rgb, 239, 68, 68), 0.2)';
+                        feedbackColor = 'var(--danger-color, #EF4444)';
+                    }
+
+                    quizFeedback.style.background = feedbackBg;
+                    quizFeedback.style.color = feedbackColor;
+                    quizFeedback.innerHTML = `<i class="fas fa-info-circle me-2"></i>Score: ${correct}/${total}. ${feedbackMessage}`;
+                });
+            }
+            // --- End Quiz Functionality ---
+
+            // Note: Bootstrap's Accordion functionality is handled automatically
+            // by including the Bootstrap JS bundle. No extra JS needed for it here.
+
+        });
+    </script>
+</body>
+</html>
