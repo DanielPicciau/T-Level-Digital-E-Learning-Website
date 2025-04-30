@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.1.4 Using Abstraction | T-Level Study Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Link to the CSS file that includes styles from styles.css -->
+    <link href="../../../css/sub_sections.css" rel="stylesheet">
+    <style>
+        /* Styles specific to this page or potentially moved to sub_sections.css later */
+        .insight-box {
+            background-color: rgba(var(--accent-2-rgb), 0.1); /* Use accent color with transparency */
+            border: 1px solid var(--accent-2);
+            padding: 15px;
+            border-radius: 8px; /* Match card radius */
+            margin-top: 20px;
+            margin-bottom: 1.5rem; /* Add bottom margin */
+        }
+        .insight-box h5 {
+            color: var(--accent-2);
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif; /* Match section heading font */
+        }
+        .insight-box i.fa-car, .insight-box i.fa-map-marked-alt { /* Specific icons */
+            color: var(--accent-2);
+            margin-right: 0.5rem;
+        }
+        /* Accordion styles should be inherited from sub_sections.css */
+        .general-specific-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden; /* Ensures border-radius applies to table */
+        }
+        .general-specific-table th, .general-specific-table td {
+            border: 1px solid rgba(var(--accent-1-rgb), 0.3);
+            padding: 12px;
+            text-align: left;
+            color: var(--text-primary);
+        }
+        .general-specific-table th {
+            background-color: rgba(var(--accent-1-rgb), 0.3);
+            color: white;
+            font-weight: bold;
+        }
+        .activity-card { /* Reusing style from commented-out section in 1.1.2 */
+            background-color: rgba(var(--accent-3-rgb), 0.1);
+            border: 1px solid var(--accent-3);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .activity-card h3 {
+            color: var(--accent-3);
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="universe-background">
+        <div class="stars"></div>
+        <div class="particles"></div>
+    </div>
+
+    <div class="container-fluid chapter-container">
+        <a href="../chapter1.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Chapter 1
+        </a>
+
+        <div class="chapter-header">
+            <h1 class="chapter-title">1.1.4 Using Abstraction</h1>
+        </div>
+
+        <!-- Introduction to Abstraction -->
+        <div class="content-section">
+            <h2 class="section-heading"><i class="fas fa-filter"></i> What is Abstraction?</h2>
+            <p><span class="key-term">Abstraction<span class="tooltip-box">The process of removing or filtering out characteristics that are not needed, in order to focus on essential characteristics.</span></span> is another key pillar of computational thinking. It involves identifying the essential information needed to understand or solve a problem while ignoring the irrelevant details.</p>
+            <p>Think of it like creating a summary or a simplified model. By removing unnecessary complexity, we can focus on the core aspects of the problem, making it easier to design a solution.</p>
+        </div>
+
+        <!-- Example: London Underground Map -->
+        <div class="content-section">
+            <h2 class="section-heading"><i class="fas fa-subway"></i> Abstraction in Action: The Tube Map</h2>
+            <div class="insight-box">
+                 <h5><i class="fas fa-map-marked-alt"></i>Iconic Example: London Underground Map</h5>
+                 <p>The famous London Underground map is a perfect example of abstraction. It shows:</p>
+                 <ul>
+                     <li>Stations and their names.</li>
+                     <li>The different lines (represented by colours).</li>
+                     <li>Connections between lines.</li>
+                     <li>The general sequence of stations on each line.</li>
+                 </ul>
+                 <p>However, it deliberately <strong>filters out</strong> unnecessary details like:</p>
+                 <ul>
+                     <li>The exact geographical location of stations.</li>
+                     <li>The precise distance between stations.</li>
+                     <li>The twists and turns of the actual tunnels underground.</li>
+                 </ul>
+                 <p>By abstracting away these details, the map becomes much clearer and easier to use for its primary purpose: planning a journey from one station to another.</p>
+            </div>
+        </div>
+
+        <!-- Why Abstraction Matters -->
+        <div class="content-section">
+            <h2 class="section-heading"><i class="fas fa-brain"></i> Benefits of Abstraction</h2>
+            <p>Using abstraction effectively helps us to:</p>
+            <ul>
+                <li><strong>Reduce Complexity:</strong> Makes complex systems easier to understand and manage.</li>
+                <li><strong>Increase Efficiency:</strong> Allows focus on the important parts, speeding up problem-solving and development.</li>
+                <li><strong>Create Models:</strong> Provides a general, simplified view (<span class="key-term">model<span class="tooltip-box">A simplified representation of a system or problem, resulting from abstraction.</span></span>) of the problem.</li>
+                <li><strong>Avoid Errors:</strong> Focusing on irrelevant details can lead to incorrect solutions. Abstraction helps prevent this.</li>
+                <li><strong>Improve Communication:</strong> Simplified models are easier to discuss and share with others.</li>
+            </ul>
+        </div>
+
+        <!-- General vs. Specific -->
+        <div class="content-section">
+            <h2 class="section-heading"><i class="fas fa-balance-scale-right"></i> General vs. Specific Details</h2>
+            <p>Abstraction involves moving from specific details to a more general understanding. Consider making a casserole:</p>
+            <div class="table-responsive">
+                <table class="general-specific-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">General Idea (Abstracted)</th>
+                            <th scope="col">Specific Detail (Filtered Out)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>A casserole needs ingredients.</td>
+                            <td>Exactly *which* ingredients (beef, carrots, onions...).</td>
+                        </tr>
+                        <tr>
+                            <td>Each ingredient has a required quantity.</td>
+                            <td>The *exact* quantity (500g beef, 2 carrots...).</td>
+                        </tr>
+                        <tr>
+                            <td>A casserole needs to be cooked for a long time.</td>
+                            <td>The *precise* cooking time and temperature (2 hours at 160°C).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mt-3">For the general task of "making a casserole," we don't need the specifics immediately. Abstraction lets us focus on the overall process first.</p>
+
+            <div class="insight-box">
+                 <h5><i class="fas fa-car"></i>Research Task: Driving a Car</h5>
+                 <p>Think about driving a car. Create a table similar to the one above, listing general details needed to understand the concept of driving versus specific details required for actually operating a particular car or navigating a specific route. Compare your table with others in your group.</p>
+            </div>
+        </div>
+
+        <!-- Steps and Layers of Abstraction -->
+        <div class="content-section">
+            <h2 class="section-heading"><i class="fas fa-layer-group"></i> Creating Layers of Abstraction</h2>
+            <p>Abstraction often involves creating layers, where each higher layer hides the complexity of the layer below it. Think of using a computer: you interact with the graphical interface (top layer), which hides the operating system (middle layer), which in turn hides the complex hardware operations (bottom layer).</p>
+            <p>There are two main steps when applying abstraction to solve a problem:</p>
+            <div class="accordion" id="abstractionStepsAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingStep1Abs">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStep1Abs" aria-expanded="false" aria-controls="collapseStep1Abs">
+                            <strong>Step 1:</strong> Identify Necessary Information
+                        </button>
+                    </h2>
+                    <div id="collapseStep1Abs" class="accordion-collapse collapse" aria-labelledby="headingStep1Abs" data-bs-parent="#abstractionStepsAccordion">
+                        <div class="accordion-body">
+                            <p>Determine exactly what information is essential to solve the problem. Ask yourself:</p>
+                            <ul>
+                                <li>What data do I absolutely need?</li>
+                                <li>Why is this information crucial?</li>
+                                <li>What format does this information need to be in (e.g., text, number, date)?</li>
+                            </ul>
+                            <p><em>Example: To calculate the area of a rectangle, you *need* the length and the width. You don't need its colour or location.</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingStep2Abs">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStep2Abs" aria-expanded="false" aria-controls="collapseStep2Abs">
+                            <strong>Step 2:</strong> Filter Out Unnecessary Information
+                        </button>
+                    </h2>
+                    <div id="collapseStep2Abs" class="accordion-collapse collapse" aria-labelledby="headingStep2Abs" data-bs-parent="#abstractionStepsAccordion">
+                        <div class="accordion-body">
+                            <p>Actively remove or ignore all information that is not essential (identified in Step 1). Ask yourself:</p>
+                            <ul>
+                                <li>What details are irrelevant to this specific problem?</li>
+                                <li>Why can I ignore this information?</li>
+                                <li>Will including this detail distract from or complicate the solution?</li>
+                            </ul>
+                            <p><em>Example: When calculating the rectangle's area, filter out the colour, material, position, etc., as they don't affect the area calculation.</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Elements within an Abstraction Layer -->
+        <div class="content-section">
+             <h2 class="section-heading"><i class="fas fa-cogs"></i> Elements Within an Abstraction Layer</h2>
+             <p>When defining a layer of abstraction, especially in software development, it's useful to consider these elements:</p>
+             <ul>
+                 <li><strong>Inputs:</strong> What data or signals does this layer receive? (e.g., user clicks, data from another module, sensor readings). Consider validation needed.</li>
+                 <li><strong>Outputs:</strong> What results or signals does this layer produce? (e.g., display on screen, data sent to another module, file saved). Consider the required format.</li>
+                 <li><strong><span class="key-term">Variables<span class="tooltip-box">Values that can change during the execution of a program or process, often affected by inputs or calculations.</span></span>:</strong> Data within the layer that can change (e.g., user score, current total, item count).</li>
+                 <li><strong><span class="key-term">Constants<span class="tooltip-box">Values within a program or process that do not change during execution (e.g., VAT rate, maximum attempts, fixed delivery price).</span></span>:</strong> Data within the layer that remains fixed (e.g., PI, tax rate, company name).</li>
+                 <li><strong>Key Processes:</strong> The main actions or calculations performed by this layer (e.g., calculate total, validate input, search database).</li>
+                 <li><strong>Repeated Processes:</strong> Actions or calculations that occur multiple times within the layer or system (often candidates for functions or loops).</li>
+             </ul>
+        </div>
+
+        <!-- Activity: School Prom -->
+        <div class="content-section">
+             <h2 class="section-heading"><i class="fas fa-calculator"></i> Activity: School Prom Costs</h2>
+             <div class="activity-card">
+                 <h3 class="activity-title"><i class="fas fa-tasks me-2"></i>Plan the Prom Cost Calculator</h3>
+                 <p><strong>Scenario:</strong> You need to design the lowest abstraction level for a simple digital system to calculate school prom costs.</p>
+                 <p><strong>Task:</strong> Identify and list the essential elements for this system level:</p>
+                 <ul>
+                     <li><strong>Inputs:</strong> What information must the system receive? (Think about venue cost, catering cost per person, number of students attending, ticket price etc.)</li>
+                     <li><strong>Outputs:</strong> What information must the system produce? (The task specifies ticket cost and profit).</li>
+                     <li><strong>Variables:</strong> What values might change based on the inputs? (e.g., total catering cost, total revenue).</li>
+                     <li><strong>Constants:</strong> Are there any values that might be fixed? (Perhaps a fixed decoration budget?).</li>
+                     <li><strong>Key Processes:</strong> What calculations need to be performed? (e.g., calculate total costs, calculate total revenue, calculate profit).</li>
+                 </ul>
+                 <p><em>Discuss your identified elements with your group. How does focusing on these elements (abstraction) help plan the calculator without getting lost in specific interface design details yet?</em></p>
+             </div>
+        </div>
+
+        <!-- Connecting the Pillars -->
+        <div class="content-section">
+             <h2 class="section-heading"><i class="fas fa-link"></i> Abstraction and Other Pillars</h2>
+             <p>Abstraction works closely with the other computational thinking pillars:</p>
+             <ul>
+                 <li>After <span class="key-term">decomposition<span class="tooltip-box">Breaking down a complex problem into smaller parts.</span></span>, abstraction helps simplify each part.</li>
+                 <li>Abstraction helps reveal underlying <span class="key-term">patterns<span class="tooltip-box">Identifying similarities or repeated processes.</span></span> by removing superficial differences.</li>
+                 <li>The simplified model created through abstraction is what we then design <span class="key-term">algorithms<span class="tooltip-box">Creating step-by-step instructions to solve the abstracted problem.</span></span> for.</li>
+             </ul>
+             <p>Effectively abstracting is crucial for managing complexity and developing clear, focused solutions.</p>
+        </div>
+
+        <!-- Test Yourself Section -->
+        <div class="content-section">
+            <h2 class="section-heading"><i class="fas fa-question-circle"></i> Check Your Understanding</h2>
+            <!-- Recall Questions -->
+            <div class="review-questions mb-4">
+                <h4 class="recall-title">Key Recall Questions:</h4>
+                <ol>
+                    <li>Why is abstraction important in problem-solving?</li>
+                    <li>What is the main aim of abstraction?</li>
+                    <li>What happens to efficiency when abstraction is carried out effectively?</li>
+                    <li>Identify one of the two main steps carried out in the process of abstraction.</li>
+                    <li>In the context of abstraction and programming, what is a variable?</li>
+                </ol>
+            </div>
+
+            <!-- Interactive Quiz -->
+            <button class="quiz-btn" id="quiz-btn" aria-expanded="false" aria-controls="quiz">Take Quiz</button>
+
+            <div class="quiz-container" id="quiz" style="display: none;">
+                <div class="quiz-question">
+                    <h4>Question 1: What is the primary purpose of abstraction?</h4>
+                    <ul class="quiz-options" role="radiogroup" aria-labelledby="question-title-0">
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">To add more detail to a problem</li>
+                        <li class="quiz-option" data-correct="true" role="radio" aria-checked="false" tabindex="0">To filter out unnecessary details and focus on essentials</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">To break a problem into smaller pieces</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">To find repeating sequences</li>
+                    </ul>
+                    <h4 style="display:none;" id="question-title-0">Question 1: What is the primary purpose of abstraction?</h4>
+                </div>
+                <div class="quiz-question">
+                    <h4>Question 2: The London Underground map is a good example of abstraction because it ignores:</h4>
+                    <ul class="quiz-options" role="radiogroup" aria-labelledby="question-title-1">
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Station names</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Connections between lines</li>
+                        <li class="quiz-option" data-correct="true" role="radio" aria-checked="false" tabindex="0">Exact geographical distances</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Different train lines</li>
+                    </ul>
+                     <h4 style="display:none;" id="question-title-1">Question 2: The London Underground map is a good example of abstraction because it ignores:</h4>
+                </div>
+                <div class="quiz-question">
+                    <h4>Question 3: Which of the following is a benefit of using abstraction?</h4>
+                    <ul class="quiz-options" role="radiogroup" aria-labelledby="question-title-2">
+                        <li class="quiz-option" data-correct="true" role="radio" aria-checked="false" tabindex="0">Reduced complexity</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Increased number of errors</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Slower development time</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">More specific details are included</li>
+                    </ul>
+                     <h4 style="display:none;" id="question-title-2">Question 3: Which of the following is a benefit of using abstraction?</h4>
+                </div>
+                 <div class="quiz-question">
+                    <h4>Question 4: In programming, a value like the VAT rate (which doesn't change during program execution) is best described as a:</h4>
+                    <ul class="quiz-options" role="radiogroup" aria-labelledby="question-title-3">
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Variable</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Input</li>
+                        <li class="quiz-option" data-correct="true" role="radio" aria-checked="false" tabindex="0">Constant</li>
+                        <li class="quiz-option" role="radio" aria-checked="false" tabindex="0">Process</li>
+                    </ul>
+                     <h4 style="display:none;" id="question-title-3">Question 4: In programming, a value like the VAT rate (which doesn't change during program execution) is best described as a:</h4>
+                </div>
+                <div class="quiz-feedback" style="display: none;"></div>
+                <button class="quiz-btn mt-3" id="check-answers">Check Answers</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Standard JavaScript for Tooltips, Quiz, Particles (Optional), and Bootstrap Components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Particle creation (Optional - ensure CSS handles it if commented out)
+            function createParticles() {
+                const particlesContainer = document.querySelector('.particles');
+                if (!particlesContainer || particlesContainer.children.length > 0 || getComputedStyle(particlesContainer).getPropertyValue('--particle-handled-by-css') === 'true') return;
+                const particleCount = window.innerWidth < 768 ? 15 : 30;
+                for(let i = 0; i < particleCount; i++) {
+                    const p = document.createElement('div');
+                    p.style.cssText = `position:absolute; width: 2px; height: 2px; background: rgba(255,255,255,0.5); border-radius: 50%; top:${Math.random()*100}%; left:${Math.random()*100}%;`;
+                    p.classList.add('particle-item');
+                    particlesContainer.appendChild(p);
+                }
+            }
+            // createParticles(); // Uncomment if JS particles are preferred over CSS
+
+            // Tooltip functionality
+            document.querySelectorAll('.key-term').forEach(term => {
+                const tooltip = term.querySelector('.tooltip-box');
+                if (tooltip) {
+                    term.setAttribute('tabindex', '0');
+                    term.setAttribute('role', 'button');
+                    const tooltipId = 'tooltip-' + Math.random().toString(36).substring(2, 9);
+                    term.setAttribute('aria-describedby', tooltipId);
+                    tooltip.setAttribute('id', tooltipId);
+                    tooltip.setAttribute('role', 'tooltip');
+                    tooltip.style.display = 'none';
+
+                    const showTooltip = () => { tooltip.style.display = 'block'; };
+                    const hideTooltip = () => { tooltip.style.display = 'none'; };
+
+                    term.addEventListener('mouseenter', showTooltip);
+                    term.addEventListener('mouseleave', hideTooltip);
+                    term.addEventListener('focus', showTooltip);
+                    term.addEventListener('blur', hideTooltip);
+                    term.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            tooltip.style.display = (tooltip.style.display === 'block') ? 'none' : 'block';
+                        } else if (e.key === 'Escape') {
+                             hideTooltip();
+                        }
+                    });
+                }
+            });
+
+            // --- Quiz Functionality ---
+            const quizBtn = document.getElementById('quiz-btn');
+            const quizContainer = document.getElementById('quiz');
+            const checkAnswersBtn = document.getElementById('check-answers');
+            const quizFeedback = document.querySelector('.quiz-feedback');
+            const quizQuestions = document.querySelectorAll('.quiz-question');
+
+            if (quizBtn && quizContainer && checkAnswersBtn && quizFeedback && quizQuestions.length > 0) {
+                quizBtn.addEventListener('click', () => {
+                    const isHidden = quizContainer.style.display === 'none' || quizContainer.style.display === '';
+                    quizContainer.style.display = isHidden ? 'block' : 'none';
+                    quizBtn.textContent = isHidden ? 'Hide Quiz' : 'Take Quiz';
+                    quizBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+                    if (isHidden) {
+                         quizFeedback.style.display = 'none';
+                         quizFeedback.innerHTML = '';
+                         quizQuestions.forEach(question => {
+                             question.querySelectorAll('.quiz-option').forEach(opt => {
+                                 opt.classList.remove('correct', 'incorrect', 'selected');
+                                 opt.setAttribute('aria-checked', 'false');
+                             });
+                         });
+                    }
+                });
+
+                document.querySelectorAll('.quiz-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        this.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                            opt.setAttribute('aria-checked', 'false');
+                        });
+                        this.classList.add('selected');
+                        this.setAttribute('aria-checked', 'true');
+                         if (quizFeedback.style.display === 'block') {
+                            quizFeedback.style.display = 'none';
+                         }
+                    });
+                    option.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            option.click();
+                        }
+                    });
+                });
+
+                checkAnswersBtn.addEventListener('click', () => {
+                    let correct = 0;
+                    const total = quizQuestions.length;
+                    let allAnswered = true;
+
+                    quizQuestions.forEach((question) => {
+                        const selectedOption = question.querySelector('.quiz-option.selected');
+                        if (!selectedOption) allAnswered = false;
+
+                        question.querySelectorAll('.quiz-option').forEach(opt => {
+                            opt.classList.remove('correct', 'incorrect');
+                            const isCorrect = opt.dataset.correct === 'true';
+                            const isSelected = opt.classList.contains('selected');
+                            if (isCorrect) opt.classList.add('correct');
+                            if (isSelected && !isCorrect) opt.classList.add('incorrect');
+                        });
+
+                        if (selectedOption && selectedOption.dataset.correct === 'true') correct++;
+                    });
+
+                    quizFeedback.style.display = 'block';
+
+                    if (!allAnswered) {
+                         quizFeedback.style.background = 'rgba(var(--warning-color-rgb, 255, 193, 7), 0.2)';
+                         quizFeedback.style.color = 'var(--warning-color, #ffc107)';
+                         quizFeedback.innerHTML = '<i class="fas fa-exclamation-triangle me-2"></i>Please answer all questions before checking.';
+                         return;
+                    }
+
+                    const scorePercentage = total > 0 ? (correct / total) * 100 : 0;
+                    let feedbackMessage, feedbackBg, feedbackColor;
+
+                    if (scorePercentage === 100) {
+                        feedbackMessage = 'Excellent! Perfect score!';
+                        feedbackBg = 'rgba(var(--success-color-rgb, 16, 185, 129), 0.2)';
+                        feedbackColor = 'var(--success-color, #10B981)';
+                    } else if (scorePercentage >= 70) {
+                        feedbackMessage = 'Great job!';
+                        feedbackBg = 'rgba(var(--accent-1-rgb, 99, 102, 241), 0.2)';
+                        feedbackColor = 'var(--accent-1, #6366f1)';
+                    } else if (scorePercentage >= 50) {
+                         feedbackMessage = 'Good effort, review the material!';
+                         feedbackBg = 'rgba(var(--warning-color-rgb, 255, 193, 7), 0.2)';
+                         feedbackColor = 'var(--warning-color, #ffc107)';
+                    } else {
+                        feedbackMessage = 'Keep practicing! Review the key concepts.';
+                        feedbackBg = 'rgba(var(--danger-color-rgb, 239, 68, 68), 0.2)';
+                        feedbackColor = 'var(--danger-color, #EF4444)';
+                    }
+
+                    quizFeedback.style.background = feedbackBg;
+                    quizFeedback.style.color = feedbackColor;
+                    quizFeedback.innerHTML = `<i class="fas fa-info-circle me-2"></i>Score: ${correct}/${total}. ${feedbackMessage}`;
+                });
+            }
+            // --- End Quiz Functionality ---
+
+            // Note: Bootstrap's Accordion functionality is handled automatically by the JS bundle.
+
+        });
+    </script>
+</body>
+</html>
