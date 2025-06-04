@@ -79,12 +79,11 @@ function initInteractiveFeatures() {
   
     // Tooltip positioning
     document.querySelectorAll('.key-term').forEach(term => {
+      const tooltip = term.querySelector('.tooltip-box');
+      if(!tooltip) return;
       term.addEventListener('mousemove', function(e) {
-        const tooltip = this.querySelector('::after');
-        if(tooltip) {
-          tooltip.style.left = `${e.clientX}px`;
-          tooltip.style.top = `${e.clientY}px`;
-        }
+        tooltip.style.left = `${e.clientX}px`;
+        tooltip.style.top = `${e.clientY}px`;
       });
     });
   }
