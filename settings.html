@@ -1,25 +1,24 @@
 <!-- settings.html -->
-<div id="settingsModal">
-    <div class="settings-modal-content">
-        <span class="close-settings">&times;</span>
-        <h2 class="settings-title">Application Settings</h2>
-
-        <!-- Renamed container for clarity -->
-        <div class="settings-option-container">
-            <label class="settings-option-label" id="visualEffectsLabel">
-                Visual Effects
-            </label>
-            <!-- The Toggle Button -->
-            <button class="settings-toggle-btn"
-                    id="visualEffectsToggle"
-                    role="switch"
-                    aria-checked="true"
-                    aria-labelledby="visualEffectsLabel">
-                <!-- Text inside can change via JS if needed, or rely on CSS state -->
-                <span>Enabled</span>
-            </button>
+<div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content settings-modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title settings-title" id="settingsModalLabel">Application Settings</h5>
+                <button type="button" class="btn-close close-settings" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Renamed container for clarity -->
+                <div class="settings-option-container">
+                    <label class="settings-option-label" id="visualEffectsLabel">
+                        Visual Effects
+                    </label>
+                    <!-- The Toggle Button -->
+                    <button class="settings-toggle-btn" id="visualEffectsToggle" role="switch" aria-checked="true" aria-labelledby="visualEffectsLabel">
+                        <span>Enabled</span>
+                    </button>
+                </div>
+                <!-- Add more settings options here in the future if needed -->
+            </div>
         </div>
-        <!-- Add more settings options here in the future if needed -->
-
     </div>
 </div>

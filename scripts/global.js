@@ -82,6 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     function getSettingsPath() {
+        const scriptSrc = document.currentScript && document.currentScript.src;
+        if (scriptSrc) {
+            return new URL('../settings.html', scriptSrc).href;
+        }
         const depth = window.location.pathname.split('/').filter(p => p).length - 1;
         return '../'.repeat(depth) + 'settings.html';
     }
@@ -91,25 +95,18 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(html => {
             settingsContainer.innerHTML = html;
             const settingsModal = document.getElementById('settingsModal');
-            const closeBtn = settingsContainer.querySelector('.close-settings');
             const toggleButton = document.getElementById('visualEffectsToggle');
-            if (!settingsModal || !closeBtn || !toggleButton) {
+            if (!settingsModal || !toggleButton) {
                 console.error('Settings modal elements not found after fetch.');
                 return;
             }
 
+            const modalInstance = new bootstrap.Modal(settingsModal);
+
             applyAnimationSetting(animationsInitiallyEnabled);
 
             openSettingsBtn.addEventListener('click', () => {
-                settingsModal.style.display = 'block';
-            });
-            closeBtn.addEventListener('click', () => {
-                settingsModal.style.display = 'none';
-            });
-            window.addEventListener('click', (evt) => {
-                if (evt.target === settingsModal) {
-                    settingsModal.style.display = 'none';
-                }
+                modalInstance.show();
             });
             toggleButton.addEventListener('click', function () {
                 const currentlyEnabled = this.classList.contains('active');
